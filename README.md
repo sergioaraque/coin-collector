@@ -152,18 +152,6 @@ node scripts/update-coins.cjs
 
 ---
 
-## 🔐 Panel de administración
-
-Para dar acceso de admin a un usuario, ejecuta en el SQL Editor de Supabase:
-
-```sql
-INSERT INTO public.user_roles (user_id, role)
-SELECT id, 'admin' FROM auth.users WHERE email = 'tu@email.com'
-ON CONFLICT (user_id) DO UPDATE SET role = 'admin';
-```
-
----
-
 ## 📱 PWA
 
 La app es instalable en móvil como PWA. Los iconos se generan con:
