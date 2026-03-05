@@ -5,6 +5,7 @@ import { useTheme } from '../context/ThemeContext'
 import { useAdmin } from '../hooks/useAdmin'
 import { ALL_COINS } from '../data/coins'
 import GlobalSearch from './GlobalSearch'
+import { useTranslation } from 'react-i18next'
 
 export default function Layout() {
   const { user, signOut } = useAuth()
@@ -12,20 +13,25 @@ export default function Layout() {
   const { dark, toggle } = useTheme()
   const { isAdmin } = useAdmin()
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
 
   const handleSignOut = async () => {
     await signOut()
     navigate('/login', { replace: true })
   }
 
+  const toggleLang = () => {
+    const next = i18n.language === 'es' ? 'en' : 'es'
+    i18n.changeLanguage(next)
+    localStorage.setItem('lang', next)
+  }
+
   const pct = Math.round((owned.size / ALL_COINS.length) * 100)
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors">
-      {/* Header */}
       <header className="bg-blue-800 dark:bg-gray-800 text-white shadow-lg">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          {/* Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <span className="text-2xl">🪙</span>
             <div>
@@ -36,12 +42,10 @@ export default function Layout() {
             </div>
           </div>
 
-          {/* Buscador global */}
           <div className="flex-1 flex justify-center">
             <GlobalSearch />
           </div>
 
-          {/* Acciones */}
           <div className="flex items-center gap-3 shrink-0">
             <NavLink
               to="/perfil"
@@ -50,9 +54,15 @@ export default function Layout() {
               {user?.email}
             </NavLink>
             <button
+              onClick={toggleLang}
+              className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
+              title="Cambiar idioma"
+            >
+              {i18n.language === 'es' ? '🇬🇧' : '🇪🇸'}
+            </button>
+            <button
               onClick={toggle}
               className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 dark:hover:bg-gray-600 px-3 py-1.5 rounded-lg text-sm transition"
-              title={dark ? 'Modo claro' : 'Modo oscuro'}
             >
               {dark ? '☀️' : '🌙'}
             </button>
@@ -60,21 +70,21 @@ export default function Layout() {
               onClick={handleSignOut}
               className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
             >
-              Salir
+              {t('logout')}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Nav */}
       <nav className="bg-blue-900 dark:bg-gray-700 text-white overflow-x-auto">
         <div className="max-w-6xl mx-auto px-4 flex gap-1 min-w-max">
           {[
-            { to: '/mapa',        label: '🗺️ Mapa' },
-            { to: '/coleccion',   label: '📋 Colección' },
-            { to: '/estadisticas',label: '📊 Estadísticas' },
-            { to: '/actividad',   label: '🕐 Actividad' },
-            ...(isAdmin ? [{ to: '/admin', label: '🛡️ Admin' }] : []),
+            { to: '/mapa',         label: t('map') },
+            { to: '/coleccion',    label: t('collection') },
+            { to: '/estadisticas', label: t('stats') },
+            { to: '/actividad',    label: t('activity') },
+            { to: '/ranking',      label: t('ranking') },
+            ...(isAdmin ? [{ to: '/admin', label: t('admin') }] : []),
           ].map(({ to, label }) => (
             <NavLink
               key={to}
@@ -93,7 +103,6 @@ export default function Layout() {
         </div>
       </nav>
 
-      {/* Content */}
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-6">
         <Outlet />
       </main>

@@ -13,19 +13,21 @@ export async function notifyDiscord(message) {
   }
 }
 
-export async function notifyLogin(email, ownedCount, totalCount) {
+export async function notifyLogin(email, username, ownedCount, totalCount) {
   const pct = Math.round((ownedCount / totalCount) * 100)
   const bar = buildProgressBar(pct)
+  const displayName = username || email
   await notifyDiscord(
-    `🪙 **Nuevo acceso** — \`${email}\`\n` +
+    `🪙 **Nuevo acceso** — \`${displayName}\`\n` +
     `📊 Colección: **${ownedCount}/${totalCount}** monedas (${pct}%)\n` +
     `${bar}`
   )
 }
 
-export async function notifyCountryComplete(email, country, total) {
+export async function notifyCountryComplete(email, username, country, total) {
+  const displayName = username || email
   await notifyDiscord(
-    `🏆 **¡País completado!** — \`${email}\`\n` +
+    `🏆 **¡País completado!** — \`${displayName}\`\n` +
     `🎉 Ha completado **${country}** al 100% (${total} monedas)`
   )
 }

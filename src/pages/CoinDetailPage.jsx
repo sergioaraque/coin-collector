@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { ALL_COINS } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
 import { useCoinImage } from '../hooks/useCoinImage'
+import { useTranslation } from 'react-i18next'
 
 export default function CoinDetailPage() {
   const { coinId } = useParams()
@@ -10,12 +11,13 @@ export default function CoinDetailPage() {
   const { owned, toggleCoin } = useCollection()
   const coin = ALL_COINS.find(c => c.id === coinId)
   const { src, status } = useCoinImage(coin || {})
+  const { t } = useTranslation()
 
   if (!coin) return (
     <div className="text-center py-20">
-      <p className="text-gray-400">Moneda no encontrada</p>
+      <p className="text-gray-400">{t('coinNotFound')}</p>
       <button onClick={() => navigate(-1)} className="mt-4 text-blue-600 hover:underline">
-        ← Volver
+        {t('back')}
       </button>
     </div>
   )
@@ -36,7 +38,7 @@ export default function CoinDetailPage() {
         onClick={() => navigate(-1)}
         className="text-blue-600 dark:text-blue-400 hover:underline text-sm flex items-center gap-1"
       >
-        ← Volver a la colección
+        {t('backToCollection')}
       </button>
 
       {/* Card principal */}
@@ -71,32 +73,32 @@ export default function CoinDetailPage() {
                   : 'bg-blue-700 text-white hover:bg-blue-800'
               }`}
             >
-              {isOwned ? '✅ En mi colección' : '+ Añadir'}
+              {isOwned ? t('inCollection') : '+ ' + t('addCoin')}
             </button>
           </div>
 
           {/* Detalles */}
           <div className="grid grid-cols-2 gap-4 pt-2 border-t border-gray-100 dark:border-gray-700">
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide">Conmemora</p>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">{t('commemorates')}</p>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mt-0.5">
                 {coin.commemorates || '—'}
               </p>
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide">Acuñación</p>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">{t('mintage')}</p>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mt-0.5">
-                {coin.mintage > 0 ? coin.mintage.toLocaleString('es') + ' uds.' : '—'}
+                {coin.mintage > 0 ? coin.mintage.toLocaleString('es') + ' ' + t('units') : '—'}
               </p>
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide">País</p>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">{t('country')}</p>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mt-0.5">
                 {coin.country}
               </p>
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide">Año</p>
+              <p className="text-xs text-gray-400 uppercase tracking-wide">{t('year')}</p>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mt-0.5">
                 {coin.year}
               </p>
@@ -108,7 +110,7 @@ export default function CoinDetailPage() {
             <span className="text-2xl">💰</span>
             <div>
               <p className="text-xs text-yellow-700 dark:text-yellow-400 font-medium">
-                Valor estimado de mercado
+                {t('estimatedMarketValue')}
               </p>
               <p className="text-lg font-bold text-yellow-700 dark:text-yellow-300">
                 {coin.mintage === 0 ? '—' :
@@ -118,7 +120,7 @@ export default function CoinDetailPage() {
                  '2€ - 4€'}
               </p>
               <p className="text-xs text-yellow-600 dark:text-yellow-500 mt-0.5">
-                Estimación basada en la acuñación
+                {t('mintageEstimation')}
               </p>
             </div>
           </div>
@@ -129,7 +131,7 @@ export default function CoinDetailPage() {
       {sameYear.length > 0 && (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4">
           <h2 className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
-            🌍 Emisión común {coin.year} — otros países
+            🌍 {t('commonIssue')} {coin.year} — {t('otherCountries')}
           </h2>
           <div className="flex flex-wrap gap-2">
             {sameYear.slice(0, 12).map(c => (
@@ -152,7 +154,7 @@ export default function CoinDetailPage() {
       {/* Otras monedas del mismo país */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4">
         <h2 className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
-          Otras monedas de {coin.country}
+          {t('otherCoinsFrom')} {coin.country}
         </h2>
         <div className="flex flex-wrap gap-2">
           {sameCountry.map(c => (

@@ -13,6 +13,7 @@ import MapPage from './pages/MapPage'
 import CoinDetailPage from './pages/CoinDetailPage'
 import ProfilePage from './pages/ProfilePage'
 import ActivityPage from './pages/ActivityPage'
+import RankingPage from './pages/RankingPage'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="moneda/:coinId" element={<CoinDetailPage />} />
               <Route path="perfil" element={<ProfilePage />} />
               <Route path="actividad" element={<ActivityPage />} />
+              <Route path="ranking" element={<RankingPage />} />
             </Route>
           </Routes>
         <ToastContainer />

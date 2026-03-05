@@ -23,18 +23,32 @@ export function AuthProvider({ children }) {
       setLoading(false)
 
       // Solo notificamos en login real, no en cada F5
-      // sessionStorage se mantiene en F5 pero se borra al cerrar el navegador
       if (event === 'SIGNED_IN' && session?.user) {
         const sessionKey = `notified_${session.user.id}`
         if (!sessionStorage.getItem(sessionKey)) {
           sessionStorage.setItem(sessionKey, '1')
-          setTimeout(() => {
-            supabase
-              .from('collection')
-              .select('*', { count: 'exact', head: true })
-              .eq('user_id', session.user.id)
-              .then(({ count }) => notifyLogin(session.user.email, count || 0, ALL_COINS.length))
-              .catch(e => console.error('Error notificando Discord:', e))
+          setTimeout(async () => {
+            try {
+              const [{ count }, { data: profile }] = await Promise.all([
+                supabase
+                  .from('collection')
+                  .select('*', { count: 'exact', head: true })
+                  .eq('user_id', session.user.id),
+                supabase
+                  .from('profiles')
+                  .select('username')
+                  .eq('user_id', session.user.id)
+                  .maybeSingle()
+              ])
+              await notifyLogin(
+                session.user.email,
+                profile?.username,
+                count || 0,
+                ALL_COINS.length
+              )
+            } catch (e) {
+              console.error('Error notificando Discord:', e)
+            }
           }, 0)
         }
       }
