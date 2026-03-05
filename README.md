@@ -1,6 +1,7 @@
 # 🪙 EuroCollector
 
 Aplicación web para coleccionar y gestionar monedas conmemorativas de 2€ de la Unión Europea.
+Es una aplicación en la que se ha utilizado la IA para hacer pruebas con ella.
 
 ---
 
@@ -110,11 +111,7 @@ VITE_SUPABASE_URL=https://tuproyecto.supabase.co
 VITE_SUPABASE_ANON_KEY=tu_anon_key
 SUPABASE_SERVICE_KEY=tu_service_role_key   # Solo para los scripts
 VITE_DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
-```
 
-> ⚠️ **Nunca subas `.env` a Git.** Verifica que está en `.gitignore`.
-
----
 
 ## 🛠️ Instalación y desarrollo
 
