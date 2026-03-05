@@ -16,7 +16,7 @@ export default function LoginPage() {
     setLoading(true)
     const { error } = await signIn(email, password)
     if (error) setError(error.message)
-    else navigate('/coleccion')
+    else navigate('/mapa')
     setLoading(false)
   }
 

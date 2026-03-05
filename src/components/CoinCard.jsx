@@ -1,17 +1,20 @@
+import { useNavigate } from 'react-router-dom'
 import { useCoinImage } from '../hooks/useCoinImage'
 
 export default function CoinCard({ coin, isOwned, onToggle }) {
   const { src, status } = useCoinImage(coin)
+  const navigate = useNavigate()
 
   return (
-    <div
-      className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all hover:shadow-md cursor-pointer border-2 ${
-        isOwned ? 'border-green-400' : 'border-transparent'
-      }`}
-      onClick={onToggle}
-    >
-      {/* Imagen */}
-      <div className="relative bg-gray-50 flex items-center justify-center h-28">
+    <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden transition-all hover:shadow-md border-2 ${
+      isOwned ? 'border-green-400' : 'border-transparent'
+    }`}>
+
+      {/* Imagen — click navega al detalle */}
+      <div
+        className="relative bg-gray-50 dark:bg-gray-700 flex items-center justify-center h-28 cursor-pointer"
+        onClick={() => navigate(`/moneda/${coin.id}`)}
+      >
         {status === 'error' ? (
           <div className="flex flex-col items-center gap-1 text-gray-300">
             <span className="text-4xl">🪙</span>
@@ -30,12 +33,9 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
               className={`h-24 w-24 object-contain transition-opacity duration-300 ${
                 status === 'ok' ? 'opacity-100' : 'opacity-0'
               }`}
-              onLoad={() => {}}
-              onError={() => {}}
             />
           </>
         )}
-
         {isOwned && (
           <span className="absolute top-1 right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow">
             ✓
@@ -43,20 +43,26 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
         )}
       </div>
 
-      {/* Info */}
-      <div className="p-2">
-        <p className="text-xs font-semibold text-blue-800 truncate">{coin.country}</p>
-        <p className="text-sm font-bold text-gray-800">{coin.year}</p>
-        <p className="text-xs text-gray-500 leading-tight line-clamp-2">{coin.description}</p>
+      {/* Info — click navega al detalle */}
+      <div
+        className="p-2 cursor-pointer"
+        onClick={() => navigate(`/moneda/${coin.id}`)}
+      >
+        <p className="text-xs font-semibold text-blue-800 dark:text-blue-400 truncate">{coin.country}</p>
+        <p className="text-sm font-bold text-gray-800 dark:text-white">{coin.year}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 leading-tight line-clamp-2">{coin.description}</p>
         {coin.mintage > 0 && (
           <p className="text-xs text-gray-400 mt-1">{coin.mintage.toLocaleString('es')} uds.</p>
         )}
       </div>
 
-      {/* Toggle */}
-      <div className={`py-1.5 text-center text-xs font-medium transition ${
-        isOwned ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-      }`}>
+      {/* Botón toggle — solo marca/desmarca, NO navega */}
+      <div
+        onClick={onToggle}
+        className={`py-1.5 text-center text-xs font-medium transition cursor-pointer ${
+          isOwned ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 hover:bg-gray-200'
+        }`}
+      >
         {isOwned ? '✅ En mi colección' : '+ Añadir'}
       </div>
     </div>

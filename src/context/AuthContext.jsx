@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../supabase'
+import { notifyLogin } from '../lib/discord'
+import { ALL_COINS } from '../data/coins'
 
 const AuthContext = createContext(null)
 
@@ -8,13 +10,36 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('onAuthStateChange evento:', event)
+
+      if (event === 'SIGNED_OUT') {
+        setUser(null)
+        setLoading(false)
+        return
+      }
+
       setUser(session?.user ?? null)
       setLoading(false)
+
+      // Solo notificamos en login real, no en cada F5
+      // sessionStorage se mantiene en F5 pero se borra al cerrar el navegador
+      if (event === 'SIGNED_IN' && session?.user) {
+        const sessionKey = `notified_${session.user.id}`
+        if (!sessionStorage.getItem(sessionKey)) {
+          sessionStorage.setItem(sessionKey, '1')
+          setTimeout(() => {
+            supabase
+              .from('collection')
+              .select('*', { count: 'exact', head: true })
+              .eq('user_id', session.user.id)
+              .then(({ count }) => notifyLogin(session.user.email, count || 0, ALL_COINS.length))
+              .catch(e => console.error('Error notificando Discord:', e))
+          }, 0)
+        }
+      }
     })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-    })
+
     return () => subscription.unsubscribe()
   }, [])
 

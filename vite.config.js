@@ -1,6 +1,25 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon-192.png', 'icon-512.png'],
+      manifest: {
+        name: 'EuroCollector',
+        short_name: 'EuroCollector',
+        description: 'Tu colección de monedas conmemorativas de 2€',
+        theme_color: '#1e40af',
+        background_color: '#1e40af',
+        display: 'standalone',
+        icons: [
+          { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }
+        ]
+      }
+    })
+  ],
 })

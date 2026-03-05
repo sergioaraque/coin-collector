@@ -1,0 +1,37 @@
+const WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL
+
+export async function notifyDiscord(message) {
+  if (!WEBHOOK_URL) return
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: message })
+    })
+  } catch (e) {
+    console.error('Discord webhook error:', e)
+  }
+}
+
+export async function notifyLogin(email, ownedCount, totalCount) {
+  const pct = Math.round((ownedCount / totalCount) * 100)
+  const bar = buildProgressBar(pct)
+  await notifyDiscord(
+    `🪙 **Nuevo acceso** — \`${email}\`\n` +
+    `📊 Colección: **${ownedCount}/${totalCount}** monedas (${pct}%)\n` +
+    `${bar}`
+  )
+}
+
+export async function notifyCountryComplete(email, country, total) {
+  await notifyDiscord(
+    `🏆 **¡País completado!** — \`${email}\`\n` +
+    `🎉 Ha completado **${country}** al 100% (${total} monedas)`
+  )
+}
+
+function buildProgressBar(pct) {
+  const filled = Math.round(pct / 10)
+  const empty = 10 - filled
+  return '`' + '█'.repeat(filled) + '░'.repeat(empty) + `\` ${pct}%`
+}
