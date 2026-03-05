@@ -33,10 +33,10 @@ export const ALL_COINS = [
   { id: 'at_2005', country: 'Austria', year: 2005, description: '50 años Tratado de Estado', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2005.jpg', mintage: 7000000, commemorates: 'Tratado de Estado 1955' },
   { id: 'at_2007', country: 'Austria', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2007.jpg', mintage: 7000000, commemorates: 'Tratado de Roma' },
   { id: 'at_2009', country: 'Austria', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2009.jpg', mintage: 7000000, commemorates: '10 años UEM' },
-  { id: 'at_2012', country: 'Austria', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Austria_2012.png'), mintage: 7000000, commemorates: '10 años euro' },
-  { id: 'at_2015', country: 'Austria', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Austria_2015.png'), mintage: 7000000, commemorates: 'Bandera UE' },
+  { id: 'at_2012', country: 'Austria', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2012.jpg', mintage: 7000000, commemorates: '10 años euro' },
+  { id: 'at_2015', country: 'Austria', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2015.jpg', mintage: 7000000, commemorates: 'Bandera UE' },
   { id: 'at_2016', country: 'Austria', year: 2016, description: '200 años Banco Nacional de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2016.jpg', mintage: 7000000, commemorates: '200 años OeNB' },
-  { id: 'at_2018', country: 'Austria', year: 2018, description: '100 años República de Austria', imageUrl: wikiUrl('2_euro_Austria_2018.png'), mintage: 7000000, commemorates: '100 años República' },
+  { id: 'at_2018', country: 'Austria', year: 2018, description: '100 años República de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2018.png', mintage: 7000000, commemorates: '100 años República' },
   { id: 'at_2019', country: 'Austria', year: 2019, description: '50 años sufragio universal', imageUrl: wikiUrl('2_euro_Austria_2019.png'), mintage: 7000000, commemorates: 'Sufragio universal' },
   { id: 'at_2021', country: 'Austria', year: 2021, description: '35 años Bandera UE', imageUrl: wikiUrl('2_euro_Austria_2021.png'), mintage: 7000000, commemorates: 'Bandera UE' },
   { id: 'at_2022', country: 'Austria', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Austria_2022.png'), mintage: 7000000, commemorates: '35 años Erasmus' },
@@ -109,7 +109,7 @@ export const ALL_COINS = [
 
   // ── ESTONIA ───────────────────────────────────────────────────────
   { id: 'ee_2012', country: 'Estonia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Estonia_2012.png'), mintage: 1000000, commemorates: '10 años euro' },
-  { id: 'ee_2015', country: 'Estonia', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Estonia_2015.png'), mintage: 1000000, commemorates: 'Bandera UE' },
+  { id: 'ee_2015', country: 'Estonia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ee_2015.jpg', mintage: 1000000, commemorates: 'Bandera UE' },
   { id: 'ee_2017', country: 'Estonia', year: 2017, description: '100 años independencia de Estonia', imageUrl: wikiUrl('2_euro_Estonia_2017.png'), mintage: 1000000, commemorates: '100 años independencia' },
   { id: 'ee_2018', country: 'Estonia', year: 2018, description: '100 años independencia países bálticos', imageUrl: wikiUrl('2_euro_Estonia_2018.png'), mintage: 1000000, commemorates: 'Centenario Báltico' },
   { id: 'ee_2022', country: 'Estonia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Estonia_2022.png'), mintage: 1000000, commemorates: '35 años Erasmus' },
@@ -122,7 +122,7 @@ export const ALL_COINS = [
   { id: 'fi_2009', country: 'Finlandia', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Finland_2009.png'), mintage: 2500000, commemorates: '10 años UEM' },
   { id: 'fi_2010', country: 'Finlandia', year: 2010, description: '150 años Banco de Finlandia', imageUrl: wikiUrl('2_euro_Finland_2010.png'), mintage: 2000000, commemorates: 'Banco Finlandia' },
   { id: 'fi_2012', country: 'Finlandia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Finland_2012.png'), mintage: 1500000, commemorates: '10 años euro' },
-  { id: 'fi_2015', country: 'Finlandia', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Finland_2015.png'), mintage: 1500000, commemorates: 'Bandera UE' },
+  { id: 'fi_2015', country: 'Finlandia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2015.jpg', mintage: 1500000, commemorates: 'Bandera UE' },
   { id: 'fi_2017', country: 'Finlandia', year: 2017, description: '100 años independencia de Finlandia', imageUrl: wikiUrl('2_euro_Finland_2017.png'), mintage: 1500000, commemorates: '100 años Finlandia' },
   { id: 'fi_2022', country: 'Finlandia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Finland_2022.png'), mintage: 1500000, commemorates: '35 años Erasmus' },
 
@@ -152,7 +152,7 @@ export const ALL_COINS = [
   { id: 'gr_2011', country: 'Grecia', year: 2011, description: '2500 años Batalla de Salamina', imageUrl: wikiUrl('2_euro_Greece_2011.png'), mintage: 3000000, commemorates: 'Salamina' },
   { id: 'gr_2012', country: 'Grecia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Greece_2012.png'), mintage: 3000000, commemorates: '10 años euro' },
   { id: 'gr_2013', country: 'Grecia', year: 2013, description: '2400 años Academia de Platón', imageUrl: wikiUrl('2_euro_Greece_2013.png'), mintage: 3000000, commemorates: 'Platón' },
-  { id: 'gr_2015', country: 'Grecia', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Greece_2015.png'), mintage: 2500000, commemorates: 'Bandera UE' },
+  { id: 'gr_2015', country: 'Grecia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/gr_2015.jpg', mintage: 2500000, commemorates: 'Bandera UE' },
   { id: 'gr_2022', country: 'Grecia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Greece_2022.png'), mintage: 2000000, commemorates: '35 años Erasmus' },
 
   // ── IRLANDA ───────────────────────────────────────────────────────
