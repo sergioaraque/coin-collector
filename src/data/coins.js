@@ -31,8 +31,8 @@ export const ALL_COINS = [
 
   // ── AUSTRIA ───────────────────────────────────────────────────────
   { id: 'at_2005', country: 'Austria', year: 2005, description: '50 años Tratado de Estado', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2005.jpg', mintage: 7000000, commemorates: 'Tratado de Estado 1955' },
-  { id: 'at_2007', country: 'Austria', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_Austria_2007.png'), mintage: 7000000, commemorates: 'Tratado de Roma' },
-  { id: 'at_2009', country: 'Austria', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Austria_2009.png'), mintage: 7000000, commemorates: '10 años UEM' },
+  { id: 'at_2007', country: 'Austria', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2007.jpg', mintage: 7000000, commemorates: 'Tratado de Roma' },
+  { id: 'at_2009', country: 'Austria', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2009.jpg', mintage: 7000000, commemorates: '10 años UEM' },
   { id: 'at_2012', country: 'Austria', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Austria_2012.png'), mintage: 7000000, commemorates: '10 años euro' },
   { id: 'at_2015', country: 'Austria', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Austria_2015.png'), mintage: 7000000, commemorates: 'Bandera UE' },
   { id: 'at_2016', country: 'Austria', year: 2016, description: '200 años Banco Nacional de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2016.jpg', mintage: 7000000, commemorates: '200 años OeNB' },
