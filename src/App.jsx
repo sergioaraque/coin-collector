@@ -11,6 +11,8 @@ import Layout from './components/Layout'
 import { ToastContainer } from './components/Toast'
 import MapPage from './pages/MapPage'
 import CoinDetailPage from './pages/CoinDetailPage'
+import ProfilePage from './pages/ProfilePage'
+import ActivityPage from './pages/ActivityPage'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
@@ -42,6 +44,8 @@ export default function App() {
               <Route path="admin" element={<AdminPage />} />
               <Route path="mapa" element={<MapPage />} />
               <Route path="moneda/:coinId" element={<CoinDetailPage />} />
+              <Route path="perfil" element={<ProfilePage />} />
+              <Route path="actividad" element={<ActivityPage />} />
             </Route>
           </Routes>
         <ToastContainer />

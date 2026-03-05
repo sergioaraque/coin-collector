@@ -212,13 +212,13 @@ export const ALL_COINS = [
   { id: 'mt_2012', country: 'Malta', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Malta_2012.png'), mintage: 1500000, commemorates: '10 años euro' },
   { id: 'mt_2013', country: 'Malta', year: 2013, description: 'Barca tradicional Dgħajsa', imageUrl: wikiUrl('2_euro_Malta_2013.png'), mintage: 1500000, commemorates: 'Cultura maltesa' },
   { id: 'mt_2014', country: 'Malta', year: 2014, description: '50 años independencia de Malta', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2014.jpg', mintage: 1500000, commemorates: 'Independencia' },
-  { id: 'mt_2015', country: 'Malta', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Malta_2015.png'), mintage: 1500000, commemorates: 'Bandera UE' },
-  { id: 'mt_2016', country: 'Malta', year: 2016, description: 'Templos de Ta Hagrat', imageUrl: wikiUrl('2_euro_Malta_2016.png'), mintage: 1500000, commemorates: 'Templos prehistóricos' },
-  { id: 'mt_2017', country: 'Malta', year: 2017, description: 'Templo de Hagar Qim', imageUrl: wikiUrl('2_euro_Malta_2017.png'), mintage: 1500000, commemorates: 'Hagar Qim' },
-  { id: 'mt_2022', country: 'Malta', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Malta_2022.png'), mintage: 1500000, commemorates: '35 años Erasmus' },
+  { id: 'mt_2015', country: 'Malta', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2015.jpg', mintage: 1500000, commemorates: 'Bandera UE' },
+  { id: 'mt_2016', country: 'Malta', year: 2016, description: 'Templos de Ta Hagrat', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2016.jpg', mintage: 1500000, commemorates: 'Templos prehistóricos' },
+  { id: 'mt_2017', country: 'Malta', year: 2017, description: 'Templo de Hagar Qim', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2017.jpg', mintage: 1500000, commemorates: 'Hagar Qim' },
+  { id: 'mt_2022', country: 'Malta', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2022.jpg', mintage: 1500000, commemorates: '35 años Erasmus' },
 
   // ── MÓNACO ────────────────────────────────────────────────────────
-  { id: 'mc_2007', country: 'Mónaco', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_Monaco_2007.png'), mintage: 20001, commemorates: 'Tratado de Roma' },
+  { id: 'mc_2007', country: 'Mónaco', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mc_2007.jpg', mintage: 20001, commemorates: 'Tratado de Roma' },
   { id: 'mc_2012', country: 'Mónaco', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Monaco_2012.png'), mintage: 9000, commemorates: '10 años euro' },
   { id: 'mc_2015', country: 'Mónaco', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Monaco_2015.png'), mintage: 9001, commemorates: 'Bandera UE' },
   { id: 'mc_2022', country: 'Mónaco', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Monaco_2022.png'), mintage: 15000, commemorates: '35 años Erasmus' },
