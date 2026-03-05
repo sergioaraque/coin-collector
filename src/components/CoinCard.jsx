@@ -20,7 +20,7 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
         {status === 'error' ? (
           <div className="flex flex-col items-center gap-1 text-gray-300">
             <span className="text-4xl">🪙</span>
-            <span className="text-xs">t('noImage')</span>
+            <span className="text-xs">{t('noImage')}</span>
           </div>
         ) : (
           <>
