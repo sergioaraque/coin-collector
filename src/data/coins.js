@@ -160,7 +160,7 @@ export const ALL_COINS = [
   { id: 'ie_2009', country: 'Irlanda', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Ireland_2009.png'), mintage: 5000000, commemorates: '10 años UEM' },
   { id: 'ie_2012', country: 'Irlanda', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Ireland_2012.png'), mintage: 5000000, commemorates: '10 años euro' },
   { id: 'ie_2015', country: 'Irlanda', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Ireland_2015.png'), mintage: 5000000, commemorates: 'Bandera UE' },
-  { id: 'ie_2016', country: 'Irlanda', year: 2016, description: '100 años Alzamiento de Pascua', imageUrl: wikiUrl('2_euro_Ireland_2016.png'), mintage: 5000000, commemorates: 'Pascua 1916' },
+  { id: 'ie_2016', country: 'Irlanda', year: 2016, description: '100 años Alzamiento de Pascua', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ie_2016.jpg', mintage: 5000000, commemorates: 'Pascua 1916' },
   { id: 'ie_2022', country: 'Irlanda', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ie_2022.jpg', mintage: 5000000, commemorates: '35 años Erasmus' },
 
   // ── ITALIA ────────────────────────────────────────────────────────
@@ -249,7 +249,7 @@ export const ALL_COINS = [
   { id: 'sm_2005', country: 'San Marino', year: 2005, description: 'Galileo Galilei', imageUrl: wikiUrl('2_euro_San_Marino_2005.png'), mintage: 130000, commemorates: 'Galileo' },
   { id: 'sm_2007', country: 'San Marino', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_San_Marino_2007.png'), mintage: 120000, commemorates: 'Tratado de Roma' },
   { id: 'sm_2009', country: 'San Marino', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_San_Marino_2009.png'), mintage: 120000, commemorates: '10 años UEM' },
-  { id: 'sm_2010', country: 'San Marino', year: 2010, description: 'Sandro Botticelli', imageUrl: wikiUrl('2_euro_San_Marino_2010.png'), mintage: 120000, commemorates: 'Botticelli' },
+  { id: 'sm_2010', country: 'San Marino', year: 2010, description: 'Sandro Botticelli', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2010.jpg', mintage: 120000, commemorates: 'Botticelli' },
   { id: 'sm_2012', country: 'San Marino', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_San_Marino_2012.png'), mintage: 120000, commemorates: '10 años euro' },
   { id: 'sm_2013', country: 'San Marino', year: 2013, description: '500 años Piero della Francesca', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2013.jpg', mintage: 65000, commemorates: 'Piero della Francesca' },
   { id: 'sm_2015', country: 'San Marino', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_San_Marino_2015.png'), mintage: 65000, commemorates: 'Bandera UE' },
