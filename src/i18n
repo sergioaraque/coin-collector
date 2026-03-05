@@ -74,6 +74,7 @@ const resources = {
         rankingCountries: 'Países completados',
         rankingYou: 'Tú',
         rankingTitle: 'Ranking de coleccionistas de monedas de 2€',
+        loading_session: 'Cargando sesión...',
     }
   },
   en: {
@@ -142,6 +143,7 @@ const resources = {
         rankingCountries: 'Countries completed',
         rankingYou: 'You',
         rankingTitle: 'Ranking of 2€ coin collectors',
+        loading_session: 'Loading session...',
     }
   }
 }

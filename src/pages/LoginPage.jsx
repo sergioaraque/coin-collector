@@ -71,6 +71,9 @@ export default function LoginPage() {
             {loading ? '...' : t('login')}
           </button>
         </form>
+        <p className="text-center text-sm text-gray-400 mt-4">
+          <Link to="/landing" className="hover:underline">{t('back')}</Link>
+        </p>
 
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
           {t('noAccount')}{' '}

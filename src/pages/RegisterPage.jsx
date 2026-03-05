@@ -155,6 +155,9 @@ export default function RegisterPage() {
           </button>
         </form>
 
+        <p className="text-center text-sm text-gray-400 mt-4">
+          <Link to="/landing" className="hover:underline">{t('back')}</Link>
+        </p>
         <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
           {t('haveAccount')}{' '}
           <Link to="/login" className="text-blue-700 dark:text-blue-400 hover:underline font-medium">

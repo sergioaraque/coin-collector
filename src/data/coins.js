@@ -37,8 +37,8 @@ export const ALL_COINS = [
   { id: 'at_2015', country: 'Austria', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2015.jpg', mintage: 7000000, commemorates: 'Bandera UE' },
   { id: 'at_2016', country: 'Austria', year: 2016, description: '200 años Banco Nacional de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2016.jpg', mintage: 7000000, commemorates: '200 años OeNB' },
   { id: 'at_2018', country: 'Austria', year: 2018, description: '100 años República de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2018.png', mintage: 7000000, commemorates: '100 años República' },
-  { id: 'at_2019', country: 'Austria', year: 2019, description: '50 años sufragio universal', imageUrl: wikiUrl('2_euro_Austria_2019.png'), mintage: 7000000, commemorates: 'Sufragio universal' },
-  { id: 'at_2021', country: 'Austria', year: 2021, description: '35 años Bandera UE', imageUrl: wikiUrl('2_euro_Austria_2021.png'), mintage: 7000000, commemorates: 'Bandera UE' },
+  { id: 'at_2019', country: 'Austria', year: 2019, description: '50 años sufragio universal', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2019.jpg', mintage: 7000000, commemorates: 'Sufragio universal' },
+  { id: 'at_2021', country: 'Austria', year: 2021, description: '35 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2021.jpg', mintage: 7000000, commemorates: 'Bandera UE' },
   { id: 'at_2022', country: 'Austria', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Austria_2022.png'), mintage: 7000000, commemorates: '35 años Erasmus' },
 
   // ── BÉLGICA ───────────────────────────────────────────────────────
@@ -85,7 +85,7 @@ export const ALL_COINS = [
   { id: 'si_2010', country: 'Eslovenia', year: 2010, description: '200 años Jardín Botánico de Ljubljana', imageUrl: wikiUrl('2_euro_Slovenia_2010.png'), mintage: 1000000, commemorates: 'Jardín Botánico' },
   { id: 'si_2012', country: 'Eslovenia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Slovenia_2012.png'), mintage: 1000000, commemorates: '10 años euro' },
   { id: 'si_2013', country: 'Eslovenia', year: 2013, description: '700 años Cueva de Postojna', imageUrl: wikiUrl('2_euro_Slovenia_2013.png'), mintage: 1000000, commemorates: 'Cueva Postojna' },
-  { id: 'si_2015', country: 'Eslovenia', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Slovenia_2015.png'), mintage: 1000000, commemorates: 'Bandera UE' },
+  { id: 'si_2015', country: 'Eslovenia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/si_2015.jpg', mintage: 1000000, commemorates: 'Bandera UE' },
   { id: 'si_2022', country: 'Eslovenia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Slovenia_2022.png'), mintage: 1000000, commemorates: '35 años Erasmus' },
 
   // ── ESPAÑA ────────────────────────────────────────────────────────
@@ -94,7 +94,7 @@ export const ALL_COINS = [
   { id: 'es_2009', country: 'España', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Spain_2009.png'), mintage: 8000000, commemorates: '10 años UEM' },
   { id: 'es_2010', country: 'España', year: 2010, description: 'Córdoba - Capital Europea de la Cultura', imageUrl: wikiUrl('2_euro_Spain_2010.png'), mintage: 8000000, commemorates: 'Capital Cultura' },
   { id: 'es_2011', country: 'España', year: 2011, description: 'Alhambra de Granada', imageUrl: wikiUrl('2_euro_Spain_2011.png'), mintage: 7500000, commemorates: 'UNESCO - Alhambra' },
-  { id: 'es_2012', country: 'España', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Spain_2012.png'), mintage: 8000000, commemorates: '10 años euro' },
+  { id: 'es_2012', country: 'España', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/es_2012.jpg', mintage: 8000000, commemorates: '10 años euro' },
   { id: 'es_2013', country: 'España', year: 2013, description: 'El Escorial', imageUrl: wikiUrl('2_euro_Spain_2013.png'), mintage: 7000000, commemorates: 'UNESCO - Escorial' },
   { id: 'es_2014', country: 'España', year: 2014, description: 'Proclamación del Rey Felipe VI', imageUrl: wikiUrl('2_euro_Spain_2014.png'), mintage: 8000000, commemorates: 'Rey Felipe VI' },
   { id: 'es_2015', country: 'España', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Spain_2015.png'), mintage: 7000000, commemorates: 'Bandera UE' },
@@ -174,8 +174,8 @@ export const ALL_COINS = [
   { id: 'it_2012', country: 'Italia', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2012.jpg', mintage: 15000000, commemorates: '10 años euro' },
   { id: 'it_2013', country: 'Italia', year: 2013, description: '200 años Giuseppe Verdi', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2013.jpg', mintage: 5000000, commemorates: 'Giuseppe Verdi' },
   { id: 'it_2014', country: 'Italia', year: 2014, description: 'Galileo Galilei', imageUrl: wikiUrl('2_euro_Italy_2014.png'), mintage: 5000000, commemorates: 'Galileo' },
-  { id: 'it_2015', country: 'Italia', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Italy_2015.png'), mintage: 5000000, commemorates: 'Bandera UE' },
-  { id: 'it_2015b', country: 'Italia', year: 2015, description: '750 años Dante Alighieri', imageUrl: wikiUrl('2_euro_Italy_2015_Dante.png'), mintage: 5000000, commemorates: 'Dante Alighieri' },
+  { id: 'it_2015', country: 'Italia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2015.jpg', mintage: 5000000, commemorates: 'Bandera UE' },
+  { id: 'it_2015b', country: 'Italia', year: 2015, description: '750 años Dante Alighieri', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2015b.jpg', mintage: 5000000, commemorates: 'Dante Alighieri' },
   { id: 'it_2016', country: 'Italia', year: 2016, description: 'Plauto - 2200 años', imageUrl: wikiUrl('2_euro_Italy_2016.png'), mintage: 5000000, commemorates: 'Plauto' },
   { id: 'it_2017', country: 'Italia', year: 2017, description: 'Tito Livio - 2000 años', imageUrl: wikiUrl('2_euro_Italy_2017.png'), mintage: 5000000, commemorates: 'Tito Livio' },
   { id: 'it_2018', country: 'Italia', year: 2018, description: '420 años Gian Lorenzo Bernini', imageUrl: wikiUrl('2_euro_Italy_2018.png'), mintage: 5000000, commemorates: 'Bernini' },
@@ -229,7 +229,7 @@ export const ALL_COINS = [
   { id: 'nl_2011', country: 'Países Bajos', year: 2011, description: '500 años Erasmo de Rotterdam', imageUrl: wikiUrl('2_euro_Netherlands_2011.png'), mintage: 5000000, commemorates: 'Erasmo Rotterdam' },
   { id: 'nl_2012', country: 'Países Bajos', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Netherlands_2012.png'), mintage: 5000000, commemorates: '10 años euro' },
   { id: 'nl_2013', country: 'Países Bajos', year: 2013, description: 'Abdicación de la Reina Beatriz', imageUrl: wikiUrl('2_euro_Netherlands_2013.png'), mintage: 5000000, commemorates: 'Reina Beatriz' },
-  { id: 'nl_2015', country: 'Países Bajos', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Netherlands_2015.png'), mintage: 5000000, commemorates: 'Bandera UE' },
+  { id: 'nl_2015', country: 'Países Bajos', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/nl_2015.jpg', mintage: 5000000, commemorates: 'Bandera UE' },
   { id: 'nl_2022', country: 'Países Bajos', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Netherlands_2022.png'), mintage: 5000000, commemorates: '35 años Erasmus' },
 
   // ── PORTUGAL ──────────────────────────────────────────────────────
@@ -282,7 +282,7 @@ export const ALL_COINS = [
   { id: 'de_2024_th', country: 'Alemania', year: 2024, description: 'Mecklemburgo - Castillo de Schwerin', imageUrl: wikiUrl('2_euro_Germany_2024.png'), mintage: 30000000, commemorates: 'Serie Bundesländer' },
 
   // ── AUSTRIA ───────────────────────────────────────────────────────
-  { id: 'at_2023', country: 'Austria', year: 2023, description: '150 años Banco Nacional de Austria', imageUrl: wikiUrl('2_euro_Austria_2023.png'), mintage: 7000000, commemorates: '150 años OeNB' },
+  { id: 'at_2023', country: 'Austria', year: 2023, description: '150 años Banco Nacional de Austria', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/at_2023.jpg', mintage: 7000000, commemorates: '150 años OeNB' },
   { id: 'at_2024', country: 'Austria', year: 2024, description: '175 años Constitución austríaca', imageUrl: wikiUrl('2_euro_Austria_2024.png'), mintage: 7000000, commemorates: 'Constitución Austria' },
 
   // ── BÉLGICA ───────────────────────────────────────────────────────
@@ -380,6 +380,15 @@ export const ALL_COINS = [
   { id: 'ad_2022', country: 'Andorra', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Andorra_2022.png'), mintage: 70000, commemorates: '35 años Erasmus' },
   { id: 'ad_2023', country: 'Andorra', year: 2023, description: '30 años relaciones con la UE', imageUrl: wikiUrl('2_euro_Andorra_2023.png'), mintage: 70000, commemorates: '30 años UE-Andorra' },
   { id: 'ad_2024', country: 'Andorra', year: 2024, description: 'Escudo de Andorra', imageUrl: wikiUrl('2_euro_Andorra_2024.png'), mintage: 70000, commemorates: 'Escudo Nacional' },
+  // ── EMISIONES 2025 (Programadas/Emitidas) ──────────────────────────
+  { id: 'de_2025_sl', country: 'Alemania', year: 2025, description: 'Sarre - Saarschleife (Meandro del Sarre)', imageUrl: wikiUrl('2_euro_Germany_2025_Sarre.png'), mintage: 30000000, commemorates: 'Serie Bundesländer II' },
+  { id: 'es_2025_sa', country: 'España', year: 2025, description: 'Ciudad vieja de Salamanca', imageUrl: wikiUrl('2_euro_Spain_2025_Salamanca.png'), mintage: 2000000, commemorates: 'UNESCO - Salamanca' },
+  { id: 'be_2025_lot', country: 'Bélgica', year: 2025, description: 'Lotería Nacional de Bélgica', imageUrl: wikiUrl('2_euro_Belgium_2025_Lottery.png'), mintage: 1000000, commemorates: 'Lotería Nacional' },
+  { id: 'it_2025_jub', country: 'Italia', year: 2025, description: 'Año Jubilar 2025', imageUrl: wikiUrl('2_euro_Italy_2025_Jubilee.png'), mintage: 3000000, commemorates: 'Jubileo 2025' },
+  { id: 'sk_2025_ih',  country: 'Eslovaquia', year: 2025, description: '100 años del Campeonato Europeo de Hockey sobre Hielo', imageUrl: wikiUrl('2_euro_Slovakia_2025_Hockey.png'), mintage: 1000000, commemorates: 'Deporte eslovaco' },
+  { id: 'ee_2025_txt', country: 'Estonia', year: 2025, description: '500 años del primer texto impreso en estonio', imageUrl: wikiUrl('2_euro_Estonia_2025_Text.png'), mintage: 850000, commemorates: 'Cultura Estonia' },
+  { id: 'lt_2025_def', country: 'Lituania', year: 2025, description: 'Defensa del Estado Lituano', imageUrl: wikiUrl('2_euro_Lithuania_2025_Defense.png'), mintage: 500000, commemorates: 'Defensa Nacional' },
+  { id: 'fr_2025_lou', country: 'Francia', year: 2025, description: 'Museo del Louvre - La Gioconda', imageUrl: wikiUrl('2_euro_France_2025_Louvre.png'), mintage: 315000, commemorates: 'Louvre' },
 ]
 
 export const COUNTRIES = [...new Set(ALL_COINS.map(c => c.country))].sort()

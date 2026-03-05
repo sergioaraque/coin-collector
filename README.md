@@ -112,7 +112,6 @@ VITE_SUPABASE_ANON_KEY=tu_anon_key
 SUPABASE_SERVICE_KEY=tu_service_role_key   # Solo para los scripts
 VITE_DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 
-
 ## 🛠️ Instalación y desarrollo
 
 ```bash

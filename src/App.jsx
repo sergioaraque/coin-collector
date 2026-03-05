@@ -14,20 +14,22 @@ import CoinDetailPage from './pages/CoinDetailPage'
 import ProfilePage from './pages/ProfilePage'
 import ActivityPage from './pages/ActivityPage'
 import RankingPage from './pages/RankingPage'
+import LandingPage from './pages/LandingPage'
+import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
+    const { t } = useTranslation()
   if (loading) return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="text-center">
         <div className="w-8 h-8 border-4 border-blue-300 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-sm text-gray-500">Cargando sesión...</p>
-        <p className="text-xs text-gray-400 mt-1">Si esto tarda mucho, revisa la consola (F12)</p>
+        <p className="text-sm text-gray-500">{t('loading_session')}</p>
       </div>
     </div>
   )
 
-  return user ? children : <Navigate to="/login" replace />
+  return user ? children : <Navigate to="/landing" replace />
 }
 
 export default function App() {
@@ -49,6 +51,7 @@ export default function App() {
               <Route path="actividad" element={<ActivityPage />} />
               <Route path="ranking" element={<RankingPage />} />
             </Route>
+            <Route path="/landing" element={<LandingPage />} />
           </Routes>
         <ToastContainer />
         </CollectionProvider>
