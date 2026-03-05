@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useCoinImage } from '../hooks/useCoinImage'
 
 export default function CoinCard({ coin, isOwned, onToggle }) {
-  const [imgError, setImgError] = useState(false)
+  const { src, status } = useCoinImage(coin)
 
   return (
     <div
@@ -12,18 +12,32 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
     >
       {/* Imagen */}
       <div className="relative bg-gray-50 flex items-center justify-center h-28">
-        {!imgError ? (
-          <img
-            src={coin.imageUrl}
-            alt={coin.description}
-            className="h-24 w-24 object-contain"
-            onError={() => setImgError(true)}
-          />
+        {status === 'error' ? (
+          <div className="flex flex-col items-center gap-1 text-gray-300">
+            <span className="text-4xl">🪙</span>
+            <span className="text-xs">Sin imagen</span>
+          </div>
         ) : (
-          <span className="text-4xl">🪙</span>
+          <>
+            {status === 'loading' && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
+              </div>
+            )}
+            <img
+              src={src}
+              alt={coin.description}
+              className={`h-24 w-24 object-contain transition-opacity duration-300 ${
+                status === 'ok' ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoad={() => {}}
+              onError={() => {}}
+            />
+          </>
         )}
+
         {isOwned && (
-          <span className="absolute top-1 right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+          <span className="absolute top-1 right-1 bg-green-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow">
             ✓
           </span>
         )}
@@ -39,7 +53,7 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
         )}
       </div>
 
-      {/* Toggle button */}
+      {/* Toggle */}
       <div className={`py-1.5 text-center text-xs font-medium transition ${
         isOwned ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
       }`}>

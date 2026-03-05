@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.4",
+    "@supabase/supabase-js": "^2.98.0",
+    "dotenv": "^17.3.1",
+    "node-fetch": "^2.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
