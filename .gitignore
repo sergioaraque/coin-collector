@@ -2,3 +2,7 @@
 /sql
 /node_modules
 /dist
+
+supabase/.temp/
+supabase/functions/.env
+supabase/config.toml

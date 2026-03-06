@@ -19,6 +19,7 @@ import PublicStatsPage from './pages/public/PublicStatsPage'
 import PublicCatalogPage from './pages/public/PublicCatalogPage'
 import PublicRankingPage from './pages/public/PublicRankingPage'
 import BadgesPage from './pages/BadgesPage'
+import AdminImagePage from './pages/AdminImagePage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -49,6 +50,7 @@ export default function App() {
               <Route path="coleccion" element={<CollectionPage />} />
               <Route path="estadisticas" element={<StatsPage />} />
               <Route path="admin" element={<AdminPage />} />
+              <Route path="/admin/imagenes" element={<AdminImagePage />} />
               <Route path="mapa" element={<MapPage />} />
               <Route path="moneda/:coinId" element={<CoinDetailPage />} />
               <Route path="perfil" element={<ProfilePage />} />

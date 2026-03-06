@@ -82,6 +82,12 @@ export default function AdminPage() {
           {t('adminPanel')}
         </h1>
       </div>
+      <button
+  onClick={() => navigate('/admin/imagenes')}
+  className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm transition"
+>
+  🖼️ Gestionar imágenes
+</button>
 
       {/* Resumen */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

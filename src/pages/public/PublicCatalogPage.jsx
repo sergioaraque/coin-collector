@@ -5,12 +5,10 @@ import { useCoinImage } from '../../hooks/useCoinImage'
 
 function PublicCoinCard({ coin }) {
   const { src, status } = useCoinImage(coin)
-  const navigate = useNavigate()
 
   return (
     <div
-      onClick={() => navigate(`/moneda-publica/${coin.id}`)}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer border-2 border-transparent hover:border-blue-300"
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition border-2 border-transparent hover:border-blue-300"
     >
       <div className="bg-gray-50 dark:bg-gray-700 flex items-center justify-center h-28 relative">
         {status === 'error' ? (
