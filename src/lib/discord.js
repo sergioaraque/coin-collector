@@ -1,9 +1,10 @@
 const WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL
 
 export async function notifyDiscord(message) {
-  if (!WEBHOOK_URL) return
+  const url = import.meta.env.VITE_DISCORD_WEBHOOK_URL
+  if (!url) return
   try {
-    await fetch(WEBHOOK_URL, {
+    await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content: message })

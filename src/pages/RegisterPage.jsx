@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { supabase } from '../supabase'
 import { useTranslation } from 'react-i18next'
+import { notifyDiscord } from '../lib/discord'
 
 export default function RegisterPage() {
   const { signUp } = useAuth()
@@ -43,7 +44,17 @@ export default function RegisterPage() {
 
     const { data, error: signUpError } = await signUp(email, password)
     if (signUpError) {
-      setError(signUpError.message)
+      if (signUpError.message.toLowerCase().includes('rate limit') || 
+          signUpError.message.toLowerCase().includes('email rate limit')) {
+        setError('Actualmente estamos recibiendo más solicitudes. Por favor, inténtalo de nuevo en unos minutos. ¡Gracias por tu paciencia!')
+        await notifyDiscord(
+          `⚠️ **Rate limit en registro** — \`${email}\`\n` +
+          `📅 ${new Date().toLocaleString('es')}\n` +
+          `💬 El usuario ha visto el mensaje de "intentarlo en unos minutos"`
+        )
+      } else {
+        setError(signUpError.message)
+      }
       setLoading(false)
       return
     }

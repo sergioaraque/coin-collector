@@ -4,6 +4,7 @@ import { useAuth } from './AuthContext'
 import { ALL_COINS } from '../data/coins'
 import { notifyCountryComplete } from '../lib/discord'
 import { showToast } from '../components/Toast'
+import { checkAndAwardBadges } from '../lib/badges'
 
 const CollectionContext = createContext(null)
 
@@ -64,6 +65,17 @@ export function CollectionProvider({ children }) {
           await notifyCountryComplete(user.email, coin.country, countryCoins.length)
           await logActivity('complete_country', null, coin.country)
         }
+      }
+
+      // Verificamos insignias después de añadir
+      const newBadges = await checkAndAwardBadges(user.id, newOwned)
+      for (const badgeId of newBadges) {
+        const { data } = await supabase
+          .from('badges')
+          .select('name, icon')
+          .eq('id', badgeId)
+          .single()
+        if (data) showToast(`${data.icon} ¡Insignia desbloqueada! ${data.name}`, 'success')
       }
     }
   }

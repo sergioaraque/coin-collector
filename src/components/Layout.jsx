@@ -36,6 +36,7 @@ export default function Layout() {
     { to: '/coleccion',    label: t('collection') },
     { to: '/estadisticas', label: t('stats') },
     { to: '/actividad',    label: t('activity') },
+    { to: '/insignias', label:  t('badges') },
     { to: '/ranking',      label: t('ranking') },
     ...(isAdmin ? [{ to: '/admin', label: t('admin') }] : []),
   ]

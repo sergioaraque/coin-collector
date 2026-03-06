@@ -116,9 +116,9 @@ export const ALL_COINS = [
 
   // ── FINLANDIA ─────────────────────────────────────────────────────
   { id: 'fi_2004', country: 'Finlandia', year: 2004, description: 'Ampliación de la UE', imageUrl: wikiUrl('2_euro_Finland_2004.png'), mintage: 1000000, commemorates: 'Ampliación UE' },
-  { id: 'fi_2005', country: 'Finlandia', year: 2005, description: '60 años Naciones Unidas', imageUrl: wikiUrl('2_euro_Finland_2005.png'), mintage: 2000000, commemorates: '60 años ONU' },
-  { id: 'fi_2006', country: 'Finlandia', year: 2006, description: '150 años Declaración de Helsinki', imageUrl: wikiUrl('2_euro_Finland_2006.png'), mintage: 2500000, commemorates: 'Declaración Helsinki' },
-  { id: 'fi_2007', country: 'Finlandia', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_Finland_2007.png'), mintage: 2500000, commemorates: 'Tratado de Roma' },
+  { id: 'fi_2005', country: 'Finlandia', year: 2005, description: '60 años Naciones Unidas', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2005.jpg', mintage: 2000000, commemorates: '60 años ONU' },
+  { id: 'fi_2006', country: 'Finlandia', year: 2006, description: '150 años Declaración de Helsinki', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2006.jpg', mintage: 2500000, commemorates: 'Declaración Helsinki' },
+  { id: 'fi_2007', country: 'Finlandia', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2007.jpg', mintage: 2500000, commemorates: 'Tratado de Roma' },
   { id: 'fi_2009', country: 'Finlandia', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Finland_2009.png'), mintage: 2500000, commemorates: '10 años UEM' },
   { id: 'fi_2010', country: 'Finlandia', year: 2010, description: '150 años Banco de Finlandia', imageUrl: wikiUrl('2_euro_Finland_2010.png'), mintage: 2000000, commemorates: 'Banco Finlandia' },
   { id: 'fi_2012', country: 'Finlandia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Finland_2012.png'), mintage: 1500000, commemorates: '10 años euro' },
@@ -199,7 +199,7 @@ export const ALL_COINS = [
   // ── LUXEMBURGO ────────────────────────────────────────────────────
   { id: 'lu_2004', country: 'Luxemburgo', year: 2004, description: 'Monograma Grand Duke Henri', imageUrl: wikiUrl('2_euro_Luxembourg_2004.png'), mintage: 1200000, commemorates: 'Grand Duke Henri' },
   { id: 'lu_2005', country: 'Luxemburgo', year: 2005, description: '50 años independencia', imageUrl: wikiUrl('2_euro_Luxembourg_2005.png'), mintage: 1200000, commemorates: 'Independencia' },
-  { id: 'lu_2007', country: 'Luxemburgo', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_Luxembourg_2007.png'), mintage: 1200000, commemorates: 'Tratado de Roma' },
+  { id: 'lu_2007', country: 'Luxemburgo', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2007.jpg', mintage: 1200000, commemorates: 'Tratado de Roma' },
   { id: 'lu_2009', country: 'Luxemburgo', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_Luxembourg_2009.png'), mintage: 1200000, commemorates: '10 años UEM' },
   { id: 'lu_2010', country: 'Luxemburgo', year: 2010, description: 'Escudo de Armas de Luxemburgo', imageUrl: wikiUrl('2_euro_Luxembourg_2010.png'), mintage: 1200000, commemorates: 'Escudo Armas' },
   { id: 'lu_2012', country: 'Luxemburgo', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Luxembourg_2012.png'), mintage: 1200000, commemorates: '10 años euro' },

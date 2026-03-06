@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import { notifyLogin } from '../lib/discord'
 import { ALL_COINS } from '../data/coins'
+import { notifyDiscord } from '../lib/discord'
 
 const AuthContext = createContext(null)
 
@@ -57,8 +58,19 @@ export function AuthProvider({ children }) {
     return () => subscription.unsubscribe()
   }, [])
 
-  const signUp = (email, password) =>
-    supabase.auth.signUp({ email, password })
+  const signUp = async (email, password) => {
+    const result = await supabase.auth.signUp({ email, password })
+    
+    if (!result.error && result.data?.user) {
+      await notifyDiscord(
+        `🆕 **Nuevo registro** — \`${email}\`\n` +
+        `📅 ${new Date().toLocaleString('es')}\n` +
+        `⏳ Pendiente de confirmar email`
+      )
+    }
+    
+    return result
+  }
 
   const signIn = (email, password) =>
     supabase.auth.signInWithPassword({ email, password })
