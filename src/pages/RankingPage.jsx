@@ -4,6 +4,12 @@ import { useAuth } from '../context/AuthContext'
 import { ALL_COINS } from '../data/coins'
 import { useTranslation } from 'react-i18next'
 
+const isOnlineToday = (lastSignIn) => {
+  if (!lastSignIn) return false
+  const today = new Date().toDateString()
+  return new Date(lastSignIn).toDateString() === today
+}
+
 export default function RankingPage() {
   const { user } = useAuth()
   const { t } = useTranslation()
@@ -37,6 +43,7 @@ export default function RankingPage() {
             {ranking.map((u, i) => {
               const pct = Math.round((u.owned_count / totalCoins) * 100)
               const isMe = u.user_id === user?.id
+              const online = isOnlineToday(u.last_sign_in_at)
               return (
                 <div
                   key={u.user_id}
@@ -44,6 +51,7 @@ export default function RankingPage() {
                     isMe ? 'bg-blue-50 dark:bg-blue-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
+                  {/* Posición */}
                   <div className="w-8 text-center shrink-0">
                     {i < 3
                       ? <span className="text-2xl">{medals[i]}</span>
@@ -51,11 +59,18 @@ export default function RankingPage() {
                     }
                   </div>
 
+                  {/* Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-gray-800 dark:text-white truncate max-w-36 sm:max-w-none">
+                      <p className="text-sm font-medium text-gray-800 dark:text-white truncate">
                         {u.username}
                       </p>
+                      {online && (
+                        <span
+                          className="w-2 h-2 rounded-full bg-green-400 shrink-0 animate-pulse"
+                          title="Conectado hoy"
+                        />
+                      )}
                       {isMe && (
                         <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full shrink-0">
                           {t('rankingYou')}
@@ -73,6 +88,7 @@ export default function RankingPage() {
                     </div>
                   </div>
 
+                  {/* Contador */}
                   <div className="text-right shrink-0">
                     <p className="text-lg font-bold text-blue-700 dark:text-blue-400">
                       {u.owned_count}
@@ -84,6 +100,12 @@ export default function RankingPage() {
             })}
           </div>
         )}
+      </div>
+
+      {/* Leyenda */}
+      <div className="flex items-center gap-2 text-xs text-gray-400 px-1">
+        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+        <span>Conectado hoy</span>
       </div>
     </div>
   )

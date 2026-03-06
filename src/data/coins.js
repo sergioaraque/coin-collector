@@ -115,16 +115,16 @@ export const ALL_COINS = [
   { id: 'ee_2022', country: 'Estonia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Estonia_2022.png'), mintage: 1000000, commemorates: '35 años Erasmus' },
 
   // ── FINLANDIA ─────────────────────────────────────────────────────
-  { id: 'fi_2004', country: 'Finlandia', year: 2004, description: 'Ampliación de la UE', imageUrl: wikiUrl('2_euro_Finland_2004.png'), mintage: 1000000, commemorates: 'Ampliación UE' },
+  { id: 'fi_2004', country: 'Finlandia', year: 2004, description: 'Ampliación de la UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2004.jpg', mintage: 1000000, commemorates: 'Ampliación UE' },
   { id: 'fi_2005', country: 'Finlandia', year: 2005, description: '60 años Naciones Unidas', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2005.jpg', mintage: 2000000, commemorates: '60 años ONU' },
   { id: 'fi_2006', country: 'Finlandia', year: 2006, description: '150 años Declaración de Helsinki', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2006.jpg', mintage: 2500000, commemorates: 'Declaración Helsinki' },
   { id: 'fi_2007', country: 'Finlandia', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2007.jpg', mintage: 2500000, commemorates: 'Tratado de Roma' },
   { id: 'fi_2009', country: 'Finlandia', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2009.jpg', mintage: 2500000, commemorates: '10 años UEM' },
-  { id: 'fi_2010', country: 'Finlandia', year: 2010, description: '150 años Banco de Finlandia', imageUrl: wikiUrl('2_euro_Finland_2010.png'), mintage: 2000000, commemorates: 'Banco Finlandia' },
-  { id: 'fi_2012', country: 'Finlandia', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_Finland_2012.png'), mintage: 1500000, commemorates: '10 años euro' },
+  { id: 'fi_2010', country: 'Finlandia', year: 2010, description: '150 años Banco de Finlandia', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2010.png', mintage: 2000000, commemorates: 'Banco Finlandia' },
+  { id: 'fi_2012', country: 'Finlandia', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2012.jpg', mintage: 1500000, commemorates: '10 años euro' },
   { id: 'fi_2015', country: 'Finlandia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2015.jpg', mintage: 1500000, commemorates: 'Bandera UE' },
-  { id: 'fi_2017', country: 'Finlandia', year: 2017, description: '100 años independencia de Finlandia', imageUrl: wikiUrl('2_euro_Finland_2017.png'), mintage: 1500000, commemorates: '100 años Finlandia' },
-  { id: 'fi_2022', country: 'Finlandia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Finland_2022.png'), mintage: 1500000, commemorates: '35 años Erasmus' },
+  { id: 'fi_2017', country: 'Finlandia', year: 2017, description: '100 años independencia de Finlandia', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2017.jpg', mintage: 1500000, commemorates: '100 años Finlandia' },
+  { id: 'fi_2022', country: 'Finlandia', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2022.jpg', mintage: 1500000, commemorates: '35 años Erasmus' },
 
   // ── FRANCIA ───────────────────────────────────────────────────────
   { id: 'fr_2005', country: 'Francia', year: 2005, description: '60 años Naciones Unidas', imageUrl: wikiUrl('2_euro_France_2005.png'), mintage: 10000000, commemorates: '60 años ONU' },
@@ -239,15 +239,15 @@ export const ALL_COINS = [
   { id: 'pt_2012', country: 'Portugal', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2012.jpg', mintage: 6000000, commemorates: '10 años euro' },
   { id: 'pt_2013', country: 'Portugal', year: 2013, description: '250 años Torre de Clérigos', imageUrl: wikiUrl('2_euro_Portugal_2013.png'), mintage: 6000000, commemorates: 'Torre Clérigos' },
   { id: 'pt_2015', country: 'Portugal', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2015.png', mintage: 6000000, commemorates: 'Bandera UE' },
-  { id: 'pt_2017', country: 'Portugal', year: 2017, description: 'Monasterio de los Jerónimos', imageUrl: wikiUrl('2_euro_Portugal_2017.png'), mintage: 6000000, commemorates: 'Jerónimos' },
-  { id: 'pt_2019', country: 'Portugal', year: 2019, description: '150 años Cruz Roja portuguesa', imageUrl: wikiUrl('2_euro_Portugal_2019.png'), mintage: 6000000, commemorates: 'Cruz Roja' },
-  { id: 'pt_2021', country: 'Portugal', year: 2021, description: 'Presidencia portuguesa de la UE', imageUrl: wikiUrl('2_euro_Portugal_2021.png'), mintage: 6000000, commemorates: 'Presidencia UE' },
-  { id: 'pt_2022', country: 'Portugal', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Portugal_2022.png'), mintage: 6000000, commemorates: '35 años Erasmus' },
+  { id: 'pt_2017', country: 'Portugal', year: 2017, description: 'Monasterio de los Jerónimos', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2017.jpg', mintage: 6000000, commemorates: 'Jerónimos' },
+  { id: 'pt_2019', country: 'Portugal', year: 2019, description: '150 años Cruz Roja portuguesa', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2019.jpg', mintage: 6000000, commemorates: 'Cruz Roja' },
+  { id: 'pt_2021', country: 'Portugal', year: 2021, description: 'Presidencia portuguesa de la UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2021.jpg', mintage: 6000000, commemorates: 'Presidencia UE' },
+  { id: 'pt_2022', country: 'Portugal', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2022.png', mintage: 6000000, commemorates: '35 años Erasmus' },
 
   // ── SAN MARINO ────────────────────────────────────────────────────
   { id: 'sm_2004', country: 'San Marino', year: 2004, description: 'Bartolomeo Borghesi', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2004.jpg', mintage: 110000, commemorates: 'Bartolomeo Borghesi' },
   { id: 'sm_2005', country: 'San Marino', year: 2005, description: 'Galileo Galilei', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2005.jpg', mintage: 130000, commemorates: 'Galileo' },
-  { id: 'sm_2007', country: 'San Marino', year: 2007, description: '50 años Tratado de Roma', imageUrl: wikiUrl('2_euro_San_Marino_2007.png'), mintage: 120000, commemorates: 'Tratado de Roma' },
+  { id: 'sm_2007', country: 'San Marino', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2007.jpg', mintage: 120000, commemorates: 'Tratado de Roma' },
   { id: 'sm_2009', country: 'San Marino', year: 2009, description: '10 años UEM', imageUrl: wikiUrl('2_euro_San_Marino_2009.png'), mintage: 120000, commemorates: '10 años UEM' },
   { id: 'sm_2010', country: 'San Marino', year: 2010, description: 'Sandro Botticelli', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2010.jpg', mintage: 120000, commemorates: 'Botticelli' },
   { id: 'sm_2012', country: 'San Marino', year: 2012, description: '10 años del euro', imageUrl: wikiUrl('2_euro_San_Marino_2012.png'), mintage: 120000, commemorates: '10 años euro' },
