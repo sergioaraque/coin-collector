@@ -374,7 +374,7 @@ export const ALL_COINS = [
   { id: 'ad_2016', country: 'Andorra', year: 2016, description: 'Casa de la Vall', imageUrl: wikiUrl('2_euro_Andorra_2016.png'), mintage: 70000, commemorates: 'Casa de la Vall' },
   { id: 'ad_2017', country: 'Andorra', year: 2017, description: 'La Margineda', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2017.png', mintage: 70000, commemorates: 'Puente La Margineda' },
   { id: 'ad_2018', country: 'Andorra', year: 2018, description: 'Patrimonio natural andorrano', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2018.png', mintage: 70000, commemorates: 'Naturaleza Andorra' },
-  { id: 'ad_2019', country: 'Andorra', year: 2019, description: '600 años Consell de la Terra', imageUrl: wikiUrl('2_euro_Andorra_2019.png'), mintage: 70000, commemorates: 'Consell de la Terra' },
+  { id: 'ad_2019', country: 'Andorra', year: 2019, description: '600 años Consell de la Terra', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2019.jpg', mintage: 70000, commemorates: 'Consell de la Terra' },
   { id: 'ad_2020', country: 'Andorra', year: 2020, description: 'Reforma de la Constitución', imageUrl: wikiUrl('2_euro_Andorra_2020.png'), mintage: 70000, commemorates: 'Constitución Andorra' },
   { id: 'ad_2021', country: 'Andorra', year: 2021, description: '30 años Constitución andorrana', imageUrl: wikiUrl('2_euro_Andorra_2021.png'), mintage: 70000, commemorates: '30 años Constitución' },
   { id: 'ad_2022', country: 'Andorra', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_Andorra_2022.png'), mintage: 70000, commemorates: '35 años Erasmus' },
@@ -387,8 +387,8 @@ export const ALL_COINS = [
   { id: 'it_2025_jub', country: 'Italia', year: 2025, description: 'Año Jubilar 2025', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2025_jub.jpg', mintage: 3000000, commemorates: 'Jubileo 2025' },
   { id: 'sk_2025_ih',  country: 'Eslovaquia', year: 2025, description: '100 años del Campeonato Europeo de Hockey sobre Hielo', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sk_2025_ih.jpg', mintage: 1000000, commemorates: 'Deporte eslovaco' },
   { id: 'ee_2025_txt', country: 'Estonia', year: 2025, description: '500 años del primer texto impreso en estonio', imageUrl: wikiUrl('2_euro_Estonia_2025_Text.png'), mintage: 850000, commemorates: 'Cultura Estonia' },
-  { id: 'lt_2025_def', country: 'Lituania', year: 2025, description: 'Defensa del Estado Lituano', imageUrl: wikiUrl('2_euro_Lithuania_2025_Defense.png'), mintage: 500000, commemorates: 'Defensa Nacional' },
-  { id: 'fr_2025_lou', country: 'Francia', year: 2025, description: 'Museo del Louvre - La Gioconda', imageUrl: wikiUrl('2_euro_France_2025_Louvre.png'), mintage: 315000, commemorates: 'Louvre' },
+  { id: 'lt_2025_def', country: 'Lituania', year: 2025, description: 'Defensa del Estado Lituano', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2025_def.jpg', mintage: 500000, commemorates: 'Defensa Nacional' },
+  { id: 'fr_2025_lou', country: 'Francia', year: 2025, description: 'Museo del Louvre - La Gioconda', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2025_lou.png', mintage: 315000, commemorates: 'Louvre' },
 ]
 
 export const COUNTRIES = [...new Set(ALL_COINS.map(c => c.country))].sort()

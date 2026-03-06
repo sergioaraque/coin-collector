@@ -281,7 +281,7 @@
   "ad_2016": null,
   "ad_2017": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2017.png",
   "ad_2018": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2018.png",
-  "ad_2019": null,
+  "ad_2019": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2019.jpg",
   "ad_2020": null,
   "ad_2021": null,
   "ad_2022": null,
@@ -293,6 +293,6 @@
   "it_2025_jub": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2025_jub.jpg",
   "sk_2025_ih": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sk_2025_ih.jpg",
   "ee_2025_txt": null,
-  "lt_2025_def": null,
-  "fr_2025_lou": null
+  "lt_2025_def": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2025_def.jpg",
+  "fr_2025_lou": "https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2025_lou.png"
 }
