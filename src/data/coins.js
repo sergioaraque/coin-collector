@@ -127,7 +127,7 @@ export const ALL_COINS = [
   { id: 'fi_2022', country: 'Finlandia', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fi_2022.jpg', mintage: 1500000, commemorates: '35 años Erasmus' },
 
   // ── FRANCIA ───────────────────────────────────────────────────────
-  { id: 'fr_2005', country: 'Francia', year: 2005, description: '60 años Naciones Unidas', imageUrl: wikiUrl('2_euro_France_2005.png'), mintage: 10000000, commemorates: '60 años ONU' },
+  { id: 'fr_2005', country: 'Francia', year: 2005, description: '60 años Naciones Unidas', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2005.png', mintage: 10000000, commemorates: '60 años ONU' },
   { id: 'fr_2007', country: 'Francia', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2007.png', mintage: 10000000, commemorates: 'Tratado de Roma' },
   { id: 'fr_2008', country: 'Francia', year: 2008, description: 'Presidencia francesa de la UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2008.png', mintage: 10000000, commemorates: 'Presidencia UE' },
   { id: 'fr_2009', country: 'Francia', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2009.png', mintage: 10000000, commemorates: '10 años UEM' },
@@ -139,8 +139,8 @@ export const ALL_COINS = [
   { id: 'fr_2015b', country: 'Francia', year: 2015, description: 'Museo del Louvre', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2015b.png', mintage: 10000000, commemorates: 'Louvre' },
   { id: 'fr_2017', country: 'Francia', year: 2017, description: '100 años Auguste Rodin', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2017.png', mintage: 10000000, commemorates: 'Auguste Rodin' },
   { id: 'fr_2018', country: 'Francia', year: 2018, description: 'Simone Veil', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2018.png', mintage: 10000000, commemorates: 'Simone Veil' },
-  { id: 'fr_2020', country: 'Francia', year: 2020, description: '100 años fallecimiento Claude Monet', imageUrl: wikiUrl('2_euro_France_2020.png'), mintage: 10000000, commemorates: 'Claude Monet' },
-  { id: 'fr_2021', country: 'Francia', year: 2021, description: 'COVID-19 - Héroes sanitarios', imageUrl: wikiUrl('2_euro_France_2021.png'), mintage: 10000000, commemorates: 'Héroes COVID' },
+  { id: 'fr_2020', country: 'Francia', year: 2020, description: '100 años fallecimiento Claude Monet', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2020.png', mintage: 10000000, commemorates: 'Claude Monet' },
+  { id: 'fr_2021', country: 'Francia', year: 2021, description: 'COVID-19 - Héroes sanitarios', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2021.png', mintage: 10000000, commemorates: 'Héroes COVID' },
   { id: 'fr_2022', country: 'Francia', year: 2022, description: 'Programa Erasmus', imageUrl: wikiUrl('2_euro_France_2022.png'), mintage: 10000000, commemorates: '35 años Erasmus' },
   { id: 'fr_2023', country: 'Francia', year: 2023, description: 'Juegos Olímpicos París 2024', imageUrl: wikiUrl('2_euro_France_2023.png'), mintage: 10000000, commemorates: 'JJOO 2024' },
 
@@ -345,23 +345,23 @@ export const ALL_COINS = [
 
   // ── MALTA ─────────────────────────────────────────────────────────
   { id: 'mt_2023', country: 'Malta', year: 2023, description: 'Templo de Mnajdra', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2023.jpg', mintage: 1500000, commemorates: 'Templo Mnajdra' },
-  { id: 'mt_2024', country: 'Malta', year: 2024, description: 'Ciudadela de Gozo', imageUrl: wikiUrl('2_euro_Malta_2024.png'), mintage: 1500000, commemorates: 'Ciudadela Gozo' },
+  { id: 'mt_2024', country: 'Malta', year: 2024, description: 'Ciudadela de Gozo', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2024.jpg', mintage: 1500000, commemorates: 'Ciudadela Gozo' },
 
   // ── PAÍSES BAJOS ──────────────────────────────────────────────────
   { id: 'nl_2023', country: 'Países Bajos', year: 2023, description: '50 años muerte de Willem de Kooning', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/nl_2023.jpg', mintage: 5000000, commemorates: 'Willem de Kooning' },
-  { id: 'nl_2024', country: 'Países Bajos', year: 2024, description: 'Fundación del Reino de los Países Bajos', imageUrl: wikiUrl('2_euro_Netherlands_2024.png'), mintage: 5000000, commemorates: 'Reino Países Bajos' },
+  { id: 'nl_2024', country: 'Países Bajos', year: 2024, description: 'Fundación del Reino de los Países Bajos', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/nl_2024.jpg', mintage: 5000000, commemorates: 'Reino Países Bajos' },
 
   // ── PORTUGAL ──────────────────────────────────────────────────────
-  { id: 'pt_2023', country: 'Portugal', year: 2023, description: '50 años Revolución de los Claveles', imageUrl: wikiUrl('2_euro_Portugal_2023.png'), mintage: 6000000, commemorates: 'Revolución Claveles' },
-  { id: 'pt_2024a', country: 'Portugal', year: 2024, description: '50 años Revolución del 25 de Abril', imageUrl: wikiUrl('2_euro_Portugal_2024.png'), mintage: 6000000, commemorates: '25 de Abril' },
-  { id: 'pt_2024b', country: 'Portugal', year: 2024, description: '500 años muerte de Vasco da Gama', imageUrl: wikiUrl('2_euro_Portugal_2024b.png'), mintage: 6000000, commemorates: 'Vasco da Gama' },
+  { id: 'pt_2023', country: 'Portugal', year: 2023, description: '50 años Revolución de los Claveles', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2023.jpg', mintage: 6000000, commemorates: 'Revolución Claveles' },
+  { id: 'pt_2024a', country: 'Portugal', year: 2024, description: '50 años Revolución del 25 de Abril', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2024a.jpg', mintage: 6000000, commemorates: '25 de Abril' },
+  { id: 'pt_2024b', country: 'Portugal', year: 2024, description: '500 años muerte de Vasco da Gama', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2024b.jpg', mintage: 6000000, commemorates: 'Vasco da Gama' },
 
   // ── SAN MARINO ────────────────────────────────────────────────────
-  { id: 'sm_2023', country: 'San Marino', year: 2023, description: '500 años muerte del Perugino', imageUrl: wikiUrl('2_euro_San_Marino_2023.png'), mintage: 62000, commemorates: 'Perugino' },
-  { id: 'sm_2024', country: 'San Marino', year: 2024, description: 'Giovanni Battista Tiepolo', imageUrl: wikiUrl('2_euro_San_Marino_2024.png'), mintage: 62000, commemorates: 'Tiepolo' },
+  { id: 'sm_2023', country: 'San Marino', year: 2023, description: '500 años muerte del Perugino', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2023.png', mintage: 62000, commemorates: 'Perugino' },
+  { id: 'sm_2024', country: 'San Marino', year: 2024, description: 'Giovanni Battista Tiepolo', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sm_2024.jpg', mintage: 62000, commemorates: 'Tiepolo' },
 
   // ── VATICANO ──────────────────────────────────────────────────────
-  { id: 'va_2023', country: 'Vaticano', year: 2023, description: 'JMJ Lisboa 2023', imageUrl: wikiUrl('2_euro_Vatican_2023.png'), mintage: 85000, commemorates: 'JMJ Lisboa' },
+  { id: 'va_2023', country: 'Vaticano', year: 2023, description: 'JMJ Lisboa 2023', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/va_2023.png', mintage: 85000, commemorates: 'JMJ Lisboa' },
   { id: 'va_2024', country: 'Vaticano', year: 2024, description: 'Año de la Oración', imageUrl: wikiUrl('2_euro_Vatican_2024.png'), mintage: 85000, commemorates: 'Año Oración' },
 
   // ── MÓNACO ────────────────────────────────────────────────────────
@@ -370,10 +370,10 @@ export const ALL_COINS = [
 
   // ── ANDORRA ───────────────────────────────────────────────────────
   { id: 'ad_2014', country: 'Andorra', year: 2014, description: 'Mayoría de edad a los 18 años', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2014.jpg', mintage: 70000, commemorates: 'Mayoría de edad' },
-  { id: 'ad_2015', country: 'Andorra', year: 2015, description: '30 años Bandera UE', imageUrl: wikiUrl('2_euro_Andorra_2015.png'), mintage: 70000, commemorates: 'Bandera UE' },
+  { id: 'ad_2015', country: 'Andorra', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2015.jpg', mintage: 70000, commemorates: 'Bandera UE' },
   { id: 'ad_2016', country: 'Andorra', year: 2016, description: 'Casa de la Vall', imageUrl: wikiUrl('2_euro_Andorra_2016.png'), mintage: 70000, commemorates: 'Casa de la Vall' },
-  { id: 'ad_2017', country: 'Andorra', year: 2017, description: 'La Margineda', imageUrl: wikiUrl('2_euro_Andorra_2017.png'), mintage: 70000, commemorates: 'Puente La Margineda' },
-  { id: 'ad_2018', country: 'Andorra', year: 2018, description: 'Patrimonio natural andorrano', imageUrl: wikiUrl('2_euro_Andorra_2018.png'), mintage: 70000, commemorates: 'Naturaleza Andorra' },
+  { id: 'ad_2017', country: 'Andorra', year: 2017, description: 'La Margineda', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2017.png', mintage: 70000, commemorates: 'Puente La Margineda' },
+  { id: 'ad_2018', country: 'Andorra', year: 2018, description: 'Patrimonio natural andorrano', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/ad_2018.png', mintage: 70000, commemorates: 'Naturaleza Andorra' },
   { id: 'ad_2019', country: 'Andorra', year: 2019, description: '600 años Consell de la Terra', imageUrl: wikiUrl('2_euro_Andorra_2019.png'), mintage: 70000, commemorates: 'Consell de la Terra' },
   { id: 'ad_2020', country: 'Andorra', year: 2020, description: 'Reforma de la Constitución', imageUrl: wikiUrl('2_euro_Andorra_2020.png'), mintage: 70000, commemorates: 'Constitución Andorra' },
   { id: 'ad_2021', country: 'Andorra', year: 2021, description: '30 años Constitución andorrana', imageUrl: wikiUrl('2_euro_Andorra_2021.png'), mintage: 70000, commemorates: '30 años Constitución' },
