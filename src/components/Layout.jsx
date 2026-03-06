@@ -1,17 +1,18 @@
-import { useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCollection } from '../context/CollectionContext'
-import { useTheme } from '../context/ThemeContext'
 import { useAdmin } from '../hooks/useAdmin'
 import { ALL_COINS } from '../data/coins'
 import GlobalSearch from './GlobalSearch'
 import { useTranslation } from 'react-i18next'
+import { useTheme, THEME_LIST } from '../context/ThemeContext'
+import { useState } from 'react'
 
 export default function Layout() {
   const { user, signOut } = useAuth()
   const { owned } = useCollection()
-  const { dark, toggle } = useTheme()
+  const { dark, toggle, colorTheme, setColorTheme } = useTheme()
+  const [showThemes, setShowThemes] = useState(false)
   const { isAdmin } = useAdmin()
   const navigate = useNavigate()
   const { t, i18n } = useTranslation()
@@ -45,7 +46,7 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 transition-colors">
 
       {/* Header */}
-      <header className="bg-blue-800 dark:bg-gray-800 text-white shadow-lg">
+      <header className="themed text-white shadow-lg transition-colors">
         <div className="max-w-6xl mx-auto px-4 py-3">
 
           {/* Fila principal */}
@@ -86,13 +87,30 @@ export default function Layout() {
                 {i18n.language === 'es' ? '🇬🇧' : '🇪🇸'}
               </button>
 
-              {/* Toggle dark mode */}
-              <button
-                onClick={toggle}
-                className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
-              >
-                {dark ? '☀️' : '🌙'}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setShowThemes(s => !s)}
+                  className="bg-black/20 hover:bg-black/30 px-3 py-1.5 rounded-lg text-sm transition"
+                  title="Cambiar tema"
+                >
+                  🎨
+                </button>
+                {showThemes && (
+                  <div className="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl p-3 z-50 flex gap-2">
+                    {THEME_LIST.map(theme => (
+                      <button
+                        key={theme.id}
+                        onClick={() => { setColorTheme(theme.id); setShowThemes(false) }}
+                        title={theme.name}
+                        className={`w-7 h-7 rounded-full border-2 transition ${
+                          colorTheme === theme.id ? 'border-white scale-110' : 'border-transparent'
+                        }`}
+                        style={{ backgroundColor: theme.primary }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Email + salir — desktop */}
               <div className="hidden sm:flex items-center gap-2">
@@ -152,7 +170,7 @@ export default function Layout() {
       </header>
 
       {/* Nav — scroll horizontal en móvil */}
-      <nav className="bg-blue-900 dark:bg-gray-700 text-white overflow-x-auto scrollbar-hide">
+      <nav className="themed text-white overflow-x-auto scrollbar-hide transition-colors">
         <div className="max-w-6xl mx-auto px-4 flex gap-1 min-w-max">
           {navLinks.map(({ to, label }) => (
             <NavLink

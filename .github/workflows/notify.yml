@@ -20,6 +20,6 @@ jobs:
           
           curl -H "Content-Type: application/json" \
             -d "{
-              \"content\": \"🚀 **Nuevo despliegue en curso**\n📝 \`${COMMIT_MSG}\`\n👤 ${AUTHOR} · \`${SHORT_SHA}\`\n🔗 https://coin-collector-cddx20teo-sergios-projects-1543fbfb.vercel.app\"
+              \"content\": \"🚀 **Nuevo despliegue en curso**\n📝 \`${COMMIT_MSG}\`\n👤 ${AUTHOR} · \`${SHORT_SHA}\`\n🔗 https://coin-collector-pearl.vercel.app/"
             }" \
             $DISCORD_WEBHOOK

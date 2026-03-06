@@ -26,3 +26,20 @@ body {
 .scrollbar-hide:webkit-scrollbar {
   display: none;
 }
+
+:root {
+  --color-primary: #1e40af;
+  --color-dark:    #1e3a8a;
+  --color-nav:     #1e3a8a;
+  --color-accent:  #3b82f6;
+}
+
+.theme-blue   { --color-primary: #1e40af; --color-dark: #1e3a8a; --color-nav: #1e3a8a; --color-accent: #3b82f6; }
+.theme-green  { --color-primary: #166534; --color-dark: #14532d; --color-nav: #14532d; --color-accent: #22c55e; }
+.theme-purple { --color-primary: #6b21a8; --color-dark: #581c87; --color-nav: #581c87; --color-accent: #a855f7; }
+.theme-red    { --color-primary: #9f1239; --color-dark: #881337; --color-nav: #881337; --color-accent: #f43f5e; }
+.theme-orange { --color-primary: #9a3412; --color-dark: #7c2d12; --color-nav: #7c2d12; --color-accent: #f97316; }
+.theme-gray   { --color-primary: #1f2937; --color-dark: #111827; --color-nav: #111827; --color-accent: #6b7280; }
+
+header.themed  { background-color: var(--color-primary) !important; }
+nav.themed     { background-color: var(--color-nav) !important; }
