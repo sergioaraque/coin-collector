@@ -53,7 +53,7 @@ export default function RankingPage() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-gray-800 dark:text-white truncate">
+                      <p className="text-sm font-medium text-gray-800 dark:text-white truncate max-w-36 sm:max-w-none">
                         {u.username}
                       </p>
                       {isMe && (

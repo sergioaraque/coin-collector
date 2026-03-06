@@ -63,6 +63,17 @@ export default function LandingPage() {
             <span className="text-2xl">🪙</span>
             <span className="font-bold text-lg">EuroCollector</span>
           </div>
+          <div className="hidden sm:flex items-center gap-6">
+          <Link to="/catalogo" className="text-sm text-blue-200 hover:text-white transition">
+            Catálogo
+          </Link>
+          <Link to="/estadisticas-publicas" className="text-sm text-blue-200 hover:text-white transition">
+            Estadísticas
+          </Link>
+          <Link to="/ranking-publico" className="text-sm text-blue-200 hover:text-white transition">
+            Ranking
+          </Link>
+        </div>
           <div className="flex items-center gap-3">
             <Link
               to="/login"

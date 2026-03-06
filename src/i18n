@@ -23,7 +23,7 @@ const resources = {
         medium: '🔵 Medias (100k-1M)',
         common: '⚪ Comunes (>1M)',
         coins: 'monedas',
-        addCoin: '+ Añadir',
+        addCoin: 'Añadir',
         inCollection: '✅ En mi colección',
         countryProgress: 'Progreso por país',
         // Stats
@@ -75,6 +75,17 @@ const resources = {
         rankingYou: 'Tú',
         rankingTitle: 'Ranking de coleccionistas de monedas de 2€',
         loading_session: 'Cargando sesión...',
+        // Admin
+        adminPanel: 'Panel de administración',
+        adminCheckingPermissions: 'Comprobando permisos...',
+        adminLoadingUsers: 'Cargando usuarios...',
+        adminNoUsers: 'No hay usuarios registrados',
+        adminEmail: 'Email',
+        adminRegistered: 'Registro',
+        adminLastSignIn: 'Último acceso',
+        adminRole: 'Rol',
+        adminCollection: 'Colección',
+        adminProgress: 'Progreso',
     }
   },
   en: {
@@ -96,7 +107,7 @@ const resources = {
         medium: '🔵 Medium (100k-1M)',
         common: '⚪ Common (>1M)',
         coins: 'coins',
-        addCoin: '+ Add',
+        addCoin: 'Add',
         inCollection: '✅ In my collection',
         countryProgress: 'Progress by country',
         totalCoins: 'Total coins',
@@ -144,6 +155,18 @@ const resources = {
         rankingYou: 'You',
         rankingTitle: 'Ranking of 2€ coin collectors',
         loading_session: 'Loading session...',
+        
+        // Admin
+        adminPanel: 'Admin panel',
+        adminCheckingPermissions: 'Checking permissions...',
+        adminLoadingUsers: 'Loading users...',
+        adminNoUsers: 'No registered users',
+        adminEmail: 'Email',
+        adminRegistered: 'Registered',
+        adminLastSignIn: 'Last sign-in',
+        adminRole: 'Role',
+        adminCollection: 'Collection',
+        adminProgress: 'Progress',
     }
   }
 }

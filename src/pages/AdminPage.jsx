@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import { useAdmin } from '../hooks/useAdmin'
 import { ALL_COINS } from '../data/coins'
+import { useTranslation } from 'react-i18next'
 
 export default function AdminPage() {
   const { isAdmin, loading } = useAdmin()
   const navigate = useNavigate()
   const [users, setUsers] = useState([])
   const [loadingUsers, setLoadingUsers] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (!loading && !isAdmin) navigate('/')
@@ -66,7 +68,7 @@ export default function AdminPage() {
   }, [isAdmin])
 
   if (loading) return (
-    <div className="text-center py-20 text-gray-400">Verificando permisos...</div>
+    <div className="text-center py-20 text-gray-400">{t('adminCheckingPermissions')}</div>
   )
   if (!isAdmin) return null
 
@@ -77,7 +79,7 @@ export default function AdminPage() {
       <div className="flex items-center gap-3">
         <span className="text-2xl">🛡️</span>
         <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-          Panel de administración
+          {t('adminPanel')}
         </h1>
       </div>
 
@@ -108,30 +110,30 @@ export default function AdminPage() {
         </div>
 
         {loadingUsers ? (
-          <div className="text-center py-10 text-gray-400">Cargando usuarios...</div>
+          <div className="text-center py-10 text-gray-400">{t('adminLoadingUsers')}</div>
         ) : users.length === 0 ? (
-          <div className="text-center py-10 text-gray-400">No hay usuarios registrados</div>
+          <div className="text-center py-10 text-gray-400">{t('adminNoUsers')}</div>
         ) : (
           <table className="w-full text-sm">
             <thead className="bg-gray-50 dark:bg-gray-700">
               <tr>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium">
-                  Email
+                  {t('adminEmail')}
                 </th>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium hidden md:table-cell">
-                  Registro
+                  {t('adminRegistered')}
                 </th>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium hidden lg:table-cell">
-                  Último acceso
+                  {t('adminLastSignIn')}
                 </th>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium">
-                  Rol
+                  {t('adminRole')}
                 </th>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium">
-                  Colección
+                  {t('adminCollection')}
                 </th>
                 <th className="text-left px-4 py-3 text-gray-500 dark:text-gray-300 font-medium">
-                  Progreso
+                  {t('adminProgress')}
                 </th>
               </tr>
             </thead>

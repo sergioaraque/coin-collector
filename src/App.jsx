@@ -15,6 +15,9 @@ import ProfilePage from './pages/ProfilePage'
 import ActivityPage from './pages/ActivityPage'
 import RankingPage from './pages/RankingPage'
 import LandingPage from './pages/LandingPage'
+import PublicStatsPage from './pages/public/PublicStatsPage'
+import PublicCatalogPage from './pages/public/PublicCatalogPage'
+import PublicRankingPage from './pages/public/PublicRankingPage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -52,6 +55,9 @@ export default function App() {
               <Route path="ranking" element={<RankingPage />} />
             </Route>
             <Route path="/landing" element={<LandingPage />} />
+            <Route path="/estadisticas-publicas" element={<PublicStatsPage />} />
+            <Route path="/catalogo" element={<PublicCatalogPage />} />
+            <Route path="/ranking-publico" element={<PublicRankingPage />} />
           </Routes>
         <ToastContainer />
         </CollectionProvider>
