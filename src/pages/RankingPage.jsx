@@ -3,6 +3,7 @@ import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
 import { ALL_COINS } from '../data/coins'
 import { useTranslation } from 'react-i18next'
+import { useSEO } from '../hooks/useSEO'
 
 const isOnlineToday = (lastSignIn) => {
   if (!lastSignIn) return false
@@ -11,6 +12,7 @@ const isOnlineToday = (lastSignIn) => {
 }
 
 export default function RankingPage() {
+  useSEO({ title: 'Ranking' })
   const { user } = useAuth()
   const { t } = useTranslation()
   const [ranking, setRanking] = useState([])

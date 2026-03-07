@@ -1,15 +1,16 @@
-import { useState, useMemo } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { ALL_COINS, COUNTRIES } from '../../data/coins'
 import { useCoinImage } from '../../hooks/useCoinImage'
+import { useSEO } from '../../hooks/useSEO'
+
+const PAGE_SIZE = 20
 
 function PublicCoinCard({ coin }) {
   const { src, status } = useCoinImage(coin)
 
   return (
-    <div
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition border-2 border-transparent hover:border-blue-300"
-    >
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition border-2 border-transparent hover:border-blue-300">
       <div className="bg-gray-50 dark:bg-gray-700 flex items-center justify-center h-28 relative">
         {status === 'error' ? (
           <span className="text-4xl">🪙</span>
@@ -45,9 +46,16 @@ function PublicCoinCard({ coin }) {
 }
 
 export default function PublicCatalogPage() {
+  useSEO({ title: 'Catálogo', description: 'Más de 290 monedas conmemorativas de 2€ de todos los países de la eurozona' })
+
   const [search, setSearch] = useState('')
   const [country, setCountry] = useState('')
   const [rarity, setRarity] = useState('')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const loaderRef = useRef(null)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const filtered = useMemo(() => {
     return ALL_COINS.filter(coin => {
@@ -65,6 +73,27 @@ export default function PublicCatalogPage() {
       return matchSearch && matchCountry && matchRarity
     })
   }, [search, country, rarity])
+
+  // Reset al cambiar filtros
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [search, country, rarity])
+
+  // Infinite scroll
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0]
+    if (target.isIntersecting && visibleCount < filtered.length) {
+      setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filtered.length))
+    }
+  }, [visibleCount, filtered.length])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 })
+    if (loaderRef.current) observer.observe(loaderRef.current)
+    return () => observer.disconnect()
+  }, [handleObserver])
+
+  const visibleCoins = filtered.slice(0, visibleCount)
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
@@ -134,22 +163,33 @@ export default function PublicCatalogPage() {
             <option value="common">⚪ Comunes (&gt;1M)</option>
           </select>
           <span className="text-sm text-gray-500 dark:text-gray-400 self-center">
-            {filtered.length} monedas
+            {visibleCount < filtered.length
+              ? `${visibleCount} de ${filtered.length} monedas`
+              : `${filtered.length} monedas`
+            }
           </span>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-          {filtered.map(coin => (
-            <PublicCoinCard key={coin.id} coin={coin} />
-          ))}
-        </div>
-
-        {filtered.length === 0 && (
+        {filtered.length === 0 ? (
           <div className="text-center py-16 text-gray-400">
             <span className="text-4xl">🔍</span>
             <p className="mt-2">No se encontraron monedas</p>
           </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {visibleCoins.map(coin => (
+                <PublicCoinCard key={coin.id} coin={coin} />
+              ))}
+            </div>
+            {/* Loader infinite scroll */}
+            {visibleCount < filtered.length && (
+              <div ref={loaderRef} className="flex justify-center py-8">
+                <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
+              </div>
+            )}
+          </>
         )}
 
         {/* Banner CTA */}

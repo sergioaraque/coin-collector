@@ -1,12 +1,16 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ALL_COINS, COUNTRIES } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
 import CoinCard from '../components/CoinCard'
 import CoinRow from '../components/CoinRow'
 import { useTranslation } from 'react-i18next'
+import { useSEO } from '../hooks/useSEO'
+
+const PAGE_SIZE = 20
 
 export default function CollectionPage() {
+  useSEO({ title: 'Mi colección' })
   const { owned, toggleCoin } = useCollection()
   const [searchParams] = useSearchParams()
 
@@ -15,7 +19,12 @@ export default function CollectionPage() {
   const [filter, setFilter] = useState('all')
   const [rarity, setRarity] = useState('')
   const [viewMode, setViewMode] = useState('grid')
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const loaderRef = useRef(null)
   const { t } = useTranslation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const filtered = useMemo(() => {
     return ALL_COINS.filter(coin => {
@@ -41,6 +50,27 @@ export default function CollectionPage() {
       return matchSearch && matchCountry && matchFilter && matchRarity
     })
   }, [search, country, filter, rarity, owned])
+
+  // Reset visibleCount cuando cambian los filtros
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [search, country, filter, rarity])
+
+  // Infinite scroll con IntersectionObserver
+  const handleObserver = useCallback((entries) => {
+    const target = entries[0]
+    if (target.isIntersecting && visibleCount < filtered.length) {
+      setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filtered.length))
+    }
+  }, [visibleCount, filtered.length])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 })
+    if (loaderRef.current) observer.observe(loaderRef.current)
+    return () => observer.disconnect()
+  }, [handleObserver])
+
+  const visibleCoins = filtered.slice(0, visibleCount)
 
   const countryProgress = useMemo(() => {
     return COUNTRIES.map(c => {
@@ -133,7 +163,12 @@ export default function CollectionPage() {
           </button>
         </div>
 
-        <span className="text-sm text-gray-500 dark:text-gray-400">{filtered.length} {t('coins')}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          {visibleCount < filtered.length
+            ? `${visibleCount} de ${filtered.length} ${t('coins')}`
+            : `${filtered.length} ${t('coins')}`
+          }
+        </span>
       </div>
 
       {/* Progreso por país */}
@@ -178,16 +213,24 @@ export default function CollectionPage() {
           <p className="mt-2">No se encontraron monedas</p>
         </div>
       ) : viewMode === 'grid' ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filtered.map(coin => (
-            <CoinCard
-              key={coin.id}
-              coin={coin}
-              isOwned={owned.has(coin.id)}
-              onToggle={() => toggleCoin(coin.id)}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {visibleCoins.map(coin => (
+              <CoinCard
+                key={coin.id}
+                coin={coin}
+                isOwned={owned.has(coin.id)}
+                onToggle={() => toggleCoin(coin.id)}
+              />
+            ))}
+          </div>
+          {/* Loader para infinite scroll */}
+          {visibleCount < filtered.length && (
+            <div ref={loaderRef} className="flex justify-center py-8">
+              <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
+            </div>
+          )}
+        </>
       ) : (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
           <table className="w-full text-sm">
@@ -202,7 +245,7 @@ export default function CollectionPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50 dark:divide-gray-700">
-              {filtered.map(coin => (
+              {visibleCoins.map(coin => (
                 <CoinRow
                   key={coin.id}
                   coin={coin}
@@ -212,6 +255,11 @@ export default function CollectionPage() {
               ))}
             </tbody>
           </table>
+          {visibleCount < filtered.length && (
+            <div ref={loaderRef} className="flex justify-center py-6">
+              <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
+            </div>
+          )}
         </div>
       )}
     </div>

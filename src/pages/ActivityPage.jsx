@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
 import { ALL_COINS } from '../data/coins'
+import { useSEO } from '../hooks/useSEO'
 
 function timeAgo(date) {
   const diff = Date.now() - new Date(date).getTime()
@@ -16,6 +17,7 @@ function timeAgo(date) {
 }
 
 export default function ActivityPage() {
+  useSEO({ title: 'Actividad reciente' })
   const { user } = useAuth()
   const navigate = useNavigate()
   const [activity, setActivity] = useState([])

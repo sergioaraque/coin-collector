@@ -4,6 +4,7 @@ import { ALL_COINS } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
 import { useCoinImage } from '../hooks/useCoinImage'
 import { useTranslation } from 'react-i18next'
+import { useSEO } from '../hooks/useSEO'
 
 export default function CoinDetailPage() {
   const { coinId } = useParams()
@@ -12,6 +13,7 @@ export default function CoinDetailPage() {
   const coin = ALL_COINS.find(c => c.id === coinId)
   const { src, status } = useCoinImage(coin || {})
   const { t } = useTranslation()
+  useSEO({ title: coin?.description || 'Detalle de moneda' })
 
   if (!coin) return (
     <div className="text-center py-20">

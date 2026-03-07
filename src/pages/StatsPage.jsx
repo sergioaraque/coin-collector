@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { ALL_COINS, COUNTRIES } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
+import { useSEO } from '../hooks/useSEO'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   LineChart, Line, CartesianGrid, Legend, PieChart, Pie, Cell
@@ -15,14 +16,8 @@ function getEstimatedValue(coin) {
   return 3
 }
 
-function getRarityLabel(mintage) {
-  if (!mintage || mintage === 0) return { label: 'Desconocida', color: 'text-gray-400' }
-  if (mintage < 100000)  return { label: '💎 Rara', color: 'text-purple-600' }
-  if (mintage < 1000000) return { label: '🔵 Media', color: 'text-blue-600' }
-  return { label: '⚪ Común', color: 'text-gray-500' }
-}
-
 export default function StatsPage() {
+  useSEO({ title: 'Estadísticas' })
   const { owned } = useCollection()
 
   const total = ALL_COINS.length

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { loadUserBadges } from '../lib/badges'
 import { useTranslation } from 'react-i18next'
+import { useSEO } from '../hooks/useSEO'
 
 const CATEGORY_LABELS = {
   collection: '🪙 Colección',
@@ -10,6 +11,7 @@ const CATEGORY_LABELS = {
 }
 
 export default function BadgesPage() {
+  useSEO({ title: 'Insignias y logros' })
   const { user } = useAuth()
   const { t } = useTranslation()
   const [badges, setBadges] = useState([])

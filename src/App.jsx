@@ -63,6 +63,7 @@ export default function App() {
             <Route path="/estadisticas-publicas" element={<PublicStatsPage />} />
             <Route path="/catalogo" element={<PublicCatalogPage />} />
             <Route path="/ranking-publico" element={<PublicRankingPage />} />
+          <Route path="*" element={<Navigate to="/landing" replace />} />
           </Routes>
           <ToastContainer />
           <PWABanner />

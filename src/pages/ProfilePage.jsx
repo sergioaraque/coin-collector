@@ -5,8 +5,10 @@ import { useCollection } from '../context/CollectionContext'
 import { ALL_COINS } from '../data/coins'
 import { showToast } from '../components/Toast'
 import { useTranslation } from 'react-i18next'
+import { useSEO } from '../hooks/useSEO'
 
 export default function ProfilePage() {
+  useSEO({ title: 'Mi perfil' })
   const { user } = useAuth()
   const { owned } = useCollection()
   const { t } = useTranslation()

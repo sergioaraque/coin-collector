@@ -4,6 +4,7 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { supabase } from '../supabase'
 import { ALL_COINS } from '../data/coins'
 import { usePWAInstall } from '../hooks/usePWAInstall'
+import { useSEO } from '../hooks/useSEO'
 
 const GEO_URL = 'https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson'
 
@@ -122,6 +123,7 @@ export default function LandingPage() {
       size: 16 + Math.random() * 24,
     }))
   )
+  useSEO({ title: 'EuroCollector - Tu colección de monedas de 2€ en un solo lugar', description: 'Gestiona tu colección de monedas conmemorativas de 2€, descubre las más raras y compite con coleccionistas de toda Europa.' })
 
   useEffect(() => {
     supabase.rpc('get_global_stats').then(({ data }) => {

@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../../supabase'
 import { ALL_COINS } from '../../data/coins'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from 'recharts'
+import { useSEO } from '../../hooks/useSEO'
 
 export default function PublicStatsPage() {
   const [globalStats, setGlobalStats] = useState(null)
   const [popularCoins, setPopularCoins] = useState([])
   const [loading, setLoading] = useState(true)
+  useSEO({ title: 'Ranking público' })
 
   const totalCoins = ALL_COINS.length
 

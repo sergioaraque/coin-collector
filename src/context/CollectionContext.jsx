@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import { createContext, useContext, useCallback } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../supabase'
 import { useAuth } from './AuthContext'
 import { ALL_COINS } from '../data/coins'
@@ -10,21 +11,25 @@ const CollectionContext = createContext(null)
 
 export function CollectionProvider({ children }) {
   const { user } = useAuth()
-  const [owned, setOwned] = useState(new Set())
-  const [loading, setLoading] = useState(false)
+  const queryClient = useQueryClient()
 
-  const fetchOwned = useCallback(async () => {
-    if (!user) { setOwned(new Set()); return }
-    setLoading(true)
-    const { data } = await supabase
-      .from('collection')
-      .select('coin_id')
-      .eq('user_id', user.id)
-    setOwned(new Set((data || []).map(r => r.coin_id)))
-    setLoading(false)
-  }, [user])
+  // Clave de caché única por usuario
+  const queryKey = ['collection', user?.id]
 
-  useEffect(() => { fetchOwned() }, [fetchOwned])
+  // Fetch con React Query — cachea 5 minutos, no refetch en cada navegación
+  const { data: owned = new Set(), isLoading: loading } = useQuery({
+    queryKey,
+    queryFn: async () => {
+      if (!user) return new Set()
+      const { data } = await supabase
+        .from('collection')
+        .select('coin_id')
+        .eq('user_id', user.id)
+      return new Set((data || []).map(r => r.coin_id))
+    },
+    enabled: !!user,
+    staleTime: 1000 * 60 * 5, // 5 minutos
+  })
 
   const logActivity = async (action, coinId, country) => {
     try {
@@ -39,21 +44,29 @@ export function CollectionProvider({ children }) {
     }
   }
 
-  const toggleCoin = async (coinId) => {
+  const toggleCoin = useCallback(async (coinId) => {
     if (!user) return
     const isOwned = owned.has(coinId)
     const coin = ALL_COINS.find(c => c.id === coinId)
 
     if (isOwned) {
+      // Actualización optimista — actualiza caché antes de la llamada a Supabase
+      const newOwned = new Set(owned)
+      newOwned.delete(coinId)
+      queryClient.setQueryData(queryKey, newOwned)
+
       await supabase.from('collection').delete()
         .eq('user_id', user.id).eq('coin_id', coinId)
-      setOwned(prev => { const s = new Set(prev); s.delete(coinId); return s })
+
       showToast(`${coin?.country} ${coin?.year} eliminada`, 'info')
       await logActivity('remove', coinId, coin?.country)
     } else {
-      await supabase.from('collection').insert({ user_id: user.id, coin_id: coinId })
+      // Actualización optimista
       const newOwned = new Set([...owned, coinId])
-      setOwned(newOwned)
+      queryClient.setQueryData(queryKey, newOwned)
+
+      await supabase.from('collection').insert({ user_id: user.id, coin_id: coinId })
+
       showToast(`🪙 ${coin?.country} ${coin?.year} añadida`, 'success')
       await logActivity('add', coinId, coin?.country)
 
@@ -78,7 +91,7 @@ export function CollectionProvider({ children }) {
         if (data) showToast(`${data.icon} ¡Insignia desbloqueada! ${data.name}`, 'success')
       }
     }
-  }
+  }, [user, owned, queryKey, queryClient])
 
   return (
     <CollectionContext.Provider value={{ owned, loading, toggleCoin }}>
