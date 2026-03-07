@@ -182,20 +182,20 @@ export const ALL_COINS = [
   { id: 'it_2022', country: 'Italia', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/it_2022.jpg', mintage: 5000000, commemorates: '35 años Erasmus' },
 
   // ── LETONIA ───────────────────────────────────────────────────────
-  { id: 'lv_2014', country: 'Letonia', year: 2014, description: 'Riga - Capital Europea de la Cultura', imageUrl: null, mintage: 1000000, commemorates: 'Riga Capital Cultural' },
-  { id: 'lv_2015', country: 'Letonia', year: 2015, description: '30 años Bandera UE', imageUrl: null, mintage: 1000000, commemorates: 'Bandera UE' },
-  { id: 'lv_2018', country: 'Letonia', year: 2018, description: '100 años independencia de Letonia', imageUrl: null, mintage: 1000000, commemorates: '100 años independencia' },
-  { id: 'lv_2022', country: 'Letonia', year: 2022, description: 'Programa Erasmus', imageUrl: null, mintage: 1000000, commemorates: '35 años Erasmus' },
+  { id: 'lv_2014', country: 'Letonia', year: 2014, description: 'Riga - Capital Europea de la Cultura', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lv_2014.png', mintage: 1000000, commemorates: 'Riga Capital Cultural' },
+  { id: 'lv_2015', country: 'Letonia', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lv_2015.jpg', mintage: 1000000, commemorates: 'Bandera UE' },
+  { id: 'lv_2018', country: 'Letonia', year: 2018, description: '100 años independencia de Letonia', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lv_2018.png', mintage: 1000000, commemorates: '100 años independencia' },
+  { id: 'lv_2022', country: 'Letonia', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lv_2022.jpg', mintage: 1000000, commemorates: '35 años Erasmus' },
 
   // ── LITUANIA ──────────────────────────────────────────────────────
-  { id: 'lt_2015', country: 'Lituania', year: 2015, description: '30 años Bandera UE', imageUrl: null, mintage: 1000000, commemorates: 'Bandera UE' },
-  { id: 'lt_2017', country: 'Lituania', year: 2017, description: 'Vilna - Capital Europea de la Cultura', imageUrl: null, mintage: 1000000, commemorates: 'Vilnius Capital' },
-  { id: 'lt_2018', country: 'Lituania', year: 2018, description: '100 años independencia de Lituania', imageUrl: null, mintage: 1000000, commemorates: '100 años independencia' },
-  { id: 'lt_2022', country: 'Lituania', year: 2022, description: 'Programa Erasmus', imageUrl: null, mintage: 1000000, commemorates: '35 años Erasmus' },
+  { id: 'lt_2015', country: 'Lituania', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2015.png', mintage: 1000000, commemorates: 'Bandera UE' },
+  { id: 'lt_2017', country: 'Lituania', year: 2017, description: 'Vilna - Capital Europea de la Cultura', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2017.png', mintage: 1000000, commemorates: 'Vilnius Capital' },
+  { id: 'lt_2018', country: 'Lituania', year: 2018, description: '100 años independencia de Lituania', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2018.png', mintage: 1000000, commemorates: '100 años independencia' },
+  { id: 'lt_2022', country: 'Lituania', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2022.png', mintage: 1000000, commemorates: '35 años Erasmus' },
 
   // ── LUXEMBURGO ────────────────────────────────────────────────────
-  { id: 'lu_2004', country: 'Luxemburgo', year: 2004, description: 'Monograma Grand Duke Henri', imageUrl: null, mintage: 1200000, commemorates: 'Grand Duke Henri' },
-  { id: 'lu_2005', country: 'Luxemburgo', year: 2005, description: '50 años independencia', imageUrl: null, mintage: 1200000, commemorates: 'Independencia' },
+  { id: 'lu_2004', country: 'Luxemburgo', year: 2004, description: 'Monograma Grand Duke Henri', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2004.png', mintage: 1200000, commemorates: 'Grand Duke Henri' },
+  { id: 'lu_2005', country: 'Luxemburgo', year: 2005, description: '50 años independencia', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2005.jpg', mintage: 1200000, commemorates: 'Independencia' },
   { id: 'lu_2007', country: 'Luxemburgo', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2007.jpg', mintage: 1200000, commemorates: 'Tratado de Roma' },
   { id: 'lu_2009', country: 'Luxemburgo', year: 2009, description: '10 años UEM', imageUrl: null, mintage: 1200000, commemorates: '10 años UEM' },
   { id: 'lu_2010', country: 'Luxemburgo', year: 2010, description: 'Escudo de Armas de Luxemburgo', imageUrl: null, mintage: 1200000, commemorates: 'Escudo Armas' },
