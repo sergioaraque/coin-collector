@@ -198,14 +198,14 @@ export const ALL_COINS = [
   { id: 'lu_2005', country: 'Luxemburgo', year: 2005, description: '50 años independencia', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2005.jpg', mintage: 1200000, commemorates: 'Independencia' },
   { id: 'lu_2007', country: 'Luxemburgo', year: 2007, description: '50 años Tratado de Roma', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2007.jpg', mintage: 1200000, commemorates: 'Tratado de Roma' },
   { id: 'lu_2009', country: 'Luxemburgo', year: 2009, description: '10 años UEM', imageUrl: null, mintage: 1200000, commemorates: '10 años UEM' },
-  { id: 'lu_2010', country: 'Luxemburgo', year: 2010, description: 'Escudo de Armas de Luxemburgo', imageUrl: null, mintage: 1200000, commemorates: 'Escudo Armas' },
-  { id: 'lu_2012', country: 'Luxemburgo', year: 2012, description: '10 años del euro', imageUrl: null, mintage: 1200000, commemorates: '10 años euro' },
+  { id: 'lu_2010', country: 'Luxemburgo', year: 2010, description: 'Escudo de Armas de Luxemburgo', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2010.jpg', mintage: 1200000, commemorates: 'Escudo Armas' },
+  { id: 'lu_2012', country: 'Luxemburgo', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2012.jpg', mintage: 1200000, commemorates: '10 años euro' },
   { id: 'lu_2013', country: 'Luxemburgo', year: 2013, description: '150 años Himno Nacional', imageUrl: null, mintage: 700000, commemorates: 'Himno Nacional' },
-  { id: 'lu_2015', country: 'Luxemburgo', year: 2015, description: '30 años Bandera UE', imageUrl: null, mintage: 700000, commemorates: 'Bandera UE' },
+  { id: 'lu_2015', country: 'Luxemburgo', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lu_2015.jpg', mintage: 700000, commemorates: 'Bandera UE' },
   { id: 'lu_2022', country: 'Luxemburgo', year: 2022, description: 'Programa Erasmus', imageUrl: null, mintage: 700000, commemorates: '35 años Erasmus' },
 
   // ── MALTA ─────────────────────────────────────────────────────────
-  { id: 'mt_2009', country: 'Malta', year: 2009, description: '10 años UEM', imageUrl: null, mintage: 1500000, commemorates: '10 años UEM' },
+  { id: 'mt_2009', country: 'Malta', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2009.jpg', mintage: 1500000, commemorates: '10 años UEM' },
   { id: 'mt_2012', country: 'Malta', year: 2012, description: '10 años del euro', imageUrl: null, mintage: 1500000, commemorates: '10 años euro' },
   { id: 'mt_2013', country: 'Malta', year: 2013, description: 'Barca tradicional Dgħajsa', imageUrl: null, mintage: 1500000, commemorates: 'Cultura maltesa' },
   { id: 'mt_2014', country: 'Malta', year: 2014, description: '50 años independencia de Malta', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/mt_2014.png', mintage: 1500000, commemorates: 'Independencia' },

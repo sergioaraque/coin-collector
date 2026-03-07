@@ -22,6 +22,7 @@ import BadgesPage from './pages/BadgesPage'
 import AdminImagePage from './pages/AdminImagePage'
 import PWABanner from './components/PWABanner'
 import CommunityPage from './pages/CommunityPage'
+import PublicHeatMapPage from './pages/public/PublicHeatMapPage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -62,6 +63,7 @@ export default function App() {
               <Route path="comunidad" element={<CommunityPage />} />
             </Route>
             <Route path="/landing" element={<LandingPage />} />
+            <Route path="/mapa-global" element={<PublicHeatMapPage />} />
             <Route path="/estadisticas-publicas" element={<PublicStatsPage />} />
             <Route path="/catalogo" element={<PublicCatalogPage />} />
             <Route path="/ranking-publico" element={<PublicRankingPage />} />

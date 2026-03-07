@@ -306,6 +306,12 @@ export default function LandingPage() {
                   }
                 </Geographies>
               </ComposableMap>
+              <Link
+                to="/mapa-global"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-xl border border-white/20 transition mt-3"
+              >
+                🌍 Ver mapa de calor de la comunidad →
+              </Link>
               <div className="flex justify-between items-center mt-2">
                 <div className="flex gap-2">
                   <div className="flex items-center gap-1">
