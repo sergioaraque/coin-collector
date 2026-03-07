@@ -4,6 +4,7 @@ import { useCollection } from '../context/CollectionContext'
 import { ALL_COINS, COUNTRIES } from '../data/coins'
 import { useNavigate } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
+import WallWidget from '../components/WallWidget'
 
 const GEO_URL = 'https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson'
 
@@ -125,6 +126,7 @@ export default function MapPage() {
             }
           </Geographies>
         </ComposableMap>
+        <WallWidget />
         <p className="text-xs text-center text-gray-400 mt-1 sm:hidden">
           Toca un país para ver el progreso · Toca de nuevo para ir a la colección
         </p>

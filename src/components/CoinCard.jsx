@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCoinImage } from '../hooks/useCoinImage'
 import { useTranslation } from 'react-i18next'
 
-export default function CoinCard({ coin, isOwned, onToggle }) {
+export default function CoinCard({ coin, isOwned, onToggle, hasNote = false }) {
   const { src, status } = useCoinImage(coin)
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -43,22 +43,30 @@ export default function CoinCard({ coin, isOwned, onToggle }) {
             ✓
           </span>
         )}
+        {hasNote && (
+          <span
+            className="absolute top-1 left-1 bg-yellow-400 text-yellow-900 text-xs rounded-full w-5 h-5 flex items-center justify-center shadow"
+            title="Tiene nota"
+          >
+            📝
+          </span>
+        )}
       </div>
 
       {/* Info — click navega al detalle */}
       <div
-        className="p-2 cursor-pointer"
+        className="p-2 cursor-pointer flex flex-col"
         onClick={() => navigate(`/moneda/${coin.id}`)}
       >
         <p className="text-xs font-semibold text-blue-800 dark:text-blue-400 truncate">{coin.country}</p>
         <p className="text-sm font-bold text-gray-800 dark:text-white">{coin.year}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400 leading-tight line-clamp-2">{coin.description}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 leading-tight truncate">{coin.description}</p>
         {coin.mintage > 0 && (
           <p className="text-xs text-gray-400 mt-1">{coin.mintage.toLocaleString('es')} uds.</p>
         )}
       </div>
 
-      {/* Botón toggle — solo marca/desmarca, NO navega */}
+      {/* Botón toggle */}
       <div
         onClick={onToggle}
         className={`py-1.5 text-center text-xs font-medium transition cursor-pointer ${

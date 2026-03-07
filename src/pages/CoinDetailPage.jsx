@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ALL_COINS } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
 import { useCoinImage } from '../hooks/useCoinImage'
+import { useCoinNote } from '../hooks/useCoinNote'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
 
@@ -13,7 +14,16 @@ export default function CoinDetailPage() {
   const coin = ALL_COINS.find(c => c.id === coinId)
   const { src, status } = useCoinImage(coin || {})
   const { t } = useTranslation()
+  const { note, setNote, saving, loading: noteLoading, saveNote } = useCoinNote(coinId)
+  const [editingNote, setEditingNote] = useState(false)
+  const [noteInput, setNoteInput] = useState('')
+  const [showImageModal, setShowImageModal] = useState(false)
+
   useSEO({ title: coin?.description || 'Detalle de moneda' })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [coinId])
 
   if (!coin) return (
     <div className="text-center py-20">
@@ -25,16 +35,52 @@ export default function CoinDetailPage() {
   )
 
   const isOwned = owned.has(coin.id)
-
-  // Monedas del mismo país
   const sameCountry = ALL_COINS.filter(c => c.country === coin.country && c.id !== coin.id)
     .sort((a, b) => a.year - b.year)
-
-  // Monedas del mismo año (emisiones comunes)
   const sameYear = ALL_COINS.filter(c => c.year === coin.year && c.id !== coin.id)
+
+  const handleEditNote = () => {
+    setNoteInput(note)
+    setEditingNote(true)
+  }
+
+  const handleSaveNote = async () => {
+    await saveNote(noteInput)
+    setEditingNote(false)
+  }
+
+  const handleCancelNote = () => {
+    setNoteInput(note)
+    setEditingNote(false)
+  }
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
+            {/* Modal imagen */}
+      {showImageModal && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setShowImageModal(false)}
+        >
+          <div className="relative max-w-lg w-full" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={() => setShowImageModal(false)}
+              className="absolute -top-10 right-0 text-white text-2xl hover:text-gray-300 transition"
+            >
+              ✕
+            </button>
+            <img
+              src={src}
+              alt={coin.description}
+              className="w-full h-auto object-contain rounded-2xl shadow-2xl"
+            />
+            <p className="text-center text-white text-sm mt-3 opacity-70">
+              {coin.country} · {coin.year} · {coin.description}
+            </p>
+          </div>
+        </div>
+      )}
+      
       {/* Botón volver */}
       <button
         onClick={() => navigate(-1)}
@@ -45,7 +91,9 @@ export default function CoinDetailPage() {
 
       {/* Card principal */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-br from-blue-800 to-blue-900 p-8 flex justify-center">
+        <div className="bg-gradient-to-br from-blue-800 to-blue-900 p-8 flex justify-center cursor-zoom-in"
+            onClick={() => status === 'ok' && setShowImageModal(true)}
+          >
           {status === 'error' ? (
             <span className="text-8xl">🪙</span>
           ) : (
@@ -107,7 +155,7 @@ export default function CoinDetailPage() {
             </div>
           </div>
 
-          {/* Valor estimado según acuñación */}
+          {/* Valor estimado */}
           <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-3 flex items-center gap-3">
             <span className="text-2xl">💰</span>
             <div>
@@ -126,10 +174,67 @@ export default function CoinDetailPage() {
               </p>
             </div>
           </div>
+
+          {/* Nota privada */}
+          <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-gray-600 dark:text-gray-300 flex items-center gap-1.5">
+                📝 Nota privada
+                <span className="text-xs font-normal text-gray-400">(solo tú la ves)</span>
+              </p>
+              {!editingNote && !noteLoading && (
+                <button
+                  onClick={handleEditNote}
+                  className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {note ? 'Editar' : 'Añadir nota'}
+                </button>
+              )}
+            </div>
+
+            {noteLoading ? (
+              <div className="h-8 bg-gray-100 dark:bg-gray-700 rounded animate-pulse" />
+            ) : editingNote ? (
+              <div className="space-y-2">
+                <textarea
+                  value={noteInput}
+                  onChange={e => setNoteInput(e.target.value)}
+                  placeholder="Dónde la conseguiste, cuánto pagaste, si es un regalo..."
+                  rows={3}
+                  className="w-full text-sm border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+                  autoFocus
+                />
+                <div className="flex gap-2 justify-end">
+                  <button
+                    onClick={handleCancelNote}
+                    className="text-xs text-gray-400 hover:text-gray-600 px-3 py-1.5 rounded-lg transition"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onClick={handleSaveNote}
+                    disabled={saving}
+                    className="text-xs bg-blue-700 hover:bg-blue-800 text-white px-4 py-1.5 rounded-lg transition disabled:opacity-50"
+                  >
+                    {saving ? 'Guardando...' : 'Guardar'}
+                  </button>
+                </div>
+              </div>
+            ) : note ? (
+              <div
+                onClick={handleEditNote}
+                className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl px-3 py-2.5 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition border border-yellow-200 dark:border-yellow-800"
+              >
+                {note}
+              </div>
+            ) : (
+              <p className="text-xs text-gray-400 italic">Sin nota — pulsa "Añadir nota" para escribir algo</p>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Otras monedas del mismo año (emisiones comunes) */}
+      {/* Otras monedas del mismo año */}
       {sameYear.length > 0 && (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4">
           <h2 className="font-semibold text-gray-700 dark:text-gray-200 mb-3">

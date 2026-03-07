@@ -6,6 +6,8 @@ import CoinCard from '../components/CoinCard'
 import CoinRow from '../components/CoinRow'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
+import { supabase } from '../supabase'
+import { useAuth } from '../context/AuthContext'
 
 const PAGE_SIZE = 20
 
@@ -22,6 +24,8 @@ export default function CollectionPage() {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const loaderRef = useRef(null)
   const { t } = useTranslation()
+  const { user } = useAuth()
+  const [noteIds, setNoteIds] = useState(new Set())
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -79,6 +83,12 @@ export default function CollectionPage() {
       return { country: c, total: coins.length, got, pct: Math.round((got / coins.length) * 100) }
     })
   }, [owned])
+
+  useEffect(() => {
+  if (!user) return
+  supabase.from('coin_notes').select('coin_id').eq('user_id', user.id)
+    .then(({ data }) => setNoteIds(new Set((data || []).map(n => n.coin_id))))
+}, [user])
 
   return (
     <div>
@@ -221,6 +231,7 @@ export default function CollectionPage() {
                 coin={coin}
                 isOwned={owned.has(coin.id)}
                 onToggle={() => toggleCoin(coin.id)}
+                hasNote={noteIds.has(coin.id)}
               />
             ))}
           </div>

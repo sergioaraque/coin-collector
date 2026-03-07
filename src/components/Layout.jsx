@@ -39,6 +39,7 @@ export default function Layout() {
     { to: '/actividad',    label: t('activity') },
     { to: '/insignias', label:  t('badges') },
     { to: '/ranking',      label: t('ranking') },
+    { to: '/comunidad', label: '💬 Comunidad' },
     ...(isAdmin ? [{ to: '/admin', label: t('admin') }] : []),
   ]
 

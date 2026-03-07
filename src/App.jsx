@@ -21,6 +21,7 @@ import PublicRankingPage from './pages/public/PublicRankingPage'
 import BadgesPage from './pages/BadgesPage'
 import AdminImagePage from './pages/AdminImagePage'
 import PWABanner from './components/PWABanner'
+import CommunityPage from './pages/CommunityPage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -58,6 +59,7 @@ export default function App() {
               <Route path="insignias" element={<BadgesPage />} />
               <Route path="actividad" element={<ActivityPage />} />
               <Route path="ranking" element={<RankingPage />} />
+              <Route path="comunidad" element={<CommunityPage />} />
             </Route>
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/estadisticas-publicas" element={<PublicStatsPage />} />

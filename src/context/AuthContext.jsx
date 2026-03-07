@@ -9,6 +9,7 @@ const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -16,12 +17,25 @@ export function AuthProvider({ children }) {
 
       if (event === 'SIGNED_OUT') {
         setUser(null)
+        setProfile(null)  // ← añadir
         setLoading(false)
         return
       }
 
       setUser(session?.user ?? null)
       setLoading(false)
+
+      // Carga el profile  ← añadir esto
+      if (session?.user) {
+        supabase
+          .from('profiles')
+          .select('username')
+          .eq('user_id', session.user.id)
+          .maybeSingle()
+          .then(({ data }) => setProfile(data))
+      } else {
+        setProfile(null)
+      }
 
       // Solo notificamos en login real, no en cada F5
       if (event === 'SIGNED_IN' && session?.user) {
@@ -78,7 +92,7 @@ export function AuthProvider({ children }) {
   const signOut = () => supabase.auth.signOut()
 
   return (
-    <AuthContext.Provider value={{ user, loading, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, profile, loading, signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
