@@ -24,6 +24,7 @@ import PWABanner from './components/PWABanner'
 import CommunityPage from './pages/CommunityPage'
 import PublicHeatMapPage from './pages/public/PublicHeatMapPage'
 import ProgressPage from './pages/ProgressPage'
+import TermsPage from './pages/public/TermsPage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="/estadisticas-publicas" element={<PublicStatsPage />} />
             <Route path="/catalogo" element={<PublicCatalogPage />} />
             <Route path="/ranking-publico" element={<PublicRankingPage />} />
+            <Route path="/terminos" element={<TermsPage />} />
           <Route path="*" element={<Navigate to="/landing" replace />} />
           </Routes>
           <ToastContainer />

@@ -543,6 +543,7 @@ export default function LandingPage() {
             <Link to="/estadisticas-publicas" className="hover:text-white transition">Estadísticas</Link>
             <Link to="/ranking-publico" className="hover:text-white transition">Ranking</Link>
             <Link to="/login" className="hover:text-white transition">Acceder</Link>
+            <Link to="/terminos" className="hover:text-white transition">Términos y condiciones</Link>
           </div>
           <p className="text-xs text-blue-400">Hecho con ❤️ para coleccionistas</p>
         </div>
