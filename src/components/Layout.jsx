@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
+import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCollection } from '../context/CollectionContext'
 import { useAdmin } from '../hooks/useAdmin'
@@ -6,18 +6,21 @@ import { ALL_COINS } from '../data/coins'
 import GlobalSearch from './GlobalSearch'
 import { useTranslation } from 'react-i18next'
 import { useTheme, THEME_LIST } from '../context/ThemeContext'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function Layout() {
   const { user, signOut } = useAuth()
   const { owned } = useCollection()
   const { dark, toggle, colorTheme, setColorTheme } = useTheme()
   const [showThemes, setShowThemes] = useState(false)
+  const [showPersonal, setShowPersonal] = useState(false)
   const { isAdmin } = useAdmin()
   const navigate = useNavigate()
+  const location = useLocation()
   const { t, i18n } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+  const personalRef = useRef(null)
 
   const handleSignOut = async () => {
     await signOut()
@@ -32,15 +35,45 @@ export default function Layout() {
 
   const pct = Math.round((owned.size / ALL_COINS.length) * 100)
 
-  const navLinks = [
+  // Cierra el dropdown al hacer click fuera
+  useEffect(() => {
+    function handleClick(e) {
+      if (personalRef.current && !personalRef.current.contains(e.target)) {
+        setShowPersonal(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  // Rutas del grupo "Personal"
+  const personalRoutes = ['/progreso', '/actividad', '/insignias', '/perfil']
+  const isPersonalActive = personalRoutes.some(r => location.pathname.startsWith(r))
+
+  const personalLinks = [
+    { to: '/progreso',   label: '📈 ' + 'Progreso' },
+    { to: '/actividad',  label: '📋 ' + t('activity') },
+    { to: '/insignias',  label: '🏅 ' + t('badges') },
+    { to: '/perfil',     label: '👤 Perfil' },
+  ]
+
+  const mainLinks = [
     { to: '/mapa',         label: t('map') },
     { to: '/coleccion',    label: t('collection') },
-    { to: '/estadisticas', label: t('stats') },
-    { to: '/actividad',    label: t('activity') },
-    { to: '/insignias', label:  t('badges') },
-    { to: '/ranking',      label: t('ranking') },
+    { to: '/estadisticas', label: '📊 ' + t('stats') },
+  ]
+
+  const rightLinks = [
+    { to: '/ranking',   label: t('ranking') },
     { to: '/comunidad', label: '💬 Comunidad' },
-    ...(isAdmin ? [{ to: '/admin', label: t('admin') }] : []),
+    ...(isAdmin ? [{ to: '/admin', label: '🛡️ ' + t('admin') }] : []),
+  ]
+
+  // Todos los links para el menú móvil
+  const allMobileLinks = [
+    ...mainLinks,
+    ...rightLinks,
+    ...personalLinks,
   ]
 
   return (
@@ -49,8 +82,6 @@ export default function Layout() {
       {/* Header */}
       <header className="themed text-white shadow-lg transition-colors">
         <div className="max-w-6xl mx-auto px-4 py-3">
-
-          {/* Fila principal */}
           <div className="flex items-center justify-between gap-2">
 
             {/* Logo */}
@@ -64,15 +95,13 @@ export default function Layout() {
               </div>
             </NavLink>
 
-            {/* Buscador — visible en desktop, oculto en móvil */}
+            {/* Buscador desktop */}
             <div className="hidden md:flex flex-1 justify-center">
               <GlobalSearch />
             </div>
 
             {/* Acciones */}
             <div className="flex items-center gap-2">
-
-              {/* Buscar en móvil */}
               <button
                 onClick={() => setMobileSearchOpen(s => !s)}
                 className="md:hidden bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
@@ -80,12 +109,20 @@ export default function Layout() {
                 🔍
               </button>
 
-              {/* Toggle idioma */}
               <button
                 onClick={toggleLang}
                 className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
               >
                 {i18n.language === 'es' ? '🇬🇧' : '🇪🇸'}
+              </button>
+
+              {/* Modo oscuro */}
+              <button
+                onClick={toggle}
+                className="bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
+                title="Modo oscuro"
+              >
+                {dark ? '☀️' : '🌙'}
               </button>
 
               <div className="relative">
@@ -113,7 +150,6 @@ export default function Layout() {
                 )}
               </div>
 
-              {/* Email + salir — desktop */}
               <div className="hidden sm:flex items-center gap-2">
                 <NavLink
                   to="/perfil"
@@ -129,7 +165,6 @@ export default function Layout() {
                 </button>
               </div>
 
-              {/* Menú hamburguesa — móvil */}
               <button
                 onClick={() => setMobileMenuOpen(s => !s)}
                 className="sm:hidden bg-blue-700 dark:bg-gray-700 hover:bg-blue-600 px-3 py-1.5 rounded-lg text-sm transition"
@@ -139,46 +174,63 @@ export default function Layout() {
             </div>
           </div>
 
-          {/* Buscador expandible en móvil */}
+          {/* Buscador móvil */}
           {mobileSearchOpen && (
             <div className="mt-3 md:hidden">
               <GlobalSearch autoFocus onSelect={() => setMobileSearchOpen(false)} />
             </div>
           )}
 
-          {/* Menú móvil desplegable */}
+          {/* Menú móvil */}
           {mobileMenuOpen && (
             <div className="mt-3 sm:hidden border-t border-blue-700 dark:border-gray-600 pt-3 space-y-1">
-              <NavLink
-                to="/perfil"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm text-blue-200 hover:bg-blue-700 hover:text-white transition"
-              >
-                👤 {user?.email}
-              </NavLink>
-              <button
-                onClick={() => { handleSignOut(); setMobileMenuOpen(false) }}
-                className="w-full text-left px-3 py-2 rounded-lg text-sm text-blue-200 hover:bg-blue-700 hover:text-white transition"
-              >
-                🚪 {t('logout')}
-              </button>
-              <div className="pt-1 pb-1 px-3 text-xs text-blue-300 dark:text-gray-400">
-                {owned.size}/{ALL_COINS.length} monedas · {pct}%
+              {allMobileLinks.map(({ to, label }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `block px-3 py-2 rounded-lg text-sm transition ${
+                      isActive
+                        ? 'bg-yellow-400/20 text-yellow-300 font-medium'
+                        : 'text-blue-200 hover:bg-blue-700 hover:text-white'
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+              <div className="border-t border-blue-700 dark:border-gray-600 pt-2 mt-2">
+                <NavLink
+                  to="/perfil"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 rounded-lg text-sm text-blue-200 hover:bg-blue-700 hover:text-white transition"
+                >
+                  👤 {user?.email}
+                </NavLink>
+                <button
+                  onClick={() => { handleSignOut(); setMobileMenuOpen(false) }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-blue-200 hover:bg-blue-700 hover:text-white transition"
+                >
+                  🚪 {t('logout')}
+                </button>
               </div>
             </div>
           )}
         </div>
       </header>
 
-      {/* Nav — scroll horizontal en móvil */}
-      <nav className="themed text-white overflow-x-auto scrollbar-hide transition-colors">
-        <div className="max-w-6xl mx-auto px-4 flex gap-1 min-w-max">
-          {navLinks.map(({ to, label }) => (
+      {/* Nav desktop */}
+      <nav className="themed text-white shadow-sm transition-colors hidden sm:block">
+        <div className="max-w-6xl mx-auto px-4 flex items-center gap-1">
+
+          {/* Links principales */}
+          {mainLinks.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `px-3 sm:px-4 py-2.5 text-xs sm:text-sm font-medium transition border-b-2 whitespace-nowrap ${
+                `px-4 py-2.5 text-sm font-medium transition border-b-2 whitespace-nowrap ${
                   isActive
                     ? 'border-yellow-400 text-yellow-300'
                     : 'border-transparent text-blue-200 dark:text-gray-300 hover:text-white'
@@ -188,6 +240,61 @@ export default function Layout() {
               {label}
             </NavLink>
           ))}
+
+
+
+          {/* Links derechos */}
+          {rightLinks.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                `px-4 py-2.5 text-sm font-medium transition border-b-2 whitespace-nowrap ${
+                  isActive
+                    ? 'border-yellow-400 text-yellow-300'
+                    : 'border-transparent text-blue-200 dark:text-gray-300 hover:text-white'
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+
+                    {/* Dropdown "Personal" */}
+          <div className="relative" ref={personalRef}>
+            <button
+              onClick={() => setShowPersonal(s => !s)}
+              className={`px-4 py-2.5 text-sm font-medium transition border-b-2 whitespace-nowrap flex items-center gap-1 ${
+                isPersonalActive
+                  ? 'border-yellow-400 text-yellow-300'
+                  : 'border-transparent text-blue-200 dark:text-gray-300 hover:text-white'
+              }`}
+            >
+              👤 Personal
+              <span className={`text-xs transition-transform ${showPersonal ? 'rotate-180' : ''}`}>▾</span>
+            </button>
+
+            {showPersonal && (
+              <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 rounded-xl shadow-xl z-50 min-w-44 overflow-hidden border border-gray-100 dark:border-gray-700">
+                {personalLinks.map(({ to, label }) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    onClick={() => setShowPersonal(false)}
+                    className={({ isActive }) =>
+                      `block px-4 py-2.5 text-sm transition ${
+                        isActive
+                          ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium'
+                          : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      }`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </nav>
 
@@ -195,6 +302,29 @@ export default function Layout() {
       <main className="flex-1 max-w-6xl mx-auto w-full px-3 sm:px-4 py-4 sm:py-6">
         <Outlet />
       </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-800 dark:bg-gray-800 text-white transition-colors">
+        <div className="max-w-6xl mx-auto px-4 py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🪙</span>
+              <span className="font-semibold text-white text-sm">EuroCollector</span>
+              <span className="text-xs opacity-60">· Hecho con ❤️ para coleccionistas</span>
+            </div>
+            <div className="flex items-center gap-4 text-xs">
+              <NavLink to="/mapa" className="hover:text-white transition">Mapa</NavLink>
+              <NavLink to="/coleccion" className="hover:text-white transition">Colección</NavLink>
+              <NavLink to="/ranking" className="hover:text-white transition">Ranking</NavLink>
+              <NavLink to="/comunidad" className="hover:text-white transition">Comunidad</NavLink>
+            </div>
+            <p className="text-xs opacity-50">
+              {owned.size}/{ALL_COINS.length} monedas · {pct}% completado
+            </p>
+          </div>
+        </div>
+      </footer>
+
     </div>
   )
 }

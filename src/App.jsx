@@ -23,6 +23,7 @@ import AdminImagePage from './pages/AdminImagePage'
 import PWABanner from './components/PWABanner'
 import CommunityPage from './pages/CommunityPage'
 import PublicHeatMapPage from './pages/public/PublicHeatMapPage'
+import ProgressPage from './pages/ProgressPage'
 import { useTranslation } from 'react-i18next'
 
 function PrivateRoute({ children }) {
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="mapa" element={<MapPage />} />
               <Route path="moneda/:coinId" element={<CoinDetailPage />} />
               <Route path="perfil" element={<ProfilePage />} />
+              <Route path="progreso" element={<ProgressPage />} />
               <Route path="insignias" element={<BadgesPage />} />
               <Route path="actividad" element={<ActivityPage />} />
               <Route path="ranking" element={<RankingPage />} />

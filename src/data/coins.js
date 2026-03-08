@@ -58,10 +58,10 @@ export const ALL_COINS = [
   { id: 'be_2022', country: 'Bélgica', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/be_2022.jpg', mintage: 5000000, commemorates: '35 años Erasmus' },
 
   // ── CHIPRE ────────────────────────────────────────────────────────
-  { id: 'cy_2009', country: 'Chipre', year: 2009, description: '10 años UEM', imageUrl: null, mintage: 1000000, commemorates: '10 años UEM' },
+  { id: 'cy_2009', country: 'Chipre', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2009.jpg', mintage: 1000000, commemorates: '10 años UEM' },
   { id: 'cy_2012', country: 'Chipre', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2012.jpg', mintage: 1000000, commemorates: '10 años euro' },
   { id: 'cy_2015', country: 'Chipre', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2015.png', mintage: 1000000, commemorates: 'Bandera UE' },
-  { id: 'cy_2017', country: 'Chipre', year: 2017, description: 'Pafos - Capital Cultural Europea', imageUrl: null, mintage: 660000, commemorates: 'Pafos Capital Cultural' },
+  { id: 'cy_2017', country: 'Chipre', year: 2017, description: 'Pafos - Capital Cultural Europea', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2017.png', mintage: 660000, commemorates: 'Pafos Capital Cultural' },
   { id: 'cy_2022', country: 'Chipre', year: 2022, description: 'Programa Erasmus', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2022.png', mintage: 500000, commemorates: '35 años Erasmus' },
 
   // ── ESLOVAQUIA ────────────────────────────────────────────────────
@@ -234,7 +234,7 @@ export const ALL_COINS = [
   { id: 'pt_2009', country: 'Portugal', year: 2009, description: '10 años UEM', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2009.jpg', mintage: 6000000, commemorates: '10 años UEM' },
   { id: 'pt_2010', country: 'Portugal', year: 2010, description: '500 años Fernão de Magalhães', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2010.jpg', mintage: 6000000, commemorates: 'Magallanes' },
   { id: 'pt_2012', country: 'Portugal', year: 2012, description: '10 años del euro', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2012.jpg', mintage: 6000000, commemorates: '10 años euro' },
-  { id: 'pt_2013', country: 'Portugal', year: 2013, description: '250 años Torre de Clérigos', imageUrl: null, mintage: 6000000, commemorates: 'Torre Clérigos' },
+  { id: 'pt_2013', country: 'Portugal', year: 2013, description: '250 años Torre de Clérigos', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2013.jpg', mintage: 6000000, commemorates: 'Torre Clérigos' },
   { id: 'pt_2015', country: 'Portugal', year: 2015, description: '30 años Bandera UE', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2015.png', mintage: 6000000, commemorates: 'Bandera UE' },
   { id: 'pt_2017', country: 'Portugal', year: 2017, description: 'Monasterio de los Jerónimos', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2017.jpg', mintage: 6000000, commemorates: 'Jerónimos' },
   { id: 'pt_2019', country: 'Portugal', year: 2019, description: '150 años Cruz Roja portuguesa', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/pt_2019.jpg', mintage: 6000000, commemorates: 'Cruz Roja' },
@@ -287,8 +287,8 @@ export const ALL_COINS = [
   { id: 'be_2024', country: 'Bélgica', year: 2024, description: 'Presidencia belga UE 2024', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/be_2024.jpg', mintage: 5000000, commemorates: 'Presidencia UE' },
 
   // ── CHIPRE ────────────────────────────────────────────────────────
-  { id: 'cy_2023', country: 'Chipre', year: 2023, description: '60 años República de Chipre', imageUrl: null, mintage: 500000, commemorates: '60 años República' },
-  { id: 'cy_2024', country: 'Chipre', year: 2024, description: 'Acrópolis de Chipre', imageUrl: null, mintage: 500000, commemorates: 'Acrópolis' },
+  { id: 'cy_2023', country: 'Chipre', year: 2023, description: '60 años República de Chipre', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2023.jpg', mintage: 500000, commemorates: '60 años República' },
+  { id: 'cy_2024', country: 'Chipre', year: 2024, description: 'Acrópolis de Chipre', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/cy_2024.jpg', mintage: 500000, commemorates: 'Acrópolis' },
 
   // ── ESLOVAQUIA ────────────────────────────────────────────────────
   { id: 'sk_2023', country: 'Eslovaquia', year: 2023, description: '150 años Academia Eslovaca de Ciencias', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/sk_2023.png', mintage: 1000000, commemorates: 'Academia de Ciencias' },
