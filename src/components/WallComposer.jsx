@@ -35,19 +35,27 @@ export default function WallComposer({
   const handleSend = async () => {
     if (!message.trim() || sending) return
     setSending(true)
-    await onSend({
-      message,
-      type,
-      coinId: selectedCoin?.id || null,
-      username,
-    })
-    window.location.reload()
-    setMessage('')
-    setType('general')
-    setSelectedCoin(null)
-    setCoinSearch('')
-    setShowCoinSearch(false)
-    setSending(false)
+    try {
+      const result = await onSend({
+        message,
+        type,
+        coinId: selectedCoin?.id || null,
+        username,
+      })
+      if (result?.error) {
+        if (result.error.message?.includes('Rate limit')) {
+          alert('Has alcanzado el límite de 10 mensajes por hora. Inténtalo más tarde.')
+        } else {
+          alert('Error al enviar el mensaje. Inténtalo de nuevo.')
+        }
+        setSending(false)
+        return
+      }
+      window.location.reload()
+    } catch (e) {
+      alert('Error al enviar el mensaje. Inténtalo de nuevo.')
+      setSending(false)
+    }
   }
 
   return (

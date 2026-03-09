@@ -7,6 +7,7 @@ import App from './App'
 import './index.css'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import { Analytics } from '@vercel/analytics/react'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +22,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
         <SpeedInsights />
         <Analytics />
       </BrowserRouter>

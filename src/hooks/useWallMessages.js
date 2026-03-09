@@ -59,7 +59,8 @@ export function useWallMessages(parentId = null, limit = 50) {
       coin_id: coinId || null,
       parent_id: parentId || null,
     })
-    if (error) console.error(error)
+    if (error) return { error }
+    return { error: null }
   }
 
   const deleteMessage = async (messageId) => {
