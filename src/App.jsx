@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate, Suspense, lazy } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { CollectionProvider } from './context/CollectionContext'
 import { ThemeProvider } from './context/ThemeContext'
