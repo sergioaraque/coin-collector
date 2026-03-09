@@ -419,7 +419,7 @@ export const ALL_COINS = [
   // ── NUEVAS: ITALIA ─────────────────────────────────────────────────
   { id: 'it_2008', country: 'Italia', year: 2008, description: '60 años Declaración Universal de Derechos Humanos', imageUrl: null, mintage: 5000000, commemorates: '60 años DDHH' },
   { id: 'it_2016b', country: 'Italia', year: 2016, description: 'Basílica de San Marco en Venecia', imageUrl: null, mintage: 5000000, commemorates: 'Venecia' },
-  { id: 'it_2017b', country: 'Italia', year: 2017, description: 'Villa d\'Este en Tívoli', imageUrl: null, mintage: 5000000, commemorates: 'Villa d\'Este' },
+  { id: 'it_2017b', country: 'Italia', year: 2017, description: "Villa d'Este en Tívoli'", imageUrl: null, mintage: 5000000, commemorates: "Villa d'Este'" },
   { id: 'it_2018b', country: 'Italia', year: 2018, description: '70 años Constitución italiana', imageUrl: null, mintage: 5000000, commemorates: '70 años Constitución' },
   { id: 'it_2019b', country: 'Italia', year: 2019, description: '500 años muerte de Rafael Sanzio (anticipada)', imageUrl: null, mintage: 5000000, commemorates: 'Rafael Sanzio' },
   { id: 'it_2020b', country: 'Italia', year: 2020, description: '150 años Roma capital de Italia', imageUrl: null, mintage: 5000000, commemorates: 'Roma capital' },
@@ -493,6 +493,174 @@ export const ALL_COINS = [
   { id: 'ee_2025_txt', country: 'Estonia', year: 2025, description: '500 años del primer texto impreso en estonio', imageUrl: null, mintage: 850000, commemorates: 'Cultura Estonia' },
   { id: 'lt_2025_def', country: 'Lituania', year: 2025, description: 'Defensa del Estado Lituano', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/lt_2025_def.jpg', mintage: 500000, commemorates: 'Defensa Nacional' },
   { id: 'fr_2025_lou', country: 'Francia', year: 2025, description: 'Museo del Louvre - La Gioconda', imageUrl: 'https://idoiwlaxghwdbamkhftu.supabase.co/storage/v1/object/public/coins/fr_2025_lou.png', mintage: 315000, commemorates: 'Louvre' },
+
+  // ─── GRECIA — monedas faltantes ───────────────────────────────────────────
+  { id: 'gr_2014a', country: 'Grecia', year: 2014, description: '600 años Unión de las Islas Jónicas con Grecia', imageUrl: null, mintage: 750000, commemorates: 'Islas Jónicas' },
+  { id: 'gr_2014b', country: 'Grecia', year: 2014, description: '450 años nacimiento de El Greco', imageUrl: null, mintage: 750000, commemorates: 'El Greco' },
+  { id: 'gr_2016a', country: 'Grecia', year: 2016, description: '150 aniversario del Holocausto del Monasterio de Arkadi', imageUrl: null, mintage: 500000, commemorates: 'Monasterio Arkadi' },
+  { id: 'gr_2016b', country: 'Grecia', year: 2016, description: '100 años nacimiento de Dimitris Mitropoulos', imageUrl: null, mintage: 500000, commemorates: 'Mitropoulos' },
+  { id: 'gr_2017a', country: 'Grecia', year: 2017, description: 'Sitio Arqueológico de Filipos', imageUrl: null, mintage: 500000, commemorates: 'Filipos UNESCO' },
+  { id: 'gr_2017b', country: 'Grecia', year: 2017, description: '75 años muerte de Nikos Kazantzakis', imageUrl: null, mintage: 500000, commemorates: 'Kazantzakis' },
+  { id: 'gr_2018a', country: 'Grecia', year: 2018, description: '70 años Unión de las Islas Dodecanesas con Grecia', imageUrl: null, mintage: 500000, commemorates: 'Dodecanesas' },
+  { id: 'gr_2018b', country: 'Grecia', year: 2018, description: '70 años nacimiento de Mikis Theodorakis', imageUrl: null, mintage: 500000, commemorates: 'Theodorakis' },
+  { id: 'gr_2019a', country: 'Grecia', year: 2019, description: '2500 años nacimiento de Sócrates', imageUrl: null, mintage: 500000, commemorates: 'Sócrates' },
+  { id: 'gr_2019b', country: 'Grecia', year: 2019, description: '100 años muerte de Andreas Kalvos', imageUrl: null, mintage: 500000, commemorates: 'Kalvos' },
+  { id: 'gr_2020a', country: 'Grecia', year: 2020, description: '2500 años Batalla de las Termópilas (Esparta)', imageUrl: null, mintage: 500000, commemorates: 'Termópilas' },
+  { id: 'gr_2020b', country: 'Grecia', year: 2020, description: '200 años Revolución Griega - Rigas Feraios', imageUrl: null, mintage: 500000, commemorates: 'Revolución Griega' },
+  { id: 'gr_2021a', country: 'Grecia', year: 2021, description: '200 años Revolución Griega - Adamantios Korais', imageUrl: null, mintage: 500000, commemorates: '200 años Independencia' },
+  { id: 'gr_2021b', country: 'Grecia', year: 2021, description: '200 años Revolución Griega - Patriarca Gregorio V', imageUrl: null, mintage: 500000, commemorates: '200 años Independencia' },
+
+  // ─── MALTA — monedas faltantes ────────────────────────────────────────────
+  { id: 'mt_2011', country: 'Malta', year: 2011, description: 'Primer gobierno representativo de Malta (1849)', imageUrl: null, mintage: 400000, commemorates: 'Democracia maltesa' },
+  { id: 'mt_2015b', country: 'Malta', year: 2015, description: 'Desde la Solidaridad de los Niños - 30 años Bandera UE', imageUrl: null, mintage: 30000, commemorates: 'Bandera UE' },
+  { id: 'mt_2016b', country: 'Malta', year: 2016, description: 'Desde la Solidaridad de los Niños - Amor', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+  { id: 'mt_2017b', country: 'Malta', year: 2017, description: 'Desde la Solidaridad de los Niños - Solidaridad', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+  { id: 'mt_2018a', country: 'Malta', year: 2018, description: 'Templos Megalíticos - Mnajdra', imageUrl: null, mintage: 400000, commemorates: 'Patrimonio UNESCO Malta' },
+  { id: 'mt_2018b', country: 'Malta', year: 2018, description: 'Desde la Solidaridad de los Niños - Solidaridad', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+  { id: 'mt_2019a', country: 'Malta', year: 2019, description: 'Naturaleza y Medio Ambiente - Pocos Callejón de Valletta', imageUrl: null, mintage: 400000, commemorates: 'Patrimonio Malta' },
+  { id: 'mt_2019b', country: 'Malta', year: 2019, description: 'Desde la Solidaridad de los Niños', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+  { id: 'mt_2020a', country: 'Malta', year: 2020, description: 'George Cross - 78 aniversario', imageUrl: null, mintage: 400000, commemorates: 'George Cross Malta' },
+  { id: 'mt_2020b', country: 'Malta', year: 2020, description: 'Desde la Solidaridad de los Niños', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+  { id: 'mt_2021a', country: 'Malta', year: 2021, description: 'Ggantija - Templos Megalíticos', imageUrl: null, mintage: 400000, commemorates: 'Patrimonio UNESCO Malta' },
+  { id: 'mt_2021b', country: 'Malta', year: 2021, description: 'Desde la Solidaridad de los Niños', imageUrl: null, mintage: 30000, commemorates: 'Solidaridad infantil' },
+
+  // ─── BÉLGICA — segundas monedas anuales (b) faltantes ────────────────────
+  { id: 'be_2013b', country: 'Bélgica', year: 2013, description: 'Real Liga de Fútbol Belga - 100 años', imageUrl: null, mintage: 175000, commemorates: 'Fútbol belga' },
+  { id: 'be_2014b', country: 'Bélgica', year: 2014, description: '100 años inicio Primera Guerra Mundial', imageUrl: null, mintage: 175000, commemorates: 'I Guerra Mundial' },
+  { id: 'be_2016b', country: 'Bélgica', year: 2016, description: '200 años nacimiento de Adolphe Sax', imageUrl: null, mintage: 175000, commemorates: 'Adolphe Sax' },
+  { id: 'be_2017b', country: 'Bélgica', year: 2017, description: '200 años de la Universidad de Gante', imageUrl: null, mintage: 175000, commemorates: 'Univ. Gante' },
+  { id: 'be_2018b', country: 'Bélgica', year: 2018, description: '50 aniversario Mayo del 68', imageUrl: null, mintage: 175000, commemorates: 'Mayo 68' },
+  { id: 'be_2019b', country: 'Bélgica', year: 2019, description: '75 aniversario Día D - Liberación de Bélgica', imageUrl: null, mintage: 175000, commemorates: 'Liberación WWII' },
+  { id: 'be_2020b', country: 'Bélgica', year: 2020, description: '75 aniversario final Segunda Guerra Mundial', imageUrl: null, mintage: 175000, commemorates: 'Fin WWII' },
+  { id: 'be_2021b', country: 'Bélgica', year: 2021, description: 'Presidencia belga del Consejo de la UE', imageUrl: null, mintage: 175000, commemorates: 'Presidencia UE' },
+  { id: 'be_2022b', country: 'Bélgica', year: 2022, description: '35 años del programa Erasmus', imageUrl: null, mintage: 175000, commemorates: 'Erasmus' },
+  { id: 'be_2023b', country: 'Bélgica', year: 2023, description: '150 años de la Cruz Roja de Bélgica', imageUrl: null, mintage: 175000, commemorates: 'Cruz Roja Bélgica' },
+  { id: 'be_2024b', country: 'Bélgica', year: 2024, description: 'Comité Olímpico Belga - 100 años JJOO París 1924', imageUrl: null, mintage: 175000, commemorates: 'JJOO París 1924' },
+
+  // ─── FINLANDIA — segundas monedas anuales (b) faltantes ──────────────────
+  { id: 'fi_2013b', country: 'Finlandia', year: 2013, description: 'Franz Emil Sillanpää - Premio Nobel', imageUrl: null, mintage: 1000000, commemorates: 'Sillanpää Nobel' },
+  { id: 'fi_2014b', country: 'Finlandia', year: 2014, description: 'Ilmari Tapiovaara - diseñador de muebles', imageUrl: null, mintage: 1000000, commemorates: 'Diseño finlandés' },
+  { id: 'fi_2015b', country: 'Finlandia', year: 2015, description: '150 años nacimiento de Akseli Gallen-Kallela', imageUrl: null, mintage: 1000000, commemorates: 'Gallen-Kallela' },
+  { id: 'fi_2016b', country: 'Finlandia', year: 2016, description: '100 años nacimiento de Georg Henrik von Wright', imageUrl: null, mintage: 1000000, commemorates: 'Von Wright' },
+  { id: 'fi_2017b', country: 'Finlandia', year: 2017, description: '100 aniversario Independencia de Finlandia', imageUrl: null, mintage: 2000000, commemorates: 'Centenario Independencia' },
+  { id: 'fi_2018b', country: 'Finlandia', year: 2018, description: '100 años Finlandia - Sauna finlandesa', imageUrl: null, mintage: 1000000, commemorates: 'Sauna finlandesa' },
+  { id: 'fi_2019b', country: 'Finlandia', year: 2019, description: 'Eino Leino - poeta nacional', imageUrl: null, mintage: 1000000, commemorates: 'Eino Leino' },
+  { id: 'fi_2020b', country: 'Finlandia', year: 2020, description: '100 años sufragio universal - María Laukkarinen', imageUrl: null, mintage: 1000000, commemorates: 'Voto femenino' },
+  { id: 'fi_2021b', country: 'Finlandia', year: 2021, description: 'Helene Schjerfbeck - pintora', imageUrl: null, mintage: 1000000, commemorates: 'Helene Schjerfbeck' },
+  { id: 'fi_2022b', country: 'Finlandia', year: 2022, description: 'Tapio Wirkkala - diseñador', imageUrl: null, mintage: 1000000, commemorates: 'Tapio Wirkkala' },
+  { id: 'fi_2023b', country: 'Finlandia', year: 2023, description: 'Väinö Linna - escritor', imageUrl: null, mintage: 1000000, commemorates: 'Väinö Linna' },
+  { id: 'fi_2024b', country: 'Finlandia', year: 2024, description: 'Tove Jansson - creadora de los Mumins', imageUrl: null, mintage: 1000000, commemorates: 'Tove Jansson' },
+
+  // ─── LUXEMBURGO — segundas monedas anuales (b) faltantes ─────────────────
+  { id: 'lu_2013b', country: 'Luxemburgo', year: 2013, description: 'Himno Nacional de Luxemburgo', imageUrl: null, mintage: 300000, commemorates: 'Himno Luxemburgués' },
+  { id: 'lu_2014b', country: 'Luxemburgo', year: 2014, description: '175 años Independencia de Luxemburgo', imageUrl: null, mintage: 300000, commemorates: 'Independencia Luxemburgo' },
+  { id: 'lu_2015b', country: 'Luxemburgo', year: 2015, description: '125 años Dinastía Luxemburguesa - Gran Duquesa Charlotte', imageUrl: null, mintage: 300000, commemorates: 'Dinastía luxemburguesa' },
+  { id: 'lu_2016b', country: 'Luxemburgo', year: 2016, description: '50 años de la Muerte del Gran Duque Jean', imageUrl: null, mintage: 300000, commemorates: 'Gran Duque Jean' },
+  { id: 'lu_2017b', country: 'Luxemburgo', year: 2017, description: '50 años Tratado de Fusión de la UE', imageUrl: null, mintage: 300000, commemorates: 'Tratado Fusión UE' },
+  { id: 'lu_2018b', country: 'Luxemburgo', year: 2018, description: 'Constitución Luxemburguesa - 150 años', imageUrl: null, mintage: 300000, commemorates: 'Constitución Luxemburgo' },
+  { id: 'lu_2019b', country: 'Luxemburgo', year: 2019, description: '100 años sufragio universal en Luxemburgo', imageUrl: null, mintage: 300000, commemorates: 'Voto universal' },
+  { id: 'lu_2020b', country: 'Luxemburgo', year: 2020, description: '200 años nacimiento del Gran Duque Adolphe', imageUrl: null, mintage: 300000, commemorates: 'Gran Duque Adolphe' },
+  { id: 'lu_2021b', country: 'Luxemburgo', year: 2021, description: '100 aniversario de la Unión Económica Belgo-Luxemburguesa', imageUrl: null, mintage: 300000, commemorates: 'Unión BLEU' },
+  { id: 'lu_2022b', country: 'Luxemburgo', year: 2022, description: 'Castillo de Vianden', imageUrl: null, mintage: 300000, commemorates: 'Castillo Vianden' },
+  { id: 'lu_2023b', country: 'Luxemburgo', year: 2023, description: '175 años de la Constitución del Gran Ducado', imageUrl: null, mintage: 300000, commemorates: 'Constitución Luxemburgo' },
+  { id: 'lu_2024b', country: 'Luxemburgo', year: 2024, description: '25 años del Gran Duque Henri en el trono', imageUrl: null, mintage: 300000, commemorates: 'Gran Duque Henri' },
+
+  // ─── SAN MARINO — segundas monedas anuales (b) faltantes ─────────────────
+  { id: 'sm_2013b', country: 'San Marino', year: 2013, description: '500 años muerte de Piero della Francesca', imageUrl: null, mintage: 65000, commemorates: 'Piero della Francesca' },
+  { id: 'sm_2014b', country: 'San Marino', year: 2014, description: 'Giacomo Leopardi - 200 años', imageUrl: null, mintage: 65000, commemorates: 'Leopardi' },
+  { id: 'sm_2015b', country: 'San Marino', year: 2015, description: 'Bartolomeo Borghesi - numismático', imageUrl: null, mintage: 65000, commemorates: 'Borghesi' },
+  { id: 'sm_2016b', country: 'San Marino', year: 2016, description: 'Donatello - 550 años muerte', imageUrl: null, mintage: 65000, commemorates: 'Donatello' },
+  { id: 'sm_2017b', country: 'San Marino', year: 2017, description: '450 años nacimiento de Claudio Monteverdi', imageUrl: null, mintage: 65000, commemorates: 'Monteverdi' },
+  { id: 'sm_2018b', country: 'San Marino', year: 2018, description: 'Gian Lorenzo Bernini - 420 años nacimiento', imageUrl: null, mintage: 62000, commemorates: 'Bernini' },
+  { id: 'sm_2019b', country: 'San Marino', year: 2019, description: '500 años muerte de Leonardo da Vinci', imageUrl: null, mintage: 62000, commemorates: 'Leonardo da Vinci' },
+  { id: 'sm_2020b', country: 'San Marino', year: 2020, description: '250 aniversario nacimiento de Beethoven', imageUrl: null, mintage: 62000, commemorates: 'Beethoven' },
+  { id: 'sm_2021b', country: 'San Marino', year: 2021, description: '100 aniversario nacimiento de Goffredo Parise', imageUrl: null, mintage: 62000, commemorates: 'Goffredo Parise' },
+  { id: 'sm_2022b', country: 'San Marino', year: 2022, description: 'Giorgio Vasari - 450 años muerte', imageUrl: null, mintage: 62000, commemorates: 'Vasari' },
+  { id: 'sm_2023b', country: 'San Marino', year: 2023, description: '50 años de la carrera de Formula 1 de Niki Lauda', imageUrl: null, mintage: 62000, commemorates: 'Niki Lauda' },
+  { id: 'sm_2024b', country: 'San Marino', year: 2024, description: '600 años nacimiento de Giovanni Pico della Mirandola', imageUrl: null, mintage: 62000, commemorates: 'Pico della Mirandola' },
+
+  // ─── VATICANO — segundas monedas anuales (b) faltantes ───────────────────
+  { id: 'va_2013b', country: 'Vaticano', year: 2013, description: 'Sede Vacante - MMXIII', imageUrl: null, mintage: 100000, commemorates: 'Sede Vacante 2013' },
+  { id: 'va_2014b', country: 'Vaticano', year: 2014, description: 'Encuentro Mundial de las Familias', imageUrl: null, mintage: 100000, commemorates: 'Familia' },
+  { id: 'va_2015b', country: 'Vaticano', year: 2015, description: '8ª Jornada Mundial de la Juventud Cracovia 2016', imageUrl: null, mintage: 100000, commemorates: 'JMJ Cracovia' },
+  { id: 'va_2016b', country: 'Vaticano', year: 2016, description: 'Jubileo Extraordinario de la Misericordia', imageUrl: null, mintage: 100000, commemorates: 'Año Jubilar Misericordia' },
+  { id: 'va_2017b', country: 'Vaticano', year: 2017, description: '1950 aniversario martirio de San Pedro y San Pablo', imageUrl: null, mintage: 100000, commemorates: 'Apóstoles Pedro y Pablo' },
+  { id: 'va_2018b', country: 'Vaticano', year: 2018, description: 'Año Temático - La Familia', imageUrl: null, mintage: 100000, commemorates: 'Año de la Familia' },
+  { id: 'va_2019b', country: 'Vaticano', year: 2019, description: 'Semana Social de los Católicos Italianos', imageUrl: null, mintage: 100000, commemorates: 'Familia e Iglesia' },
+  { id: 'va_2020b', country: 'Vaticano', year: 2020, description: '150 años Roma capital de Italia', imageUrl: null, mintage: 85000, commemorates: 'Roma capital' },
+  { id: 'va_2021b', country: 'Vaticano', year: 2021, description: 'Dante Alighieri - 700 años muerte', imageUrl: null, mintage: 85000, commemorates: 'Dante Alighieri' },
+  { id: 'va_2022b', country: 'Vaticano', year: 2022, description: '10 años del Pontificado del Papa Francisco', imageUrl: null, mintage: 85000, commemorates: 'Francisco 10 años' },
+  { id: 'va_2023b', country: 'Vaticano', year: 2023, description: 'Sínodo sobre la Sinodalidad', imageUrl: null, mintage: 85000, commemorates: 'Sínodo 2023' },
+  { id: 'va_2024b', country: 'Vaticano', year: 2024, description: 'Año de la Oración - Jubileo 2025', imageUrl: null, mintage: 85000, commemorates: 'Jubileo 2025' },
+
+  // ─── PORTUGAL — monedas faltantes ────────────────────────────────────────
+  { id: 'pt_2008', country: 'Portugal', year: 2008, description: '60 años Declaración Universal de Derechos Humanos', imageUrl: null, mintage: 1250000, commemorates: '60 años DDHH' },
+
+  // ─── ESTONIA — monedas faltantes ─────────────────────────────────────────
+  { id: 'ee_2011', country: 'Estonia', year: 2011, description: '1er aniversario del euro en Estonia', imageUrl: null, mintage: 1000000, commemorates: '1 año euro Estonia' },
+  { id: 'ee_2013', country: 'Estonia', year: 2013, description: 'Finno-Ugric Peoples', imageUrl: null, mintage: 1000000, commemorates: 'Pueblos Finougrios' },
+  { id: 'ee_2014', country: 'Estonia', year: 2014, description: '100 años del himno nacional de Estonia', imageUrl: null, mintage: 1000000, commemorates: 'Himno Nacional Estonia' },
+  { id: 'ee_2016', country: 'Estonia', year: 2016, description: '100 años del movimiento Paul Keres', imageUrl: null, mintage: 1000000, commemorates: 'Paul Keres' },
+  { id: 'ee_2018b', country: 'Estonia', year: 2018, description: '100 años de los Estados Bálticos - conjunta Estonia, Letonia, Lituania', imageUrl: null, mintage: 1000000, commemorates: '100 años Estados Bálticos' },
+  { id: 'ee_2019', country: 'Estonia', year: 2019, description: '100 aniversario Universidad de Tartu', imageUrl: null, mintage: 1000000, commemorates: 'Univ. Tartu' },
+  { id: 'ee_2020', country: 'Estonia', year: 2020, description: '100 aniversario Tratado de Tartu', imageUrl: null, mintage: 1000000, commemorates: 'Tratado Tartu' },
+  { id: 'ee_2021', country: 'Estonia', year: 2021, description: '100 años de las relaciones diplomáticas entre Estonia y Finlandia', imageUrl: null, mintage: 1000000, commemorates: 'Estonia-Finlandia' },
+  { id: 'ee_2021b', country: 'Estonia', year: 2021, description: 'Anton Hansen Tammsaare - escritor', imageUrl: null, mintage: 500000, commemorates: 'Tammsaare' },
+
+  // ─── LETONIA — monedas faltantes ─────────────────────────────────────────
+  { id: 'lv_2016b', country: 'Letonia', year: 2016, description: 'Región de Vidzeme', imageUrl: null, mintage: 1000000, commemorates: 'Vidzeme' },
+  { id: 'lv_2017b', country: 'Letonia', year: 2017, description: 'Región de Latgale', imageUrl: null, mintage: 1000000, commemorates: 'Latgale' },
+  { id: 'lv_2018b', country: 'Letonia', year: 2018, description: '100 años de los Estados Bálticos - conjunta Estonia, Letonia, Lituania', imageUrl: null, mintage: 1000000, commemorates: '100 años Estados Bálticos' },
+
+  // ─── LITUANIA — monedas faltantes ────────────────────────────────────────
+  { id: 'lt_2016b', country: 'Lituania', year: 2016, description: 'Región de Aukštaitija', imageUrl: null, mintage: 500000, commemorates: 'Aukštaitija' },
+  { id: 'lt_2017b', country: 'Lituania', year: 2017, description: 'Región de Dzūkija (Dainavа)', imageUrl: null, mintage: 500000, commemorates: 'Dzūkija' },
+  { id: 'lt_2018b', country: 'Lituania', year: 2018, description: '100 años de los Estados Bálticos - conjunta Estonia, Letonia, Lituania', imageUrl: null, mintage: 1000000, commemorates: '100 años Estados Bálticos' },
+  { id: 'lt_2019b', country: 'Lituania', year: 2019, description: 'Región de Samogitia (Žemaitija)', imageUrl: null, mintage: 500000, commemorates: 'Samogitia' },
+  { id: 'lt_2020b', country: 'Lituania', year: 2020, description: 'Región de Suvalkija', imageUrl: null, mintage: 500000, commemorates: 'Suvalkija' },
+  { id: 'lt_2021b', country: 'Lituania', year: 2021, description: 'Región de Klaipėda', imageUrl: null, mintage: 500000, commemorates: 'Klaipėda' },
+
+  // ─── PAÍSES BAJOS — monedas faltantes ────────────────────────────────────
+  { id: 'nl_2008', country: 'Países Bajos', year: 2008, description: '60 años Declaración Universal de Derechos Humanos', imageUrl: null, mintage: 5000000, commemorates: '60 años DDHH' },
+
+  // ─── MÓNACO — monedas faltantes ──────────────────────────────────────────
+  { id: 'mc_2004', country: 'Mónaco', year: 2004, description: '800 aniversario fundación de la Familia Grimaldi en Mónaco', imageUrl: null, mintage: 20001, commemorates: 'Familia Grimaldi' },
+  { id: 'mc_2005', country: 'Mónaco', year: 2005, description: 'Acceso al trono del Príncipe Alberto II', imageUrl: null, mintage: 20001, commemorates: 'Príncipe Alberto II' },
+  { id: 'mc_2006', country: 'Mónaco', year: 2006, description: '25 años muerte de la Princesa Grace', imageUrl: null, mintage: 20001, commemorates: 'Princesa Grace' },
+  { id: 'mc_2008', country: 'Mónaco', year: 2008, description: 'Palacio del Príncipe de Mónaco', imageUrl: null, mintage: 20001, commemorates: 'Palacio Grimaldi' },
+  { id: 'mc_2009', country: 'Mónaco', year: 2009, description: '800 aniversario Mónaco bajo la protección Grimaldi', imageUrl: null, mintage: 8000, commemorates: 'Historia Mónaco' },
+  { id: 'mc_2010', country: 'Mónaco', year: 2010, description: '200 aniversario nacimiento del Príncipe Carlos III', imageUrl: null, mintage: 8000, commemorates: 'Príncipe Carlos III' },
+  { id: 'mc_2011', country: 'Mónaco', year: 2011, description: 'Boda del Príncipe Alberto II con Charlene Wittstock', imageUrl: null, mintage: 10000, commemorates: 'Boda Real Mónaco' },
+  { id: 'mc_2014', country: 'Mónaco', year: 2014, description: '800 aniversario primer Señorío de los Grimaldi', imageUrl: null, mintage: 10000, commemorates: 'Grimaldi 800 años' },
+  { id: 'mc_2017', country: 'Mónaco', year: 2017, description: '200 aniversario Biblioteca del Palacio Princesa Carolina', imageUrl: null, mintage: 10000, commemorates: 'Biblioteca Principado' },
+
+  // ─── CHIPRE — monedas faltantes ──────────────────────────────────────────
+  { id: 'cy_2008', country: 'Chipre', year: 2008, description: '1er aniversario del euro en Chipre', imageUrl: null, mintage: 500000, commemorates: '1 año euro Chipre' },
+  { id: 'cy_2010', country: 'Chipre', year: 2010, description: '50 aniversario República de Chipre', imageUrl: null, mintage: 1000000, commemorates: '50 años República Chipre' },
+  { id: 'cy_2011', country: 'Chipre', year: 2011, description: '1900 años del Evangelio de San Barnabás', imageUrl: null, mintage: 1000000, commemorates: 'San Barnabás' },
+  { id: 'cy_2013', country: 'Chipre', year: 2013, description: 'Presidencia chipriota del Consejo de la UE', imageUrl: null, mintage: 1000000, commemorates: 'Presidencia UE Chipre' },
+  { id: 'cy_2014', country: 'Chipre', year: 2014, description: 'Lixouri - 100 años de la Unión con Grecia (Enosis)', imageUrl: null, mintage: 1000000, commemorates: 'Centenario Enosis' },
+  { id: 'cy_2016', country: 'Chipre', year: 2016, description: 'Olimpiadas modernas - 120 aniversario', imageUrl: null, mintage: 1000000, commemorates: '120 años JJOO modernos' },
+  { id: 'cy_2018', country: 'Chipre', year: 2018, description: 'Afrodita de Soloi', imageUrl: null, mintage: 1000000, commemorates: 'Afrodita Soloi' },
+  { id: 'cy_2019', country: 'Chipre', year: 2019, description: '30 años del Plan de Paz de la ONU para Chipre', imageUrl: null, mintage: 1000000, commemorates: 'Plan Paz ONU Chipre' },
+  { id: 'cy_2020', country: 'Chipre', year: 2020, description: 'Instituto de Neurología y Genética de Chipre', imageUrl: null, mintage: 1000000, commemorates: 'Ciencia Chipre' },
+  { id: 'cy_2021', country: 'Chipre', year: 2021, description: '60 años de la República de Chipre', imageUrl: null, mintage: 1000000, commemorates: '60 años República Chipre' },
+
+  // ─── IRLANDA — monedas faltantes ─────────────────────────────────────────
+  { id: 'ie_2014', country: 'Irlanda', year: 2014, description: '100 aniversario del inicio de la Primera Guerra Mundial', imageUrl: null, mintage: 1000000, commemorates: 'I Guerra Mundial' },
+  { id: 'ie_2016b', country: 'Irlanda', year: 2016, description: 'Centenario del Alzamiento de Pascua 1916', imageUrl: null, mintage: 1250000, commemorates: 'Easter Rising 1916' },
+  { id: 'ie_2017', country: 'Irlanda', year: 2017, description: 'Patrick Pearse - 100 aniversario', imageUrl: null, mintage: 1000000, commemorates: 'Patrick Pearse' },
+  { id: 'ie_2018', country: 'Irlanda', year: 2018, description: '100 aniversario sufragio femenino en Irlanda', imageUrl: null, mintage: 1000000, commemorates: 'Voto femenino Irlanda' },
+  { id: 'ie_2019', country: 'Irlanda', year: 2019, description: '100 años del primer Dáil Éireann', imageUrl: null, mintage: 1000000, commemorates: 'Dáil Éireann' },
+  { id: 'ie_2020', country: 'Irlanda', year: 2020, description: '100 aniversario del Gobierno de Irlanda', imageUrl: null, mintage: 1000000, commemorates: 'Gobierno de Irlanda' },
+  { id: 'ie_2021', country: 'Irlanda', year: 2021, description: 'Centenario de la fundación del Estado Irlandés', imageUrl: null, mintage: 1000000, commemorates: 'Centenario Irlanda' },
+
+  // ─── ESLOVAQUIA — monedas faltantes ──────────────────────────────────────
+  { id: 'sk_2010', country: 'Eslovaquia', year: 2010, description: '1er aniversario del euro en Eslovaquia', imageUrl: null, mintage: 1000000, commemorates: '1 año euro Eslovaquia' },
+  { id: 'sk_2017', country: 'Eslovaquia', year: 2017, description: '550 aniversario coronación del Rey Matías Corvino', imageUrl: null, mintage: 1000000, commemorates: 'Matías Corvino' },
+  { id: 'sk_2019', country: 'Eslovaquia', year: 2019, description: '100 aniversario de la República Checoslovaca', imageUrl: null, mintage: 1000000, commemorates: 'Checoslovaquia' },
+  { id: 'sk_2020', country: 'Eslovaquia', year: 2020, description: '100 aniversario de la República Eslovaca', imageUrl: null, mintage: 1000000, commemorates: 'República Eslovaca' },
+  { id: 'sk_2021', country: 'Eslovaquia', year: 2021, description: '30 aniversario de la Constitución eslovaca', imageUrl: null, mintage: 1000000, commemorates: 'Constitución Eslovaquia' },
 ]
 
 export const COUNTRIES = [...new Set(ALL_COINS.map(c => c.country))].sort()
