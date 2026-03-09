@@ -95,7 +95,7 @@ export default function TermsPage() {
         <Section title="4. Imágenes de las monedas">
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
             Las imágenes de las monedas utilizadas en EuroCollector han sido obtenidas de
-            <strong> Wikimedia Commons</strong>, repositorio de contenido libre bajo licencias
+            <strong> Wikimedia Commons</strong> y del <strong> Banco Central Europeo</strong>, repositorio de contenido libre bajo licencias
             Creative Commons. Las imágenes están sujetas a sus respectivas licencias originales,
             que en su mayoría corresponden a <strong>CC BY-SA 3.0</strong> o similares.
           </p>
