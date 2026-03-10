@@ -541,9 +541,8 @@ export default function LandingPage() {
           <div className="flex gap-6 text-sm">
             <Link to="/catalogo" className="hover:text-white transition">Catálogo</Link>
             <Link to="/estadisticas-publicas" className="hover:text-white transition">Estadísticas</Link>
-            <Link to="/ranking-publico" className="hover:text-white transition">Ranking</Link>
-            <Link to="/login" className="hover:text-white transition">Acceder</Link>
             <Link to="/terminos" className="hover:text-white transition">Términos y condiciones</Link>
+            <Link to="/ranking-publico" className="hover:text-white transition">Ranking</Link>
           </div>
           <p className="text-xs text-blue-400">Hecho con ❤️ para coleccionistas</p>
         </div>
