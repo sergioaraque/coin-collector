@@ -136,16 +136,33 @@ function ProposalDetailModal({ proposal, onClose, onRefresh }) {
     commemorates: proposal.commemorates || '',
     mintage:      proposal.mintage ? String(proposal.mintage) : '',
     admin_notes:  proposal.admin_notes || '',
+    coinId:       generateIdFrom(proposal.country, String(proposal.year)),
   })
   const [saving, setSaving] = useState(false)
   const [error, setError]   = useState(null)
 
   function handleChange(e) {
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    setForm(f => {
+      const updated = { ...f, [name]: value }
+      // Regenerar coinId automáticamente si cambia país o año,
+      // pero solo si el admin no lo ha editado manualmente
+      if (name === 'country' || name === 'year') {
+        const auto = generateIdFrom(
+          name === 'country' ? value : f.country,
+          name === 'year'    ? value : f.year
+        )
+        // Solo sobreescribir si el coinId actual coincide con el auto-generado anterior
+        if (f.coinId === generateIdFrom(f.country, f.year)) {
+          updated.coinId = auto
+        }
+      }
+      return updated
+    })
   }
 
-  // Genera un ID limpio a partir de país y año
-  function generateId() {
+  // Función pura para generar ID — usable antes de que form esté inicializado
+  function generateIdFrom(country, year) {
     const countryMap = {
       'Alemania': 'de', 'Andorra': 'ad', 'Austria': 'at', 'Bélgica': 'be',
       'Chipre': 'cy', 'Croacia': 'hr', 'Eslovaquia': 'sk', 'Eslovenia': 'si',
@@ -154,15 +171,16 @@ function ProposalDetailModal({ proposal, onClose, onRefresh }) {
       'Lituania': 'lt', 'Luxemburgo': 'lu', 'Malta': 'mt', 'Mónaco': 'mc',
       'Países Bajos': 'nl', 'Portugal': 'pt', 'San Marino': 'sm', 'Vaticano': 'va',
     }
-    const code = countryMap[form.country] || form.country.toLowerCase().slice(0, 2)
-    return `${code}_${form.year}`
+    const code = countryMap[country] || country.toLowerCase().slice(0, 2)
+    return `${code}_${year}`
   }
 
   async function handleApprove() {
     setError(null)
     setSaving(true)
     try {
-      const coinId = generateId()
+      const coinId = form.coinId.trim()
+      if (!coinId) throw new Error('El ID de la moneda no puede estar vacío')
 
       // 1. Insertar en la tabla coins
       const { error: coinError } = await supabase
@@ -285,11 +303,20 @@ function ProposalDetailModal({ proposal, onClose, onRefresh }) {
             </div>
           ))}
 
-          {/* ID que se generará */}
+          {/* ID editable */}
           {isPending && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg px-3 py-2 text-xs text-blue-700 dark:text-blue-300">
-              ID generado: <code className="font-mono font-bold">{generateId()}</code>
-              <span className="text-blue-500 ml-1">(puedes cambiarlo manualmente si es necesario)</span>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                ID de la moneda
+                <span className="text-gray-400 font-normal ml-1">(edítalo si ya existe, ej: de_2020b)</span>
+              </label>
+              <input
+                type="text"
+                name="coinId"
+                value={form.coinId}
+                onChange={handleChange}
+                className="w-full border border-blue-300 dark:border-blue-600 dark:bg-gray-700 dark:text-white rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
             </div>
           )}
 
