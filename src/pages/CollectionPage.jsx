@@ -1,35 +1,27 @@
-import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
+import { useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useCoins } from '../hooks/useCoins'
+import { ALL_COINS, COUNTRIES } from '../data/coins'
 import { useCollection } from '../context/CollectionContext'
+import { useAuth } from '../context/AuthContext'
 import CoinCard from '../components/CoinCard'
 import CoinRow from '../components/CoinRow'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
-import { supabase } from '../supabase'
-import { useAuth } from '../context/AuthContext'
-
-const PAGE_SIZE = 20
+import ProposeModal from '../components/ProposeModal'
 
 export default function CollectionPage() {
   useSEO({ title: 'Mi colección' })
   const { owned, toggleCoin } = useCollection()
+  const { user } = useAuth()
   const [searchParams] = useSearchParams()
 
   const [search, setSearch] = useState('')
   const [country, setCountry] = useState(searchParams.get('country') || '')
   const [filter, setFilter] = useState('all')
   const [rarity, setRarity] = useState('')
-  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [viewMode, setViewMode] = useState('grid')
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
-  const loaderRef = useRef(null)
+  const [showPropose, setShowPropose] = useState(false)
   const { t } = useTranslation()
-  const { user } = useAuth()
-  const [noteIds, setNoteIds] = useState(new Set())
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const filtered = useMemo(() => {
     return ALL_COINS.filter(coin => {
@@ -56,27 +48,6 @@ export default function CollectionPage() {
     })
   }, [search, country, filter, rarity, owned])
 
-  // Reset visibleCount cuando cambian los filtros
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE)
-  }, [search, country, filter, rarity])
-
-  // Infinite scroll con IntersectionObserver
-  const handleObserver = useCallback((entries) => {
-    const target = entries[0]
-    if (target.isIntersecting && visibleCount < filtered.length) {
-      setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filtered.length))
-    }
-  }, [visibleCount, filtered.length])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 })
-    if (loaderRef.current) observer.observe(loaderRef.current)
-    return () => observer.disconnect()
-  }, [handleObserver])
-
-  const visibleCoins = filtered.slice(0, visibleCount)
-
   const countryProgress = useMemo(() => {
     return COUNTRIES.map(c => {
       const coins = ALL_COINS.filter(x => x.country === c)
@@ -84,12 +55,6 @@ export default function CollectionPage() {
       return { country: c, total: coins.length, got, pct: Math.round((got / coins.length) * 100) }
     })
   }, [owned])
-
-  useEffect(() => {
-  if (!user) return
-  supabase.from('coin_notes').select('coin_id').eq('user_id', user.id)
-    .then(({ data }) => setNoteIds(new Set((data || []).map(n => n.coin_id))))
-}, [user])
 
   return (
     <div>
@@ -174,12 +139,13 @@ export default function CollectionPage() {
           </button>
         </div>
 
-        <span className="text-sm text-gray-500 dark:text-gray-400">
-          {visibleCount < filtered.length
-            ? `${visibleCount} de ${filtered.length} ${t('coins')}`
-            : `${filtered.length} ${t('coins')}`
-          }
-        </span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">{filtered.length} {t('coins')}</span>
+        <button
+          onClick={() => setShowPropose(true)}
+          className="ml-auto text-xs bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold px-3 py-2 rounded-lg transition"
+        >
+          + Proponer moneda
+        </button>
       </div>
 
       {/* Progreso por país */}
@@ -222,27 +188,24 @@ export default function CollectionPage() {
         <div className="text-center py-16 text-gray-400">
           <span className="text-4xl">🔍</span>
           <p className="mt-2">No se encontraron monedas</p>
+          <button
+            onClick={() => setShowPropose(true)}
+            className="mt-4 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold px-5 py-2.5 rounded-xl transition text-sm"
+          >
+            ¿La conoces? Proponla al catálogo →
+          </button>
         </div>
       ) : viewMode === 'grid' ? (
-        <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {visibleCoins.map(coin => (
-              <CoinCard
-                key={coin.id}
-                coin={coin}
-                isOwned={owned.has(coin.id)}
-                onToggle={() => toggleCoin(coin.id)}
-                hasNote={noteIds.has(coin.id)}
-              />
-            ))}
-          </div>
-          {/* Loader para infinite scroll */}
-          {visibleCount < filtered.length && (
-            <div ref={loaderRef} className="flex justify-center py-8">
-              <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
-            </div>
-          )}
-        </>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {filtered.map(coin => (
+            <CoinCard
+              key={coin.id}
+              coin={coin}
+              isOwned={owned.has(coin.id)}
+              onToggle={() => toggleCoin(coin.id)}
+            />
+          ))}
+        </div>
       ) : (
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
           <table className="w-full text-sm">
@@ -257,7 +220,7 @@ export default function CollectionPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50 dark:divide-gray-700">
-              {visibleCoins.map(coin => (
+              {filtered.map(coin => (
                 <CoinRow
                   key={coin.id}
                   coin={coin}
@@ -267,12 +230,11 @@ export default function CollectionPage() {
               ))}
             </tbody>
           </table>
-          {visibleCount < filtered.length && (
-            <div ref={loaderRef} className="flex justify-center py-6">
-              <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
-            </div>
-          )}
         </div>
+      )}
+      {/* Modal propuesta */}
+      {showPropose && user && (
+        <ProposeModal user={user} onClose={() => setShowPropose(false)} />
       )}
     </div>
   )

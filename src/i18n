@@ -87,6 +87,7 @@ const resources = {
         adminRole: 'Rol',
         adminCollection: 'Colección',
         adminProgress: 'Progreso',
+        mintageEstimation: 'Valor estimado'
     }
   },
   en: {
@@ -169,6 +170,7 @@ const resources = {
         adminRole: 'Role',
         adminCollection: 'Collection',
         adminProgress: 'Progress',
+        mintageEstimation: 'Estimated value'
     }
   }
 }

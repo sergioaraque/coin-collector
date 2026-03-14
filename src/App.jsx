@@ -6,6 +6,7 @@ import { ThemeProvider } from './context/ThemeContext'
 import Layout from './components/Layout'
 import { ToastContainer } from './components/Toast'
 import PWABanner from './components/PWABanner'
+import AdminProposalsPage from './pages/AdminProposalsPage'
 import { useTranslation } from 'react-i18next'
 
 // Lazy imports — cada página se carga solo cuando se necesita
@@ -74,6 +75,7 @@ export default function App() {
                 <Route path="estadisticas"   element={<StatsPage />} />
                 <Route path="admin"          element={<AdminPage />} />
                 <Route path="/admin/imagenes" element={<AdminImagePage />} />
+                <Route path="/admin/propuestas" element={<AdminProposalsPage />} />
                 <Route path="mapa"           element={<MapPage />} />
                 <Route path="moneda/:coinId" element={<CoinDetailPage />} />
                 <Route path="perfil"         element={<ProfilePage />} />

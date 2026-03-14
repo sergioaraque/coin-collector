@@ -1,10 +1,10 @@
-import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useCoins } from '../../hooks/useCoins'
 import { useCoinImage } from '../../hooks/useCoinImage'
 import { useSEO } from '../../hooks/useSEO'
-
-const PAGE_SIZE = 20
+import { supabase } from '../../supabase'
+import ProposeModal from '../../components/ProposeModal'
 
 function PublicCoinCard({ coin }) {
   const { src, status } = useCoinImage(coin)
@@ -45,19 +45,49 @@ function PublicCoinCard({ coin }) {
   )
 }
 
-export default function PublicCatalogPage() {
-  useSEO({ title: 'Catálogo', description: 'Más de 290 monedas conmemorativas de 2€ de todos los países de la eurozona' })
+function LoginRequiredModal({ onClose }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+      onClick={e => e.target === e.currentTarget && onClose()}
+    >
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-sm p-6 text-center">
+        <div className="text-4xl mb-3">🔒</div>
+        <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
+          Necesitas una cuenta
+        </h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">
+          Para proponer una moneda tienes que estar registrado. ¡Es gratis!
+        </p>
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 text-sm px-4 py-2"
+          >
+            Cancelar
+          </button>
+          <Link
+            to="/register"
+            className="bg-blue-700 hover:bg-blue-800 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition"
+          >
+            Crear cuenta →
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-  const [search, setSearch] = useState('')
-  const [country, setCountry] = useState('')
-  const [rarity, setRarity] = useState('')
+export default function PublicCatalogPage() {
+  useSEO({ title: 'Catálogo', description: 'Más de 500 monedas conmemorativas de 2€ de todos los países de la eurozona' })
 
   const { ALL_COINS, COUNTRIES, loading } = useCoins()
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
-  const loaderRef = useRef(null)
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  const [search, setSearch]             = useState('')
+  const [country, setCountry]           = useState('')
+  const [rarity, setRarity]             = useState('')
+  const [showPropose, setShowPropose]   = useState(false)
+  const [proposeUser, setProposeUser]   = useState(null)
+  const [checkingUser, setCheckingUser] = useState(false)
 
   const filtered = useMemo(() => {
     return ALL_COINS.filter(coin => {
@@ -74,28 +104,15 @@ export default function PublicCatalogPage() {
         coin.mintage >= 1000000
       return matchSearch && matchCountry && matchRarity
     })
-  }, [search, country, rarity])
+  }, [ALL_COINS, search, country, rarity])
 
-  // Reset al cambiar filtros
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE)
-  }, [search, country, rarity])
-
-  // Infinite scroll
-  const handleObserver = useCallback((entries) => {
-    const target = entries[0]
-    if (target.isIntersecting && visibleCount < filtered.length) {
-      setVisibleCount(prev => Math.min(prev + PAGE_SIZE, filtered.length))
-    }
-  }, [visibleCount, filtered.length])
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 })
-    if (loaderRef.current) observer.observe(loaderRef.current)
-    return () => observer.disconnect()
-  }, [handleObserver])
-
-  const visibleCoins = filtered.slice(0, visibleCount)
+  async function handleProposeClick() {
+    setCheckingUser(true)
+    const { data: { user } } = await supabase.auth.getUser()
+    setCheckingUser(false)
+    setProposeUser(user)
+    setShowPropose(true)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
@@ -165,57 +182,85 @@ export default function PublicCatalogPage() {
             <option value="common">⚪ Comunes (&gt;1M)</option>
           </select>
           <span className="text-sm text-gray-500 dark:text-gray-400 self-center">
-            {visibleCount < filtered.length
-              ? `${visibleCount} de ${filtered.length} monedas`
-              : `${filtered.length} monedas`
-            }
+            {loading ? '...' : `${filtered.length} monedas`}
           </span>
         </div>
 
         {/* Grid */}
-        {filtered.length === 0 ? (
-          <div className="text-center py-16 text-gray-400">
-            <span className="text-4xl">🔍</span>
-            <p className="mt-2">No se encontraron monedas</p>
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <div className="w-8 h-8 border-4 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
           </div>
         ) : (
-          <>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-              {visibleCoins.map(coin => (
-                <PublicCoinCard key={coin.id} coin={coin} />
-              ))}
-            </div>
-            {/* Loader infinite scroll */}
-            {visibleCount < filtered.length && (
-              <div ref={loaderRef} className="flex justify-center py-8">
-                <div className="w-6 h-6 border-2 border-blue-300 border-t-blue-600 rounded-full animate-spin" />
-              </div>
-            )}
-          </>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+            {filtered.map(coin => (
+              <PublicCoinCard key={coin.id} coin={coin} />
+            ))}
+          </div>
         )}
 
-        {/* Banner CTA */}
-        <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 justify-between">
-          <div>
-            <p className="font-semibold text-blue-800 dark:text-blue-300">
-              ¿Te gustaría marcar las monedas que tienes?
-            </p>
-            <p className="text-sm text-blue-600 dark:text-blue-400 mt-0.5">
-              Regístrate gratis y lleva el control de tu colección
-            </p>
+        {/* Estado vacío con CTA de propuesta */}
+        {!loading && filtered.length === 0 && (
+          <div className="text-center py-16 text-gray-400">
+            <span className="text-4xl">🔍</span>
+            <p className="mt-2 mb-4">No se encontraron monedas</p>
+            <button
+              onClick={handleProposeClick}
+              disabled={checkingUser}
+              className="bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold px-5 py-2.5 rounded-xl transition text-sm"
+            >
+              {checkingUser ? 'Comprobando...' : '¿La conoces? Proponla al catálogo →'}
+            </button>
           </div>
-          <Link
-            to="/register"
-            className="shrink-0 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-xl transition"
-          >
-            Crear cuenta →
-          </Link>
-        </div>
+        )}
+
+        {/* Banner propuesta — visible cuando hay resultados */}
+        {!loading && filtered.length > 0 && (
+          <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 justify-between">
+            <p className="text-sm text-yellow-800 dark:text-yellow-300">
+              🔎 ¿No encuentras una moneda que debería estar en el catálogo?
+            </p>
+            <button
+              onClick={handleProposeClick}
+              disabled={checkingUser}
+              className="shrink-0 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold text-sm px-5 py-2 rounded-xl transition"
+            >
+              {checkingUser ? 'Comprobando...' : 'Proponer moneda →'}
+            </button>
+          </div>
+        )}
+
+        {/* Banner CTA coleccionista */}
+        {!loading && (
+          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center gap-4 justify-between">
+            <div>
+              <p className="font-semibold text-blue-800 dark:text-blue-300">
+                ¿Te gustaría marcar las monedas que tienes?
+              </p>
+              <p className="text-sm text-blue-600 dark:text-blue-400 mt-0.5">
+                Regístrate gratis y lleva el control de tu colección
+              </p>
+            </div>
+            <Link
+              to="/register"
+              className="shrink-0 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-xl transition"
+            >
+              Crear cuenta →
+            </Link>
+          </div>
+        )}
       </main>
 
       <footer className="bg-blue-900 dark:bg-gray-900 text-blue-200 text-center py-4 text-xs">
         EuroCollector · Hecho con ❤️ para coleccionistas
       </footer>
+
+      {/* Modales */}
+      {showPropose && (
+        proposeUser
+          ? <ProposeModal user={proposeUser} onClose={() => setShowPropose(false)} />
+          : <LoginRequiredModal onClose={() => setShowPropose(false)} />
+      )}
     </div>
   )
 }
