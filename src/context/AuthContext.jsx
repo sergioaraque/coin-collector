@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import { notifyLogin } from '../lib/discord'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { notifyDiscord } from '../lib/discord'
 
 const AuthContext = createContext(null)
@@ -9,6 +9,7 @@ const AuthContext = createContext(null)
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const { ALL_COINS, COUNTRIES}  = useCoins()
   const [profile, setProfile] = useState(null)
 
   useEffect(() => {

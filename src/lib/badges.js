@@ -1,5 +1,5 @@
 import { supabase } from '../supabase'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 
 // Evalúa qué insignias debe recibir el usuario y las otorga
 export async function checkAndAwardBadges(userId, owned, showToast) {
@@ -16,6 +16,7 @@ export async function checkAndAwardBadges(userId, owned, showToast) {
 
   const ownedCount = owned.size
   const ownedSet = owned
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
 
   // Helper: monedas de un país
   const coinsOfCountry = (country) => ALL_COINS.filter(c => c.country === country)

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useWallMessages } from '../hooks/useWallMessages'
 import WallComposer from './WallComposer'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useNavigate } from 'react-router-dom'
 
 const EMOJIS = ['👍', '❤️', '🪙']
@@ -19,6 +19,7 @@ export default function WallMessage({ message, username, isAdmin = false}) {
   const [showReplies, setShowReplies] = useState(false)
   const [showReplyComposer, setShowReplyComposer] = useState(false)
 
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const isOwn = user?.id === message.user_id
   const badge = TYPE_BADGE[message.type]
   const navigate = useNavigate()

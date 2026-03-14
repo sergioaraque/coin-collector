@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { ALL_COINS, COUNTRIES } from '../../data/coins'
+import { useCoins } from '../../hooks/useCoins'
 import { useCoinImage } from '../../hooks/useCoinImage'
 import { useSEO } from '../../hooks/useSEO'
 
@@ -51,6 +51,8 @@ export default function PublicCatalogPage() {
   const [search, setSearch] = useState('')
   const [country, setCountry] = useState('')
   const [rarity, setRarity] = useState('')
+
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const loaderRef = useRef(null)
   useEffect(() => {

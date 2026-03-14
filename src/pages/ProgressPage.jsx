@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
 import { useCollection } from '../context/CollectionContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useSEO } from '../hooks/useSEO'
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -18,15 +18,17 @@ function formatWeek(dateStr) {
   return `${d.getDate()}/${d.getMonth() + 1}`
 }
 
-const TOTAL = ALL_COINS.length
 
 export default function ProgressPage() {
+  
+  const { ALL_COINS, COUNTRIES}  = useCoins()
   useSEO({ title: 'Mi progreso' })
   const { user } = useAuth()
   const { owned } = useCollection()
   const [logs, setLogs] = useState([])
   const [loading, setLoading] = useState(true)
 
+const TOTAL = ALL_COINS.length
   useEffect(() => {
     if (!user) return
     supabase

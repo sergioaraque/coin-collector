@@ -2,7 +2,7 @@ import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCollection } from '../context/CollectionContext'
 import { useAdmin } from '../hooks/useAdmin'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import GlobalSearch from './GlobalSearch'
 import { useTranslation } from 'react-i18next'
 import { useTheme, THEME_LIST } from '../context/ThemeContext'
@@ -17,6 +17,7 @@ export default function Layout() {
   const { isAdmin } = useAdmin()
   const navigate = useNavigate()
   const location = useLocation()
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const { t, i18n } = useTranslation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)

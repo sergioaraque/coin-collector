@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../supabase'
-import { ALL_COINS, COUNTRIES } from '../../data/coins'
+import { useCoins } from '../../hooks/useCoins'
 import { useSEO } from '../../hooks/useSEO'
 
 const GEO_URL = 'https://raw.githubusercontent.com/leakyMirror/map-of-europe/master/GeoJSON/europe.geojson'
@@ -33,6 +33,7 @@ export default function PublicHeatMapPage() {
   const [totalUsers, setTotalUsers] = useState(1)
   const [loading, setLoading] = useState(true)
   const [tooltip, setTooltip] = useState(null)
+  const { ALL_COINS, COUNTRIES}  = useCoins()
 
   useEffect(() => {
     Promise.all([

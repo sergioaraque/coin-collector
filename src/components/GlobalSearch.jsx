@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useCollection } from '../context/CollectionContext'
 import { useTranslation } from 'react-i18next'
 
@@ -11,6 +11,7 @@ export default function GlobalSearch({ autoFocus = false, onSelect }) {
   const { owned } = useCollection()
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const ref = useRef(null)
 
   useEffect(() => {

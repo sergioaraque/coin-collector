@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ALL_COINS, COUNTRIES } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useCollection } from '../context/CollectionContext'
 import { useSEO } from '../hooks/useSEO'
 import {
@@ -18,6 +18,7 @@ function getEstimatedValue(coin) {
 
 export default function StatsPage() {
   useSEO({ title: 'Estadísticas' })
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const { owned } = useCollection()
 
   const total = ALL_COINS.length

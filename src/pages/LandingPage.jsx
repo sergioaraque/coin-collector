@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { supabase } from '../supabase'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { usePWAInstall } from '../hooks/usePWAInstall'
 import { useSEO } from '../hooks/useSEO'
 
@@ -114,6 +114,7 @@ const TESTIMONIALS = [
 export default function LandingPage() {
   const [globalStats, setGlobalStats] = useState({ users: 0, collections: 0 })
   const { canInstall, install } = usePWAInstall()
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [floatingCoins] = useState(() =>
     Array.from({ length: 12 }, (_, i) => ({
       id: i,

@@ -419,7 +419,7 @@ export const ALL_COINS = [
   // ── NUEVAS: ITALIA ─────────────────────────────────────────────────
   { id: 'it_2008', country: 'Italia', year: 2008, description: '60 años Declaración Universal de Derechos Humanos', imageUrl: null, mintage: 5000000, commemorates: '60 años DDHH' },
   { id: 'it_2016b', country: 'Italia', year: 2016, description: 'Basílica de San Marco en Venecia', imageUrl: null, mintage: 5000000, commemorates: 'Venecia' },
-  { id: 'it_2017b', country: 'Italia', year: 2017, description: "Villa d'Este en Tívoli'", imageUrl: null, mintage: 5000000, commemorates: "Villa d'Este'" },
+  { id: 'it_2017b', country: 'Italia', year: 2017, description: "Villa d'Este en Tívoli", imageUrl: null, mintage: 5000000, commemorates: "Villa d'Este" },
   { id: 'it_2018b', country: 'Italia', year: 2018, description: '70 años Constitución italiana', imageUrl: null, mintage: 5000000, commemorates: '70 años Constitución' },
   { id: 'it_2019b', country: 'Italia', year: 2019, description: '500 años muerte de Rafael Sanzio (anticipada)', imageUrl: null, mintage: 5000000, commemorates: 'Rafael Sanzio' },
   { id: 'it_2020b', country: 'Italia', year: 2020, description: '150 años Roma capital de Italia', imageUrl: null, mintage: 5000000, commemorates: 'Roma capital' },

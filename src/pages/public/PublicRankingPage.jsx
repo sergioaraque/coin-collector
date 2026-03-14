@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../supabase'
-import { ALL_COINS } from '../../data/coins'
+import { useCoins } from '../../hooks/useCoins'
 import { useSEO } from '../../hooks/useSEO'
 
 export default function PublicRankingPage() {
@@ -9,6 +9,7 @@ export default function PublicRankingPage() {
   const [ranking, setRanking] = useState([])
   const [loading, setLoading] = useState(true)
   const totalCoins = ALL_COINS.length
+  const { ALL_COINS, COUNTRIES}  = useCoins()
   useSEO({ title: 'Ranking público' })
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
 import { useCollection } from '../context/CollectionContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { showToast } from '../components/Toast'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
@@ -24,6 +24,7 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loadingPassword, setLoadingPassword] = useState(false)
 
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const totalCoins = ALL_COINS.length
   const ownedCount = owned.size
   const pct = Math.round((ownedCount / totalCoins) * 100)

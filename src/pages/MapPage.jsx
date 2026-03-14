@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { useCollection } from '../context/CollectionContext'
-import { ALL_COINS, COUNTRIES } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useNavigate } from 'react-router-dom'
 import { useSEO } from '../hooks/useSEO'
 import WallWidget from '../components/WallWidget'
@@ -54,6 +54,7 @@ export default function MapPage() {
   useSEO({ title: 'Mi mapa', description: 'Visualiza tu progreso en el mapa de Europa' })
   const { owned } = useCollection()
   const navigate = useNavigate()
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [tooltip, setTooltip] = useState(null)
   const [mode, setMode] = useState('mine') // 'mine' | 'compare' | 'heat'
   const [globalStats, setGlobalStats] = useState({}) // coin_id -> owner_count

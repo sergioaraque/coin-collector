@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import { supabase } from '../supabase'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useAuth } from '../context/AuthContext'
 import { useCoinImage } from '../hooks/useCoinImage'
 
@@ -125,6 +125,8 @@ export default function AdminImagePage() {
   const [search, setSearch] = useState('')
   const [countryFilter, setCountryFilter] = useState('')
   const [loading, setLoading] = useState(true)
+  
+  const { ALL_COINS, COUNTRIES }  = useCoins()
   const [uploading, setUploading] = useState(null)
 
   useEffect(() => {

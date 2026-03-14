@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ALL_COINS, COUNTRIES } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useCollection } from '../context/CollectionContext'
 import CoinCard from '../components/CoinCard'
 import CoinRow from '../components/CoinRow'
@@ -20,6 +20,7 @@ export default function CollectionPage() {
   const [country, setCountry] = useState(searchParams.get('country') || '')
   const [filter, setFilter] = useState('all')
   const [rarity, setRarity] = useState('')
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [viewMode, setViewMode] = useState('grid')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const loaderRef = useRef(null)

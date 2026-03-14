@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useSEO } from '../hooks/useSEO'
 
 function timeAgo(date) {
@@ -20,6 +20,7 @@ export default function ActivityPage() {
   useSEO({ title: 'Actividad reciente' })
   const { user } = useAuth()
   const navigate = useNavigate()
+  const { ALL_COINS, COUNTRIES}  = useCoins()
   const [activity, setActivity] = useState([])
   const [loading, setLoading] = useState(true)
 

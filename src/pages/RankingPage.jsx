@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
 
@@ -17,6 +17,7 @@ export default function RankingPage() {
   const { t } = useTranslation()
   const [ranking, setRanking] = useState([])
   const [loading, setLoading] = useState(true)
+  const { ALL_COINS, COUNTRIES}  = useCoins()
   const totalCoins = ALL_COINS.length
 
   useEffect(() => {

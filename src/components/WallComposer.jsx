@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 
 const MESSAGE_TYPES = [
   { value: 'general',     label: '💬 General' },
@@ -19,6 +19,7 @@ export default function WallComposer({
   const [coinSearch, setCoinSearch] = useState('')
   const [selectedCoin, setSelectedCoin] = useState(null)
   const [showCoinSearch, setShowCoinSearch] = useState(false)
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const [sending, setSending] = useState(false)
 
     const { user, profile } = useAuth()

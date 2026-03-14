@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useCollection } from '../context/CollectionContext'
 import { useCoinImage } from '../hooks/useCoinImage'
 import { useCoinNote } from '../hooks/useCoinNote'
@@ -11,6 +11,7 @@ export default function CoinDetailPage() {
   const { coinId } = useParams()
   const navigate = useNavigate()
   const { owned, toggleCoin } = useCollection()
+  const { ALL_COINS, COUNTRIES, loading } = useCoins()
   const coin = ALL_COINS.find(c => c.id === coinId)
   const { src, status } = useCoinImage(coin || {})
   const { t } = useTranslation()

@@ -2,7 +2,7 @@ import { createContext, useContext, useCallback } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '../supabase'
 import { useAuth } from './AuthContext'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { notifyCountryComplete } from '../lib/discord'
 import { showToast } from '../components/Toast'
 import { checkAndAwardBadges } from '../lib/badges'
@@ -12,6 +12,7 @@ const CollectionContext = createContext(null)
 export function CollectionProvider({ children }) {
   const { user } = useAuth()
   const queryClient = useQueryClient()
+  const { ALL_COINS, COUNTRIES}  = useCoins()
 
   // Clave de caché única por usuario
   const queryKey = ['collection', user?.id]

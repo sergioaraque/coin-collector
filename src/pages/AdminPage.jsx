@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import { useAdmin } from '../hooks/useAdmin'
-import { ALL_COINS } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useTranslation } from 'react-i18next'
 
 export default function AdminPage() {
@@ -10,6 +10,7 @@ export default function AdminPage() {
   const navigate = useNavigate()
   const [users, setUsers] = useState([])
   const [loadingUsers, setLoadingUsers] = useState(true)
+  const { ALL_COINS, COUNTRIES }  = useCoins()
   const { t } = useTranslation()
 
   useEffect(() => {
