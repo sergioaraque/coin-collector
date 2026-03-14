@@ -2,19 +2,35 @@
 // Drop-in replacement de '../data/coins'
 // Exporta ALL_COINS, COUNTRIES y YEARS igual que antes, pero desde Supabase
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { supabase } from '../supabase'
 
 // Caché en memoria para la sesión (evita refetches entre navegaciones)
 let _cache = null
+// Listeners registrados por cada instancia del hook
+const _listeners = new Set()
+
+// Notifica a todos los componentes que usan useCoins que recarguen
+function notifyListeners() {
+  _listeners.forEach(fn => fn())
+}
 
 export function useCoins() {
   const [coins, setCoins]     = useState(_cache || [])
   const [loading, setLoading] = useState(!_cache)
   const [error, setError]     = useState(null)
+  // Contador interno para forzar re-fetch cuando se invalida la caché
+  const [version, setVersion] = useState(0)
+
+  // Registrar este componente como listener al montar, desregistrar al desmontar
+  useEffect(() => {
+    const reload = () => setVersion(v => v + 1)
+    _listeners.add(reload)
+    return () => _listeners.delete(reload)
+  }, [])
 
   useEffect(() => {
-    if (_cache) return
+    if (_cache && version === 0) return  // primera carga con caché válida
 
     let cancelled = false
 
@@ -22,7 +38,6 @@ export function useCoins() {
       setLoading(true)
       setError(null)
 
-      // Supabase devuelve máx 1000 filas — paginamos por si el catálogo crece
       const PAGE = 1000
       let all = []
       let from = 0
@@ -58,9 +73,8 @@ export function useCoins() {
 
     fetchCoins()
     return () => { cancelled = true }
-  }, [])
+  }, [version])
 
-  // Mismos nombres que antes: ALL_COINS, COUNTRIES, YEARS
   const ALL_COINS = coins
 
   const COUNTRIES = useMemo(
@@ -89,8 +103,9 @@ function normalizeRow(row) {
   }
 }
 
-// Llama esto desde el panel admin tras aprobar una propuesta
-// para que el siguiente render recargue el catálogo desde Supabase
+// Llama esto tras aprobar una propuesta para que todos los componentes
+// que usen useCoins recarguen el catálogo desde Supabase
 export function invalidateCoinsCache() {
   _cache = null
+  notifyListeners()
 }
