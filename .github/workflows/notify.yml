@@ -19,5 +19,5 @@ jobs:
           SHORT_SHA="${SHORT_SHA:0:7}"
 
           curl -H "Content-Type: application/json" \
-            -d "{\"content\": \"🚀 **Nuevo despliegue en curso**\n📝 \`${COMMIT_MSG}\`\n👤 ${AUTHOR} · \`${SHORT_SHA}\`\n🔗 https://coin-collector-pearl.vercel.app/\"}" \
+            -d "{\"content\": \"🚀 **Nuevo despliegue en curso**\n📝 \`${COMMIT_MSG}\`\n👤 ${AUTHOR} · \`${SHORT_SHA}\`\n🔗 https://euro-collector.sergioaraque.com.es/\"}" \
             "$DISCORD_WEBHOOK"
