@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 
 // Texto que suele aparecer en la cara nacional de monedas conmemorativas → país en español
 const COUNTRY_HINTS = [
@@ -66,6 +66,14 @@ export function scoreAndRankCoins(ocrText, allCoins) {
     .map(({ coin }) => coin)
 }
 
+async function runOcr(imageDataUrl) {
+  const { createWorker } = await import('tesseract.js')
+  const worker = await createWorker('eng', 1, { logger: () => {} })
+  const { data: { text } } = await worker.recognize(imageDataUrl)
+  await worker.terminate()
+  return text
+}
+
 export function useCoinScanner(allCoins) {
   const videoRef = useRef(null)
   const streamRef = useRef(null)
@@ -75,6 +83,14 @@ export function useCoinScanner(allCoins) {
   const [ocrText, setOcrText] = useState('')
   const [ocrError, setOcrError] = useState(null)
 
+  // Conecta el stream al <video> después de que React renderice el elemento (phase === 'camera')
+  useEffect(() => {
+    if (phase === 'camera' && streamRef.current && videoRef.current) {
+      videoRef.current.srcObject = streamRef.current
+      videoRef.current.play().catch(() => {})
+    }
+  }, [phase])
+
   const startCamera = useCallback(async () => {
     setOcrError(null)
     try {
@@ -82,10 +98,7 @@ export function useCoinScanner(allCoins) {
         video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
       })
       streamRef.current = stream
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream
-        await videoRef.current.play()
-      }
+      // setPhase dispara el re-render que monta el <video>, y el useEffect de arriba conecta el stream
       setPhase('camera')
     } catch {
       setOcrError('No se pudo acceder a la cámara. Comprueba los permisos del navegador.')
@@ -97,27 +110,13 @@ export function useCoinScanner(allCoins) {
     streamRef.current = null
   }, [])
 
-  const captureAndRecognize = useCallback(async () => {
-    if (!videoRef.current) return
-
-    const video = videoRef.current
-    const canvas = document.createElement('canvas')
-    canvas.width = video.videoWidth || 640
-    canvas.height = video.videoHeight || 480
-    canvas.getContext('2d').drawImage(video, 0, 0)
-    stopCamera()
-
-    const imageDataUrl = canvas.toDataURL('image/jpeg', 0.9)
+  const processImage = useCallback(async (imageDataUrl) => {
     setCapturedImage(imageDataUrl)
     setPhase('processing')
     setOcrError(null)
 
     try {
-      const { createWorker } = await import('tesseract.js')
-      const worker = await createWorker('eng', 1, { logger: () => {} })
-      const { data: { text } } = await worker.recognize(imageDataUrl)
-      await worker.terminate()
-
+      const text = await runOcr(imageDataUrl)
       setOcrText(text)
       const found = scoreAndRankCoins(text, allCoins)
       setMatches(found)
@@ -136,7 +135,29 @@ export function useCoinScanner(allCoins) {
     }
 
     setPhase('results')
-  }, [allCoins, stopCamera])
+  }, [allCoins])
+
+  const captureAndRecognize = useCallback(async () => {
+    if (!videoRef.current) return
+    const video = videoRef.current
+    const canvas = document.createElement('canvas')
+    canvas.width = video.videoWidth || 640
+    canvas.height = video.videoHeight || 480
+    canvas.getContext('2d').drawImage(video, 0, 0)
+    stopCamera()
+    await processImage(canvas.toDataURL('image/jpeg', 0.9))
+  }, [stopCamera, processImage])
+
+  const recognizeFromFile = useCallback(async (file) => {
+    stopCamera()
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = e => resolve(e.target.result)
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+    await processImage(dataUrl)
+  }, [stopCamera, processImage])
 
   const reset = useCallback(() => {
     stopCamera()
@@ -147,5 +168,5 @@ export function useCoinScanner(allCoins) {
     setOcrError(null)
   }, [stopCamera])
 
-  return { videoRef, phase, capturedImage, matches, ocrText, ocrError, startCamera, stopCamera, captureAndRecognize, reset }
+  return { videoRef, phase, capturedImage, matches, ocrText, ocrError, startCamera, stopCamera, captureAndRecognize, recognizeFromFile, reset }
 }

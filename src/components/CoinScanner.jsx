@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useCoinScanner } from '../hooks/useCoinScanner'
 import { useCoinImage } from '../hooks/useCoinImage'
 
 export default function CoinScanner({ allCoins, owned, onToggle, onClose }) {
   const {
     videoRef, phase, capturedImage, matches, ocrError,
-    startCamera, stopCamera, captureAndRecognize, reset,
+    startCamera, stopCamera, captureAndRecognize, recognizeFromFile, reset,
   } = useCoinScanner(allCoins)
+
+  const fileInputRef = useRef(null)
 
   // Arranca la cámara al montar
   useEffect(() => {
@@ -17,6 +19,12 @@ export default function CoinScanner({ allCoins, owned, onToggle, onClose }) {
   const handleClose = () => {
     reset()
     onClose()
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0]
+    if (file) recognizeFromFile(file)
+    e.target.value = ''
   }
 
   return (
@@ -65,6 +73,24 @@ export default function CoinScanner({ allCoins, owned, onToggle, onClose }) {
               >
                 📸 Capturar y reconocer
               </button>
+              <div className="flex items-center gap-3">
+                <div className="flex-1 border-t border-gray-200 dark:border-gray-600" />
+                <span className="text-xs text-gray-400">o</span>
+                <div className="flex-1 border-t border-gray-200 dark:border-gray-600" />
+              </div>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-medium py-2.5 rounded-xl transition text-sm"
+              >
+                🖼️ Usar foto de la galería
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
+              />
             </>
           )}
 
@@ -142,15 +168,28 @@ export default function CoinScanner({ allCoins, owned, onToggle, onClose }) {
             </>
           )}
 
-          {/* Error de cámara (sin llegar a phase camera) */}
+          {/* Error de cámara antes de llegar a phase camera */}
           {phase === 'idle' && ocrError && (
             <div className="py-4 space-y-3">
               <p className="text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg px-3 py-2 text-center">
                 ❌ {ocrError}
               </p>
               <button
+                onClick={() => fileInputRef.current?.click()}
+                className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-medium py-2.5 rounded-xl transition text-sm"
+              >
+                🖼️ Usar foto de la galería igualmente
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+              <button
                 onClick={handleClose}
-                className="w-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium py-2.5 rounded-xl transition text-sm"
+                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-medium py-2.5 rounded-xl transition text-sm"
               >
                 Cerrar
               </button>
@@ -167,7 +206,6 @@ function MatchRow({ coin, isOwned, onToggle }) {
 
   return (
     <div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-700 rounded-xl p-3">
-      {/* Imagen de catálogo */}
       <div className="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-600 flex items-center justify-center shrink-0 overflow-hidden">
         {status === 'error' ? (
           <span className="text-2xl">🪙</span>
@@ -179,14 +217,10 @@ function MatchRow({ coin, isOwned, onToggle }) {
           />
         )}
       </div>
-
-      {/* Info */}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-semibold text-blue-700 dark:text-blue-400">{coin.country} · {coin.year}</p>
         <p className="text-xs text-gray-600 dark:text-gray-300 truncate">{coin.description}</p>
       </div>
-
-      {/* Botón */}
       <button
         onClick={onToggle}
         className={`shrink-0 text-xs font-semibold px-3 py-1.5 rounded-lg transition ${
