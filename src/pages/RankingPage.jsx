@@ -17,12 +17,16 @@ export default function RankingPage() {
   const { t } = useTranslation()
   const [ranking, setRanking] = useState([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState(false)
   const { ALL_COINS, COUNTRIES}  = useCoins()
   const totalCoins = ALL_COINS.length
 
   useEffect(() => {
     supabase.rpc('get_ranking').then(({ data, error }) => {
-      if (error) console.error(error)
+      if (error) {
+        console.error(error)
+        setFetchError(true)
+      }
       setRanking(data || [])
       setLoading(false)
     })
@@ -39,6 +43,8 @@ export default function RankingPage() {
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
         {loading ? (
           <div className="text-center py-16 text-gray-400">Cargando...</div>
+        ) : fetchError ? (
+          <div className="text-center py-16 text-red-400">Error al cargar el ranking. Inténtalo de nuevo.</div>
         ) : ranking.length === 0 ? (
           <div className="text-center py-16 text-gray-400">{t('rankingEmpty')}</div>
         ) : (

@@ -22,6 +22,7 @@ export default function Layout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
   const personalRef = useRef(null)
+  const themesRef = useRef(null)
 
   const handleSignOut = async () => {
     await signOut()
@@ -36,11 +37,14 @@ export default function Layout() {
 
   const pct = Math.round((owned.size / ALL_COINS.length) * 100)
 
-  // Cierra el dropdown al hacer click fuera
+  // Cierra los dropdowns al hacer click fuera
   useEffect(() => {
     function handleClick(e) {
       if (personalRef.current && !personalRef.current.contains(e.target)) {
         setShowPersonal(false)
+      }
+      if (themesRef.current && !themesRef.current.contains(e.target)) {
+        setShowThemes(false)
       }
     }
     document.addEventListener('mousedown', handleClick)
@@ -126,7 +130,7 @@ export default function Layout() {
                 {dark ? '☀️' : '🌙'}
               </button>
 
-              <div className="relative">
+              <div className="relative" ref={themesRef}>
                 <button
                   onClick={() => setShowThemes(s => !s)}
                   className="bg-black/20 hover:bg-black/30 px-3 py-1.5 rounded-lg text-sm transition"

@@ -10,7 +10,7 @@ import { checkAndAwardBadges } from '../lib/badges'
 const CollectionContext = createContext(null)
 
 export function CollectionProvider({ children }) {
-  const { user } = useAuth()
+  const { user, profile } = useAuth()
   const queryClient = useQueryClient()
   const { ALL_COINS, COUNTRIES}  = useCoins()
 
@@ -56,8 +56,14 @@ export function CollectionProvider({ children }) {
       newOwned.delete(coinId)
       queryClient.setQueryData(queryKey, newOwned)
 
-      await supabase.from('collection').delete()
+      const { error: deleteError } = await supabase.from('collection').delete()
         .eq('user_id', user.id).eq('coin_id', coinId)
+
+      if (deleteError) {
+        queryClient.setQueryData(queryKey, owned) // revertir
+        showToast('Error al eliminar la moneda', 'error')
+        return
+      }
 
       showToast(`${coin?.country} ${coin?.year} eliminada`, 'info')
       await logActivity('remove', coinId, coin?.country)
@@ -66,7 +72,13 @@ export function CollectionProvider({ children }) {
       const newOwned = new Set([...owned, coinId])
       queryClient.setQueryData(queryKey, newOwned)
 
-      await supabase.from('collection').insert({ user_id: user.id, coin_id: coinId })
+      const { error: insertError } = await supabase.from('collection').insert({ user_id: user.id, coin_id: coinId })
+
+      if (insertError) {
+        queryClient.setQueryData(queryKey, owned) // revertir
+        showToast('Error al añadir la moneda', 'error')
+        return
+      }
 
       showToast(`🪙 ${coin?.country} ${coin?.year} añadida`, 'success')
       await logActivity('add', coinId, coin?.country)
@@ -76,7 +88,7 @@ export function CollectionProvider({ children }) {
         const allOwned = countryCoins.every(c => newOwned.has(c.id))
         if (allOwned) {
           showToast(`🏆 ¡${coin.country} completado al 100%!`, 'success')
-          await notifyCountryComplete(user.email, coin.country, countryCoins.length)
+          await notifyCountryComplete(user.email, profile?.username, coin.country, countryCoins.length)
           await logActivity('complete_country', null, coin.country)
         }
       }
@@ -92,7 +104,7 @@ export function CollectionProvider({ children }) {
         if (data) showToast(`${data.icon} ¡Insignia desbloqueada! ${data.name}`, 'success')
       }
     }
-  }, [user, owned, queryKey, queryClient])
+  }, [user, profile, owned, queryKey, queryClient])
 
   return (
     <CollectionContext.Provider value={{ owned, loading, toggleCoin }}>

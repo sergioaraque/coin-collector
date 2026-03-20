@@ -23,9 +23,12 @@ export function useWallMessages(parentId = null, limit = 50) {
       query = query.is('parent_id', null)
     }
 
-    const { data } = await query
-    setMessages(data || [])
-    setLoading(false)
+    try {
+      const { data } = await query
+      setMessages(data || [])
+    } finally {
+      setLoading(false)
+    }
   }, [parentId, limit])
 
   useEffect(() => {

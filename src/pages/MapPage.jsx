@@ -78,6 +78,8 @@ export default function MapPage() {
       setGlobalStats(map)
       setTotalUsers(Math.max(count || 1, 1))
       setLoadingGlobal(false)
+    }).catch(() => {
+      setLoadingGlobal(false)
     })
   }, [mode])
 

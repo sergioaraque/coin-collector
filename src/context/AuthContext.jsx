@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
           .eq('user_id', session.user.id)
           .maybeSingle()
           .then(({ data }) => setProfile(data))
+          .catch(() => setProfile(null))
       } else {
         setProfile(null)
       }
@@ -77,7 +78,7 @@ export function AuthProvider({ children }) {
     const result = await supabase.auth.signUp({ email, password })
     
     if (!result.error && result.data?.user) {
-      await notifyDiscord(
+      notifyDiscord(
         `🆕 **Nuevo registro** — \`${email}\`\n` +
         `📅 ${new Date().toLocaleString('es')}\n` +
         `⏳ Pendiente de confirmar email`

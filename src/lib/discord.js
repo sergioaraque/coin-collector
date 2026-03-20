@@ -1,5 +1,3 @@
-const WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL
-
 export async function notifyDiscord(message) {
   const url = import.meta.env.VITE_DISCORD_WEBHOOK_URL
   if (!url) return

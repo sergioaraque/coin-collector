@@ -6,3 +6,6 @@
 supabase/.temp/
 supabase/functions/.env
 supabase/config.toml
+
+
+scripts/*
