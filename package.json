@@ -22,7 +22,8 @@
     "react-router-dom": "^6.28.0",
     "react-simple-maps": "^3.0.0",
     "react-window": "^2.2.7",
-    "recharts": "^2.15.4"
+    "recharts": "^2.15.4",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ALL_COINS, COUNTRIES } from '../data/coins'
+import { useCoins } from '../hooks/useCoins'
 import { useCollection } from '../context/CollectionContext'
 import { useAuth } from '../context/AuthContext'
 import CoinCard from '../components/CoinCard'
@@ -8,12 +8,14 @@ import CoinRow from '../components/CoinRow'
 import { useTranslation } from 'react-i18next'
 import { useSEO } from '../hooks/useSEO'
 import ProposeModal from '../components/ProposeModal'
+import CoinScanner from '../components/CoinScanner'
 
 export default function CollectionPage() {
   useSEO({ title: 'Mi colección' })
   const { owned, toggleCoin } = useCollection()
   const { user } = useAuth()
   const [searchParams] = useSearchParams()
+  const { ALL_COINS, COUNTRIES } = useCoins()
 
   const [search, setSearch] = useState('')
   const [country, setCountry] = useState(searchParams.get('country') || '')
@@ -21,6 +23,7 @@ export default function CollectionPage() {
   const [rarity, setRarity] = useState('')
   const [viewMode, setViewMode] = useState('grid')
   const [showPropose, setShowPropose] = useState(false)
+  const [showScanner, setShowScanner] = useState(false)
   const { t } = useTranslation()
 
   const filtered = useMemo(() => {
@@ -140,12 +143,21 @@ export default function CollectionPage() {
         </div>
 
         <span className="text-sm text-gray-500 dark:text-gray-400">{filtered.length} {t('coins')}</span>
-        <button
-          onClick={() => setShowPropose(true)}
-          className="ml-auto text-xs bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold px-3 py-2 rounded-lg transition"
-        >
-          + Proponer moneda
-        </button>
+        <div className="ml-auto flex gap-2">
+          <button
+            onClick={() => setShowScanner(true)}
+            className="text-xs bg-blue-700 hover:bg-blue-800 text-white font-semibold px-3 py-2 rounded-lg transition"
+            title="Escanear moneda con la cámara"
+          >
+            📷 Escanear
+          </button>
+          <button
+            onClick={() => setShowPropose(true)}
+            className="text-xs bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-semibold px-3 py-2 rounded-lg transition"
+          >
+            + Proponer moneda
+          </button>
+        </div>
       </div>
 
       {/* Progreso por país */}
@@ -235,6 +247,16 @@ export default function CollectionPage() {
       {/* Modal propuesta */}
       {showPropose && user && (
         <ProposeModal user={user} onClose={() => setShowPropose(false)} />
+      )}
+
+      {/* Modal escáner */}
+      {showScanner && (
+        <CoinScanner
+          allCoins={ALL_COINS}
+          owned={owned}
+          onToggle={toggleCoin}
+          onClose={() => setShowScanner(false)}
+        />
       )}
     </div>
   )
